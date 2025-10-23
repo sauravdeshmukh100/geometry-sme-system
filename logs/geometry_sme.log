@@ -1,0 +1,17 @@
+2025-10-09 17:02:24,839 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-10-09 17:02:24,839 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-10-09 17:02:25,876 - INFO - Creating Elasticsearch index...
+2025-10-09 17:02:25,883 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:200 duration:0.007s]
+2025-10-09 17:02:25,949 - INFO - DELETE http://localhost:9200/geometry_k12_rag [status:200 duration:0.066s]
+2025-10-09 17:02:25,949 - INFO - Deleted existing index: geometry_k12_rag
+2025-10-09 17:02:25,951 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:404 duration:0.002s]
+2025-10-09 17:02:26,196 - INFO - PUT http://localhost:9200/geometry_k12_rag [status:200 duration:0.244s]
+2025-10-09 17:02:26,196 - INFO - Processing documents from data/raw
+2025-10-09 17:02:26,196 - INFO - Processing: fegp102.pdf
+2025-10-09 17:02:27,775 - INFO - Saved processed document: fegp102.pdf
+2025-10-09 17:02:27,775 - INFO - Processed 1 documents
+2025-10-09 17:02:29,746 - INFO - Indexing 14 chunks to Elasticsearch...
+2025-10-09 17:02:29,833 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.083s]
+2025-10-09 17:02:29,833 - INFO - Indexed batch: 14 successful, [] failed
+2025-10-09 17:02:29,857 - INFO - POST http://localhost:9200/geometry_k12_rag/_refresh [status:200 duration:0.024s]
+2025-10-09 17:02:29,858 - INFO - Database build complete!

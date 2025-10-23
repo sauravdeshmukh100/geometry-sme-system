@@ -1,0 +1,38 @@
+# Core dependencies
+python-dotenv==1.0.0
+pydantic==2.4.0
+pydantic-settings==2.0.3
+
+# Document processing
+pypdf==3.17.0
+python-docx==1.0.1
+python-pptx==0.6.21
+markdown==3.5.0
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# NLP and embeddings
+sentence-transformers==2.2.2
+transformers==4.35.0
+torch==2.1.0
+tokenizers==0.14.1
+
+# Database
+elasticsearch==8.11.0
+asyncpg==0.29.0
+redis==5.0.1
+
+# API and async
+fastapi==0.104.1
+uvicorn==0.24.0
+httpx==0.25.1
+aiofiles==23.2.1
+
+# Data processing
+numpy==1.24.3
+pandas==2.0.3
+tqdm==4.66.1
+
+# Utils
+python-multipart==0.0.6
+typing-extensions==4.8.0
