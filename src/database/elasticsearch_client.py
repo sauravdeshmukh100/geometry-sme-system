@@ -18,12 +18,18 @@ class GeometryElasticsearchClient:
         es_url = f"http://{settings.ES_HOST}:{settings.ES_PORT}"
 
         self.client = Elasticsearch(
-            es_url,
-            request_timeout=settings.ES_TIMEOUT
+            [es_url],
+            verify_certs=False,
+            ssl_show_warn=False,
+            request_timeout=settings.ES_TIMEOUT,
+            retry_on_timeout=True,
         )
         self.async_client = AsyncElasticsearch(
-            es_url,
-            request_timeout=settings.ES_TIMEOUT
+            [es_url],
+            verify_certs=False,
+            ssl_show_warn=False,
+            request_timeout=settings.ES_TIMEOUT,
+            retry_on_timeout=True,
         )
 
         self.index_name = settings.ES_INDEX_NAME

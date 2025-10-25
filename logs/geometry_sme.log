@@ -1,17 +1,151 @@
-2025-10-09 17:02:24,839 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
-2025-10-09 17:02:24,839 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
-2025-10-09 17:02:25,876 - INFO - Creating Elasticsearch index...
-2025-10-09 17:02:25,883 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:200 duration:0.007s]
-2025-10-09 17:02:25,949 - INFO - DELETE http://localhost:9200/geometry_k12_rag [status:200 duration:0.066s]
-2025-10-09 17:02:25,949 - INFO - Deleted existing index: geometry_k12_rag
-2025-10-09 17:02:25,951 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:404 duration:0.002s]
-2025-10-09 17:02:26,196 - INFO - PUT http://localhost:9200/geometry_k12_rag [status:200 duration:0.244s]
-2025-10-09 17:02:26,196 - INFO - Processing documents from data/raw
-2025-10-09 17:02:26,196 - INFO - Processing: fegp102.pdf
-2025-10-09 17:02:27,775 - INFO - Saved processed document: fegp102.pdf
-2025-10-09 17:02:27,775 - INFO - Processed 1 documents
-2025-10-09 17:02:29,746 - INFO - Indexing 14 chunks to Elasticsearch...
-2025-10-09 17:02:29,833 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.083s]
-2025-10-09 17:02:29,833 - INFO - Indexed batch: 14 successful, [] failed
-2025-10-09 17:02:29,857 - INFO - POST http://localhost:9200/geometry_k12_rag/_refresh [status:200 duration:0.024s]
-2025-10-09 17:02:29,858 - INFO - Database build complete!
+2025-10-25 20:18:48,007 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-10-25 20:18:49,120 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:200 duration:0.013s]
+2025-10-25 20:18:49,185 - INFO - DELETE http://localhost:9200/geometry_k12_rag [status:200 duration:0.064s]
+2025-10-25 20:18:49,185 - INFO - Deleted existing index: geometry_k12_rag
+2025-10-25 20:18:49,188 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:404 duration:0.002s]
+2025-10-25 20:18:49,438 - INFO - PUT http://localhost:9200/geometry_k12_rag [status:200 duration:0.250s]
+2025-10-25 20:18:49,440 - INFO - Found 19 documents to process
+2025-10-25 20:18:49,440 - INFO - Processing: class9_7.pdf
+2025-10-25 20:18:49,807 - INFO - Saved processed document: class9_7.pdf [Grade 9]
+2025-10-25 20:18:49,807 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
+2025-10-25 20:18:49,807 - INFO - Processing: class6_2.pdf
+2025-10-25 20:18:51,394 - INFO - Saved processed document: class6_2.pdf [Grade 6]
+2025-10-25 20:18:51,395 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-10-25 20:18:51,395 - INFO - Processing: class6_9.pdf
+2025-10-25 20:18:53,268 - INFO - Saved processed document: class6_9.pdf [Grade 6]
+2025-10-25 20:18:53,268 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-10-25 20:18:53,268 - INFO - Processing: class10_6.pdf
+2025-10-25 20:18:53,937 - INFO - Saved processed document: class10_6.pdf [Grade 10]
+2025-10-25 20:18:53,937 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
+2025-10-25 20:18:53,937 - INFO - Processing: class7_7.pdf
+2025-10-25 20:18:54,292 - INFO - Saved processed document: class7_7.pdf [Grade 7]
+2025-10-25 20:18:54,292 - INFO -   ✓ Grade: Grade 7, Difficulty: Beginner
+2025-10-25 20:18:54,292 - INFO - Processing: class7_5.pdf
+2025-10-25 20:18:54,533 - INFO - Saved processed document: class7_5.pdf [Grade 7]
+2025-10-25 20:18:54,533 - INFO -   ✓ Grade: Grade 7, Difficulty: Intermediate
+2025-10-25 20:18:54,533 - INFO - Processing: class10_10.pdf
+2025-10-25 20:18:54,702 - INFO - Saved processed document: class10_10.pdf [Grade 10]
+2025-10-25 20:18:54,702 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
+2025-10-25 20:18:54,702 - INFO - Processing: class9_6.pdf
+2025-10-25 20:18:55,004 - INFO - Saved processed document: class9_6.pdf [Grade 9]
+2025-10-25 20:18:55,004 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
+2025-10-25 20:18:55,004 - INFO - Processing: San Jacinto Campus.pptx
+2025-10-25 20:18:55,060 - INFO - Saved processed document: San Jacinto Campus.pptx [Grade 6]
+2025-10-25 20:18:55,060 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-10-25 20:18:55,061 - INFO - Processing: class9_10.pdf
+2025-10-25 20:18:55,345 - INFO - Saved processed document: class9_10.pdf [Grade 9]
+2025-10-25 20:18:55,345 - INFO -   ✓ Grade: Grade 9, Difficulty: Beginner
+2025-10-25 20:18:55,345 - INFO - Processing: class10_12.pdf
+2025-10-25 20:18:56,434 - INFO - Saved processed document: class10_12.pdf [Grade 10]
+2025-10-25 20:18:56,434 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
+2025-10-25 20:18:56,434 - INFO - Processing: class6_8.pdf
+2025-10-25 20:18:57,855 - INFO - Saved processed document: class6_8.pdf [Grade 6]
+2025-10-25 20:18:57,855 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-10-25 20:18:57,855 - INFO - Processing: class9_9.pdf
+2025-10-25 20:18:58,025 - INFO - Saved processed document: class9_9.pdf [Grade 9]
+2025-10-25 20:18:58,026 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-10-25 20:18:58,026 - INFO - Processing: class9_8.pdf
+2025-10-25 20:18:58,242 - INFO - Saved processed document: class9_8.pdf [Grade 9]
+2025-10-25 20:18:58,242 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-10-25 20:18:58,242 - INFO - Processing: class8_4.pdf
+2025-10-25 20:18:58,860 - INFO - Saved processed document: class8_4.pdf [Grade 8]
+2025-10-25 20:18:58,860 - INFO -   ✓ Grade: Grade 8, Difficulty: Intermediate
+2025-10-25 20:18:58,860 - INFO - Processing: class9_11.pdf
+2025-10-25 20:19:00,352 - INFO - Saved processed document: class9_11.pdf [Grade 9]
+2025-10-25 20:19:00,352 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-10-25 20:19:00,352 - INFO - Processing: Geometry Textbook.pdf
+2025-10-25 20:19:01,295 - INFO - Saved processed document: Geometry Textbook.pdf [Grade 6-10 (General)]
+2025-10-25 20:19:01,295 - INFO -   ✓ Grade: Grade 6-10 (General), Difficulty: Beginner
+2025-10-25 20:19:01,295 - INFO - Processing: class10_11.pdf
+2025-10-25 20:19:01,439 - INFO - Saved processed document: class10_11.pdf [Grade 10]
+2025-10-25 20:19:01,439 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
+2025-10-25 20:19:01,439 - INFO - Processing: class6_6.pdf
+2025-10-25 20:19:02,390 - INFO - Saved processed document: class6_6.pdf [Grade 6]
+2025-10-25 20:19:02,390 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-10-25 20:19:02,390 - INFO - 
+============================================================
+2025-10-25 20:19:02,390 - INFO - Processing Summary:
+2025-10-25 20:19:02,390 - INFO -   Total processed: 19/19
+2025-10-25 20:19:02,390 - INFO - 
+  Grade Distribution:
+2025-10-25 20:19:02,390 - INFO -     Grade 10: 4 documents
+2025-10-25 20:19:02,390 - INFO -     Grade 6: 5 documents
+2025-10-25 20:19:02,390 - INFO -     Grade 6-10 (General): 1 documents
+2025-10-25 20:19:02,391 - INFO -     Grade 7: 2 documents
+2025-10-25 20:19:02,391 - INFO -     Grade 8: 1 documents
+2025-10-25 20:19:02,391 - INFO -     Grade 9: 6 documents
+2025-10-25 20:19:02,391 - INFO - ============================================================
+
+2025-10-25 20:19:02,399 - INFO - Created 4 Level-0 chunks for class9_7.pdf
+2025-10-25 20:19:02,416 - INFO - Total chunks created for class9_7.pdf: 97 (L0: 4, L1: 17, L2: 76)
+2025-10-25 20:19:05,379 - INFO - Created 8 Level-0 chunks for class6_2.pdf
+2025-10-25 20:19:05,418 - INFO - Total chunks created for class6_2.pdf: 199 (L0: 8, L1: 36, L2: 155)
+2025-10-25 20:19:08,324 - INFO - Created 4 Level-0 chunks for class6_9.pdf
+2025-10-25 20:19:08,343 - INFO - Total chunks created for class6_9.pdf: 100 (L0: 4, L1: 18, L2: 78)
+2025-10-25 20:19:09,775 - INFO - Created 5 Level-0 chunks for class10_6.pdf
+2025-10-25 20:19:09,796 - INFO - Total chunks created for class10_6.pdf: 118 (L0: 5, L1: 21, L2: 92)
+2025-10-25 20:19:11,486 - INFO - Created 5 Level-0 chunks for class7_7.pdf
+2025-10-25 20:19:11,508 - INFO - Total chunks created for class7_7.pdf: 130 (L0: 5, L1: 22, L2: 103)
+2025-10-25 20:19:13,248 - INFO - Created 4 Level-0 chunks for class7_5.pdf
+2025-10-25 20:19:13,265 - INFO - Total chunks created for class7_5.pdf: 93 (L0: 4, L1: 16, L2: 73)
+2025-10-25 20:19:14,713 - INFO - Created 2 Level-0 chunks for class10_10.pdf
+2025-10-25 20:19:14,722 - INFO - Total chunks created for class10_10.pdf: 54 (L0: 2, L1: 9, L2: 43)
+2025-10-25 20:19:15,976 - INFO - Created 3 Level-0 chunks for class9_6.pdf
+2025-10-25 20:19:15,989 - INFO - Total chunks created for class9_6.pdf: 70 (L0: 3, L1: 13, L2: 54)
+2025-10-25 20:19:17,279 - INFO - Created 1 Level-0 chunks for San Jacinto Campus.pptx
+2025-10-25 20:19:17,283 - INFO - Total chunks created for San Jacinto Campus.pptx: 27 (L0: 1, L1: 5, L2: 21)
+2025-10-25 20:19:18,153 - INFO - Created 2 Level-0 chunks for class9_10.pdf
+2025-10-25 20:19:18,158 - INFO - Total chunks created for class9_10.pdf: 29 (L0: 2, L1: 5, L2: 22)
+2025-10-25 20:19:19,129 - INFO - Created 3 Level-0 chunks for class10_12.pdf
+2025-10-25 20:19:19,141 - INFO - Total chunks created for class10_12.pdf: 61 (L0: 3, L1: 11, L2: 47)
+2025-10-25 20:19:19,036 - INFO - Created 5 Level-0 chunks for class6_8.pdf
+2025-10-25 20:19:19,064 - INFO - Total chunks created for class6_8.pdf: 120 (L0: 5, L1: 21, L2: 94)
+2025-10-25 20:19:20,690 - INFO - Created 4 Level-0 chunks for class9_9.pdf
+2025-10-25 20:19:20,704 - INFO - Total chunks created for class9_9.pdf: 89 (L0: 4, L1: 16, L2: 69)
+2025-10-25 20:19:22,166 - INFO - Created 3 Level-0 chunks for class9_8.pdf
+2025-10-25 20:19:22,176 - INFO - Total chunks created for class9_8.pdf: 65 (L0: 3, L1: 12, L2: 50)
+2025-10-25 20:19:23,509 - INFO - Created 6 Level-0 chunks for class8_4.pdf
+2025-10-25 20:19:23,538 - INFO - Total chunks created for class8_4.pdf: 159 (L0: 6, L1: 28, L2: 125)
+2025-10-25 20:19:25,590 - INFO - Created 4 Level-0 chunks for class9_11.pdf
+2025-10-25 20:19:25,609 - INFO - Total chunks created for class9_11.pdf: 89 (L0: 4, L1: 16, L2: 69)
+2025-10-25 20:19:27,030 - WARNING - Empty text received for Geometry Textbook.pdf
+2025-10-25 20:19:27,030 - WARNING - No chunks created for Geometry Textbook.pdf
+2025-10-25 20:19:27,031 - INFO - Created 2 Level-0 chunks for class10_11.pdf
+2025-10-25 20:19:27,037 - INFO - Total chunks created for class10_11.pdf: 34 (L0: 2, L1: 6, L2: 26)
+2025-10-25 20:19:28,023 - INFO - Created 5 Level-0 chunks for class6_6.pdf
+2025-10-25 20:19:28,047 - INFO - Total chunks created for class6_6.pdf: 120 (L0: 5, L1: 22, L2: 93)
+2025-10-25 20:19:30,280 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.232s]
+2025-10-25 20:19:30,280 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:30,425 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.109s]
+2025-10-25 20:19:30,426 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:30,572 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.113s]
+2025-10-25 20:19:30,572 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:30,706 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.102s]
+2025-10-25 20:19:30,706 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:30,840 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.105s]
+2025-10-25 20:19:30,841 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:30,981 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.108s]
+2025-10-25 20:19:30,981 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:31,122 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.107s]
+2025-10-25 20:19:31,122 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:31,267 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.110s]
+2025-10-25 20:19:31,272 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:31,423 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.117s]
+2025-10-25 20:19:31,424 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:31,571 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.116s]
+2025-10-25 20:19:31,572 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:31,717 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.117s]
+2025-10-25 20:19:31,718 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:31,856 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.106s]
+2025-10-25 20:19:31,856 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:31,995 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.107s]
+2025-10-25 20:19:31,995 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:32,131 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.107s]
+2025-10-25 20:19:32,132 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:32,267 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.106s]
+2025-10-25 20:19:32,267 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:32,408 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.110s]
+2025-10-25 20:19:32,409 - INFO - Indexed batch: 100 successful, [] failed
+2025-10-25 20:19:32,489 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.065s]
+2025-10-25 20:19:32,490 - INFO - Indexed batch: 54 successful, [] failed
+2025-10-25 20:19:32,667 - INFO - POST http://localhost:9200/geometry_k12_rag/_refresh [status:200 duration:0.177s]
