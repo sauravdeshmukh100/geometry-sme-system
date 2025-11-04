@@ -614,7 +614,7 @@ If you use this project in your research, please cite:
   author={Saurav Deshmukh},
   year={2025},
   publisher={GitHub},
-  url={https://github.com/yourusername/geometry-sme-agent}
+  url={https://github.com/sauravdeshmukh100/geometry-sme-agent}
 }
 ```
 
