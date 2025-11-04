@@ -20,8 +20,8 @@ class Settings(BaseSettings):
     
     # Chunking Configuration
     chunk_size_level_0: int = 2048
-    chunk_size_level_1: int = 512
-    chunk_size_level_2: int = 128
+    chunk_size_level_1: int = 350
+    chunk_size_level_2: int = 100
     chunk_overlap: int = 20
     
     # Redis Configuration
