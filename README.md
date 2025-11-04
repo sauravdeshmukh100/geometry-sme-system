@@ -567,7 +567,7 @@ touch src/retrieval/__init__.py
 ### Contributors
 
 - **[Saurav Deshmukh]** - [Leader] - [saurav.deshmukh@students.iiit.ac.in]
-- **[Shubham Raut]** - [Support(junior)] - [shubham.raut@students.iiit.ac.in] (if applicable)
+- **[Shubham Raut]** - [Support(junior)] - [shubham.raut@students.iiit.ac.in] 
 
 ---
 
@@ -579,7 +579,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact & Support
 
-- **GitHub Issues**: [Project Issues](https://github.com/yourusername/geometry-sme-agent/issues)
+- **GitHub Issues**: [Project Issues](https://github.com/sauravdeshmukh100/geometry-sme-agent/issues)
 - **Email**: [saurav.deshmukh@students.iiit.ac.in]
 - **Documentation**: See `docs/` folder for detailed documentation
 
