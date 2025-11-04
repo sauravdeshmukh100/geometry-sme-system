@@ -561,13 +561,13 @@ touch src/retrieval/__init__.py
 
 - **Team Size**: [1/2]
 - **Domain**: K-12 Education - Geometry
-- **Institution**: [Your Institution]
+- **Institution**: [IIITH]
 - **Course**: Major Project - LMA Monsoon 2025
 
 ### Contributors
 
-- **[Your Name]** - [Role] - [Email]
-- **[Team Member 2]** - [Role] - [Email] (if applicable)
+- **[Saurav Deshmukh]** - [Leader] - [saurav.deshmukh@students.iiit.ac.in]
+- **[Shubham Raut]** - [Support(junior)] - [shubham.raut@students.iiit.ac.in] (if applicable)
 
 ---
 
@@ -580,7 +580,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact & Support
 
 - **GitHub Issues**: [Project Issues](https://github.com/yourusername/geometry-sme-agent/issues)
-- **Email**: [your.email@example.com]
+- **Email**: [saurav.deshmukh@students.iiit.ac.in]
 - **Documentation**: See `docs/` folder for detailed documentation
 
 ---
@@ -591,7 +591,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **McDougal Littell** - Geometry textbook resources
 - **Sentence Transformers** - Embedding models
 - **Elasticsearch** - Vector search capabilities
-- **Project Guide** - [Guide Name]
+- **Project Guide** - [Vasudev Sir]
 
 ---
 
@@ -611,7 +611,7 @@ If you use this project in your research, please cite:
 ```bibtex
 @misc{geometry-sme-2025,
   title={Geometry Subject Matter Expert AI Agent},
-  author={Your Name},
+  author={Saurav Deshmukh},
   year={2025},
   publisher={GitHub},
   url={https://github.com/yourusername/geometry-sme-agent}
