@@ -1,0 +1,208 @@
+2025-11-10 12:22:39,744 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-10 12:22:40,913 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:200 duration:0.060s]
+2025-11-10 12:22:41,312 - INFO - DELETE http://localhost:9200/geometry_k12_rag [status:200 duration:0.398s]
+2025-11-10 12:22:41,312 - INFO - Deleted existing index: geometry_k12_rag
+2025-11-10 12:22:41,317 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:404 duration:0.005s]
+2025-11-10 12:22:41,780 - INFO - PUT http://localhost:9200/geometry_k12_rag [status:200 duration:0.463s]
+2025-11-10 12:22:41,781 - INFO - Created index: geometry_k12_rag
+2025-11-10 12:22:41,782 - INFO - Found 18 documents to process
+2025-11-10 12:22:41,782 - INFO - Processing: class9_7.pdf
+2025-11-10 12:22:42,138 - INFO - Saved processed document: class9_7.pdf [Grade 9]
+2025-11-10 12:22:42,139 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
+2025-11-10 12:22:42,139 - INFO - Processing: class6_2.pdf
+2025-11-10 12:22:43,730 - INFO - Saved processed document: class6_2.pdf [Grade 6]
+2025-11-10 12:22:43,730 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-10 12:22:43,730 - INFO - Processing: class6_9.pdf
+2025-11-10 12:22:45,653 - INFO - Saved processed document: class6_9.pdf [Grade 6]
+2025-11-10 12:22:45,653 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-10 12:22:45,653 - INFO - Processing: class10_6.pdf
+2025-11-10 12:22:46,393 - INFO - Saved processed document: class10_6.pdf [Grade 10]
+2025-11-10 12:22:46,393 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
+2025-11-10 12:22:46,393 - INFO - Processing: class7_7.pdf
+2025-11-10 12:22:46,745 - INFO - Saved processed document: class7_7.pdf [Grade 7]
+2025-11-10 12:22:46,745 - INFO -   ✓ Grade: Grade 7, Difficulty: Beginner
+2025-11-10 12:22:46,746 - INFO - Processing: class7_5.pdf
+2025-11-10 12:22:46,994 - INFO - Saved processed document: class7_5.pdf [Grade 7]
+2025-11-10 12:22:46,994 - INFO -   ✓ Grade: Grade 7, Difficulty: Intermediate
+2025-11-10 12:22:46,994 - INFO - Processing: class10_10.pdf
+2025-11-10 12:22:47,168 - INFO - Saved processed document: class10_10.pdf [Grade 10]
+2025-11-10 12:22:47,168 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
+2025-11-10 12:22:47,168 - INFO - Processing: class9_6.pdf
+2025-11-10 12:22:47,493 - INFO - Saved processed document: class9_6.pdf [Grade 9]
+2025-11-10 12:22:47,493 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
+2025-11-10 12:22:47,493 - INFO - Processing: San Jacinto Campus.pptx
+2025-11-10 12:22:47,548 - INFO - Saved processed document: San Jacinto Campus.pptx [Grade 6]
+2025-11-10 12:22:47,548 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-10 12:22:47,548 - INFO - Processing: class9_10.pdf
+2025-11-10 12:22:47,858 - INFO - Saved processed document: class9_10.pdf [Grade 9]
+2025-11-10 12:22:47,859 - INFO -   ✓ Grade: Grade 9, Difficulty: Beginner
+2025-11-10 12:22:47,859 - INFO - Processing: class10_12.pdf
+2025-11-10 12:22:48,989 - INFO - Saved processed document: class10_12.pdf [Grade 10]
+2025-11-10 12:22:48,990 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
+2025-11-10 12:22:48,990 - INFO - Processing: class6_8.pdf
+2025-11-10 12:22:49,553 - INFO - Saved processed document: class6_8.pdf [Grade 6]
+2025-11-10 12:22:49,553 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-10 12:22:49,553 - INFO - Processing: class9_9.pdf
+2025-11-10 12:22:49,732 - INFO - Saved processed document: class9_9.pdf [Grade 9]
+2025-11-10 12:22:49,732 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-11-10 12:22:49,732 - INFO - Processing: class9_8.pdf
+2025-11-10 12:22:49,955 - INFO - Saved processed document: class9_8.pdf [Grade 9]
+2025-11-10 12:22:49,955 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-11-10 12:22:49,955 - INFO - Processing: class8_4.pdf
+2025-11-10 12:22:50,591 - INFO - Saved processed document: class8_4.pdf [Grade 8]
+2025-11-10 12:22:50,591 - INFO -   ✓ Grade: Grade 8, Difficulty: Intermediate
+2025-11-10 12:22:50,591 - INFO - Processing: class9_11.pdf
+2025-11-10 12:22:52,141 - INFO - Saved processed document: class9_11.pdf [Grade 9]
+2025-11-10 12:22:52,141 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-11-10 12:22:52,141 - INFO - Processing: class10_11.pdf
+2025-11-10 12:22:52,315 - INFO - Saved processed document: class10_11.pdf [Grade 10]
+2025-11-10 12:22:52,315 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
+2025-11-10 12:22:52,315 - INFO - Processing: class6_6.pdf
+2025-11-10 12:22:53,220 - INFO - Saved processed document: class6_6.pdf [Grade 6]
+2025-11-10 12:22:53,220 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-10 12:22:53,220 - INFO - 
+============================================================
+2025-11-10 12:22:53,220 - INFO - Processing Summary:
+2025-11-10 12:22:53,220 - INFO -   Total processed: 18/18
+2025-11-10 12:22:53,220 - INFO - 
+  Grade Distribution:
+2025-11-10 12:22:53,220 - INFO -     Grade 10: 4 documents
+2025-11-10 12:22:53,220 - INFO -     Grade 6: 5 documents
+2025-11-10 12:22:53,220 - INFO -     Grade 7: 2 documents
+2025-11-10 12:22:53,220 - INFO -     Grade 8: 1 documents
+2025-11-10 12:22:53,220 - INFO -     Grade 9: 6 documents
+2025-11-10 12:22:53,220 - INFO - ============================================================
+
+2025-11-10 12:22:53,223 - INFO - Creating Level 0 context chunks for class9_7.pdf
+2025-11-10 12:22:53,226 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,238 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,254 - INFO - Created 126 total chunks for class9_7.pdf
+2025-11-10 12:22:53,255 - INFO -    class9_7.pdf: 126 total chunks, 125 embeddable
+2025-11-10 12:22:53,255 - INFO - Creating Level 0 context chunks for class6_2.pdf
+2025-11-10 12:22:53,258 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,281 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,317 - INFO - Created 237 total chunks for class6_2.pdf
+2025-11-10 12:22:53,317 - INFO -    class6_2.pdf: 237 total chunks, 236 embeddable
+2025-11-10 12:22:53,317 - INFO - Creating Level 0 context chunks for class6_9.pdf
+2025-11-10 12:22:53,319 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,331 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,353 - INFO - Created 136 total chunks for class6_9.pdf
+2025-11-10 12:22:53,353 - INFO -    class6_9.pdf: 136 total chunks, 135 embeddable
+2025-11-10 12:22:53,353 - INFO - Creating Level 0 context chunks for class10_6.pdf
+2025-11-10 12:22:53,356 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,373 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,393 - INFO - Created 144 total chunks for class10_6.pdf
+2025-11-10 12:22:53,393 - INFO -    class10_6.pdf: 144 total chunks, 143 embeddable
+2025-11-10 12:22:53,393 - INFO - Creating Level 0 context chunks for class7_7.pdf
+2025-11-10 12:22:53,396 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,407 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,427 - INFO - Created 140 total chunks for class7_7.pdf
+2025-11-10 12:22:53,427 - INFO -    class7_7.pdf: 140 total chunks, 139 embeddable
+2025-11-10 12:22:53,427 - INFO - Creating Level 0 context chunks for class7_5.pdf
+2025-11-10 12:22:53,429 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,444 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,461 - INFO - Created 115 total chunks for class7_5.pdf
+2025-11-10 12:22:53,461 - INFO -    class7_5.pdf: 115 total chunks, 114 embeddable
+2025-11-10 12:22:53,461 - INFO - Creating Level 0 context chunks for class10_10.pdf
+2025-11-10 12:22:53,462 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,470 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,478 - INFO - Created 63 total chunks for class10_10.pdf
+2025-11-10 12:22:53,478 - INFO -    class10_10.pdf: 63 total chunks, 62 embeddable
+2025-11-10 12:22:53,478 - INFO - Creating Level 0 context chunks for class9_6.pdf
+2025-11-10 12:22:53,480 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,489 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,501 - INFO - Created 88 total chunks for class9_6.pdf
+2025-11-10 12:22:53,501 - INFO -    class9_6.pdf: 88 total chunks, 87 embeddable
+2025-11-10 12:22:53,501 - INFO - Creating Level 0 context chunks for San Jacinto Campus.pptx
+2025-11-10 12:22:53,502 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,504 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,509 - INFO - Created 30 total chunks for San Jacinto Campus.pptx
+2025-11-10 12:22:53,509 - INFO -    San Jacinto Campus.pptx: 30 total chunks, 29 embeddable
+2025-11-10 12:22:53,509 - INFO - Creating Level 0 context chunks for class9_10.pdf
+2025-11-10 12:22:53,510 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,513 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,518 - INFO - Created 33 total chunks for class9_10.pdf
+2025-11-10 12:22:53,518 - INFO -    class9_10.pdf: 33 total chunks, 32 embeddable
+2025-11-10 12:22:53,518 - INFO - Creating Level 0 context chunks for class10_12.pdf
+2025-11-10 12:22:53,519 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,526 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,537 - INFO - Created 73 total chunks for class10_12.pdf
+2025-11-10 12:22:53,537 - INFO -    class10_12.pdf: 73 total chunks, 72 embeddable
+2025-11-10 12:22:53,537 - INFO - Creating Level 0 context chunks for class6_8.pdf
+2025-11-10 12:22:53,539 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,552 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,572 - INFO - Created 138 total chunks for class6_8.pdf
+2025-11-10 12:22:53,572 - INFO -    class6_8.pdf: 138 total chunks, 137 embeddable
+2025-11-10 12:22:53,573 - INFO - Creating Level 0 context chunks for class9_9.pdf
+2025-11-10 12:22:53,574 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,584 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,597 - INFO - Created 102 total chunks for class9_9.pdf
+2025-11-10 12:22:53,597 - INFO -    class9_9.pdf: 102 total chunks, 101 embeddable
+2025-11-10 12:22:53,597 - INFO - Creating Level 0 context chunks for class9_8.pdf
+2025-11-10 12:22:53,599 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,606 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,616 - INFO - Created 73 total chunks for class9_8.pdf
+2025-11-10 12:22:53,616 - INFO -    class9_8.pdf: 73 total chunks, 72 embeddable
+2025-11-10 12:22:53,616 - INFO - Creating Level 0 context chunks for class8_4.pdf
+2025-11-10 12:22:53,619 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,637 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,665 - INFO - Created 199 total chunks for class8_4.pdf
+2025-11-10 12:22:53,665 - INFO -    class8_4.pdf: 199 total chunks, 198 embeddable
+2025-11-10 12:22:53,665 - INFO - Creating Level 0 context chunks for class9_11.pdf
+2025-11-10 12:22:53,667 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,675 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,691 - INFO - Created 97 total chunks for class9_11.pdf
+2025-11-10 12:22:53,691 - INFO -    class9_11.pdf: 97 total chunks, 96 embeddable
+2025-11-10 12:22:53,691 - INFO - Creating Level 0 context chunks for class10_11.pdf
+2025-11-10 12:22:53,692 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,695 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,701 - INFO - Created 36 total chunks for class10_11.pdf
+2025-11-10 12:22:53,701 - INFO -    class10_11.pdf: 36 total chunks, 35 embeddable
+2025-11-10 12:22:53,701 - INFO - Creating Level 0 context chunks for class6_6.pdf
+2025-11-10 12:22:53,704 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-10 12:22:53,718 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-10 12:22:53,741 - INFO - Created 155 total chunks for class6_6.pdf
+2025-11-10 12:22:53,742 - INFO -    class6_6.pdf: 155 total chunks, 154 embeddable
+2025-11-10 12:23:20,511 - INFO - Indexing 1985 documents (1967 with embeddings, 18 context-only)
+2025-11-10 12:23:21,260 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.714s]
+2025-11-10 12:23:21,260 - INFO - Batch 1: 100 successful, 0 failed
+2025-11-10 12:23:20,693 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:-0.593s]
+2025-11-10 12:23:20,694 - INFO - Batch 2: 100 successful, 0 failed
+2025-11-10 12:23:20,926 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.207s]
+2025-11-10 12:23:20,927 - INFO - Batch 3: 100 successful, 0 failed
+2025-11-10 12:23:21,143 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.189s]
+2025-11-10 12:23:21,144 - INFO - Batch 4: 100 successful, 0 failed
+2025-11-10 12:23:21,335 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.164s]
+2025-11-10 12:23:21,335 - INFO - Batch 5: 100 successful, 0 failed
+2025-11-10 12:23:21,523 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.162s]
+2025-11-10 12:23:21,524 - INFO - Batch 6: 100 successful, 0 failed
+2025-11-10 12:23:21,721 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.170s]
+2025-11-10 12:23:21,722 - INFO - Batch 7: 100 successful, 0 failed
+2025-11-10 12:23:21,914 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.165s]
+2025-11-10 12:23:21,914 - INFO - Batch 8: 100 successful, 0 failed
+2025-11-10 12:23:22,089 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.149s]
+2025-11-10 12:23:22,090 - INFO - Batch 9: 100 successful, 0 failed
+2025-11-10 12:23:22,257 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.142s]
+2025-11-10 12:23:22,257 - INFO - Batch 10: 100 successful, 0 failed
+2025-11-10 12:23:22,452 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.169s]
+2025-11-10 12:23:22,453 - INFO - Batch 11: 100 successful, 0 failed
+2025-11-10 12:23:22,753 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.248s]
+2025-11-10 12:23:22,754 - INFO - Batch 12: 100 successful, 0 failed
+2025-11-10 12:23:22,955 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.154s]
+2025-11-10 12:23:22,956 - INFO - Batch 13: 100 successful, 0 failed
+2025-11-10 12:23:23,113 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.130s]
+2025-11-10 12:23:23,113 - INFO - Batch 14: 100 successful, 0 failed
+2025-11-10 12:23:23,275 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.132s]
+2025-11-10 12:23:23,275 - INFO - Batch 15: 100 successful, 0 failed
+2025-11-10 12:23:23,573 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.270s]
+2025-11-10 12:23:23,574 - INFO - Batch 16: 100 successful, 0 failed
+2025-11-10 12:23:23,903 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.277s]
+2025-11-10 12:23:23,904 - INFO - Batch 17: 100 successful, 0 failed
+2025-11-10 12:23:24,297 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.295s]
+2025-11-10 12:23:24,297 - INFO - Batch 18: 100 successful, 0 failed
+2025-11-10 12:23:24,580 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.222s]
+2025-11-10 12:23:24,581 - INFO - Batch 19: 100 successful, 0 failed
+2025-11-10 12:23:24,826 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.199s]
+2025-11-10 12:23:24,827 - INFO - Batch 20: 85 successful, 0 failed
+2025-11-10 12:23:25,407 - INFO - POST http://localhost:9200/geometry_k12_rag/_refresh [status:200 duration:0.580s]
+2025-11-10 12:23:25,407 - INFO - Indexing complete: 1985 successful, 0 failed

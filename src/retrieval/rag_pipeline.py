@@ -30,6 +30,8 @@ class RetrievalConfig:
     include_children: bool = False
     level_preference: Optional[int] = None
     filters: Optional[Dict[str, Any]] = None
+    # NEW: Only retrieve embeddable chunks by default
+    embeddable_only: bool = True
 
 @dataclass
 class RetrievalResult:
@@ -68,6 +70,10 @@ class GeometryRAGPipeline:
         # Initialize metadata scorer
         self.metadata_scorer = GeometryMetadataScorer()
         
+        # Get embedding model limit from settings
+        self.embedding_limit = getattr(settings, 'EMBEDDING_MAX_TOKENS', 384)
+        logger.info(f"Embedding model limit: {self.embedding_limit} tokens")
+        
     def retrieve(
         self,
         query: str,
@@ -88,6 +94,12 @@ class GeometryRAGPipeline:
             config = RetrievalConfig()
         
         logger.info(f"Retrieving with strategy: {config.strategy.value}")
+        
+        # Add embeddable filter if specified
+        if config.embeddable_only:
+            if config.filters is None:
+                config.filters = {}
+            config.filters['embeddable'] = True
         
         # Step 1: Initial retrieval
         if config.strategy == RetrievalStrategy.VECTOR_ONLY:
@@ -119,21 +131,25 @@ class GeometryRAGPipeline:
         # Step 2: Rerank if enabled
         if config.rerank and self.reranker and results:
             logger.info("Reranking results")
-            reranked = self.reranker.rerank(
-                query,
-                results,
-                top_k=config.rerank_top_k,
-                use_metadata_boost=config.use_metadata_boost
-            )
-            # Convert back to result format
-            results = [
-                {
-                    'chunk_id': r.chunk_id,
-                    'score': r.final_score,
-                    'content': r.metadata
-                }
-                for r in reranked
-            ]
+            try:
+                reranked = self.reranker.rerank(
+                    query,
+                    results,
+                    top_k=config.rerank_top_k,
+                    use_metadata_boost=config.use_metadata_boost
+                )
+                # Convert back to result format
+                results = [
+                    {
+                        'chunk_id': r.chunk_id,
+                        'score': r.final_score,
+                        'content': r.metadata
+                    }
+                    for r in reranked
+                ]
+            except Exception as e:
+                logger.error(f"Reranking failed: {e}")
+                results = results[:config.rerank_top_k]
         else:
             results = results[:config.rerank_top_k]
         
@@ -161,15 +177,15 @@ class GeometryRAGPipeline:
         config: RetrievalConfig
     ) -> List[Dict[str, Any]]:
         """
-        Perform hierarchical retrieval across all levels.
+        Perform hierarchical retrieval across embeddable levels.
         
         Strategy:
-        1. Search at Level 2 (fine-grained) for precise matches
-        2. Get parent Level 1 chunks for context
-        3. Optionally include Level 0 for broad context
+        1. Search at Level 2 (fine-grained, ≤128 tokens) for precise matches
+        2. Get parent Level 1 chunks (≤384 tokens) for context
+        3. Optionally include Level 0 for broad context (but don't search it)
         """
         
-        # Search at fine-grained level (Level 2)
+        # Search at fine-grained level (Level 2) - embeddable
         l2_results = self.vector_store.hybrid_search(
             query,
             top_k=config.top_k,
@@ -178,7 +194,7 @@ class GeometryRAGPipeline:
         )
         
         if not l2_results:
-            # Fallback to Level 1
+            # Fallback to Level 1 (still embeddable)
             return self.vector_store.hybrid_search(
                 query,
                 top_k=config.top_k,
@@ -186,7 +202,7 @@ class GeometryRAGPipeline:
                 filters=config.filters
             )
         
-        # Get parent chunks (Level 1)
+        # Get parent chunks (Level 1) for context
         l2_chunk_ids = [r['chunk_id'] for r in l2_results]
         parent_chunks = self.vector_store.get_parent_chunks(l2_chunk_ids)
         
@@ -208,13 +224,17 @@ class GeometryRAGPipeline:
         results: List[Dict[str, Any]],
         config: RetrievalConfig
     ) -> List[Dict[str, Any]]:
-        """Expand results with parent or child chunks."""
+        """
+        Expand results with parent or child chunks.
+        Note: Parent Level 0 chunks are not embeddable but provide context.
+        """
         
         expanded = list(results)
         chunk_ids = [r['chunk_id'] for r in results]
         
         if config.include_parents:
             parents = self.vector_store.get_parent_chunks(chunk_ids)
+            # Parents might be Level 0 (non-embeddable) - that's OK for context
             expanded.extend(parents)
         
         if config.include_children:
@@ -234,7 +254,10 @@ class GeometryRAGPipeline:
         return unique
     
     def _assemble_context(self, chunks: List[Dict[str, Any]]) -> str:
-        """Assemble retrieved chunks into coherent context."""
+        """
+        Assemble retrieved chunks into coherent context.
+        Handles both embeddable (L1, L2) and context-only (L0) chunks.
+        """
         
         if not chunks:
             return ""
@@ -264,10 +287,15 @@ class GeometryRAGPipeline:
                 source = content.get('source', 'Unknown')
                 grade_level = content.get('grade_level', 'General')
                 difficulty = content.get('difficulty', 'Unknown')
+                embeddable = content.get('embeddable', True)
+                level = content.get('level', 'Unknown')
+                
+                # Indicate if chunk is context-only (Level 0)
+                context_type = "Context" if not embeddable else f"Level {level}"
                 
                 context_parts.append(
                     f"\n[Source: {source} | Grade: {grade_level} | "
-                    f"Difficulty: {difficulty}]\n"
+                    f"Difficulty: {difficulty} | Type: {context_type}]\n"
                 )
             
             context_parts.append(text)
@@ -289,13 +317,17 @@ class GeometryRAGPipeline:
                 'sources': [],
                 'topics': [],
                 'grade_levels': [],
-                'difficulties': []
+                'difficulties': [],
+                'embeddable_count': 0,
+                'context_only_count': 0
             }
         
         sources = set()
         topics = set()
         grade_levels = set()
         difficulties = set()
+        embeddable_count = 0
+        context_only_count = 0
         
         for chunk in chunks:
             content = chunk['content']
@@ -311,9 +343,15 @@ class GeometryRAGPipeline:
             
             if content.get('difficulty'):
                 difficulties.add(content['difficulty'])
+            
+            # Count embeddable vs context-only
+            if content.get('embeddable', True):
+                embeddable_count += 1
+            else:
+                context_only_count += 1
         
         # Calculate average scores
-        avg_score = sum(c.get('score', 0) for c in chunks) / len(chunks)
+        avg_score = sum(c.get('score', 0) for c in chunks) / len(chunks) if chunks else 0
         
         return {
             'num_chunks': len(chunks),
@@ -323,7 +361,10 @@ class GeometryRAGPipeline:
             'difficulties': list(difficulties),
             'avg_score': avg_score,
             'strategy_used': config.strategy.value,
-            'reranked': config.rerank
+            'reranked': config.rerank,
+            'embeddable_count': embeddable_count,
+            'context_only_count': context_only_count,
+            'embedding_limit': self.embedding_limit
         }
     
     def retrieve_with_feedback(
@@ -391,8 +432,7 @@ class GeometryRAGPipeline:
         for chunk in result.chunks:
             if chunk['chunk_id'] not in relevant_chunk_ids:
                 # Boost score based on content similarity
-                # (simplified - in practice, use actual embeddings)
-                chunk['score'] *= 1.1  # Slight boost for similar content
+                chunk['score'] *= 1.1
         
         # Re-sort
         result.chunks.sort(key=lambda x: x['score'], reverse=True)
@@ -423,16 +463,36 @@ class GeometryRAGPipeline:
         """Get statistics about the RAG system."""
         
         # Get index statistics
-        stats = self.vector_store.es_client.indices.stats(
-            index=self.vector_store.index_name
-        )
-        
-        index_stats = stats['indices'][self.vector_store.index_name]
-        
-        return {
-            'total_chunks': index_stats['total']['docs']['count'],
-            'index_size_mb': index_stats['total']['store']['size_in_bytes'] / (1024 * 1024),
-            'embedding_model': settings.embedding_model,
-            'reranker_enabled': self.reranker is not None,
-            'cache_enabled': True
-        }
+        try:
+            stats = self.vector_store.es_client.indices.stats(
+                index=self.vector_store.index_name
+            )
+            
+            index_stats = stats['indices'][self.vector_store.index_name]
+            
+            # Get embeddable vs context-only counts
+            total_count = index_stats['total']['docs']['count']
+            
+            # Query for embeddable chunks
+            embeddable_query = {"query": {"term": {"embeddable": True}}}
+            embeddable_count = self.vector_store.es_client.count(
+                index=self.vector_store.index_name,
+                body=embeddable_query
+            )['count']
+            
+            return {
+                'total_chunks': total_count,
+                'embeddable_chunks': embeddable_count,
+                'context_chunks': total_count - embeddable_count,
+                'index_size_mb': index_stats['total']['store']['size_in_bytes'] / (1024 * 1024),
+                'embedding_model': getattr(settings, 'EMBEDDING_MODEL', 'unknown'),
+                'embedding_limit': self.embedding_limit,
+                'reranker_enabled': self.reranker is not None,
+                'cache_enabled': True
+            }
+        except Exception as e:
+            logger.error(f"Failed to get statistics: {e}")
+            return {
+                'error': str(e),
+                'embedding_limit': self.embedding_limit
+            }

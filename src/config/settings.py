@@ -6,46 +6,52 @@ from pathlib import Path
 class Settings(BaseSettings):
     """Configuration settings for the Geometry SME system."""
     
-    # Elasticsearch
+    # Elasticsearch Configuration
     ES_HOST: str = "localhost"
     ES_PORT: int = 9200
     ES_INDEX_NAME: str = "geometry_k12_rag"
     ES_TIMEOUT: int = 30
     ES_SCHEME: str = "http"  # required for Elasticsearch 8.x
-    
+
     # Embedding Configuration
     embedding_model: str = "sentence-transformers/all-mpnet-base-v2"
     embedding_dimension: int = 768
+    embedding_max_tokens: int = 384  # Added new parameter
     device: str = "cuda"
     
     # Chunking Configuration
-    chunk_size_level_0: int = 2048
-    chunk_size_level_1: int = 350
-    chunk_size_level_2: int = 100
-    chunk_overlap: int = 20
+    CHUNK_SIZE_LEVEL_0: int = 2048
+    CHUNK_SIZE_LEVEL_1: int = 350
+    CHUNK_SIZE_LEVEL_2: int = 100
+    CHUNK_OVERLAP: int = 20
     
     # Redis Configuration
     redis_host: str = "localhost"
     redis_port: int = 6379
     redis_db: int = 0
-    
+
     # Paths
-    data_dir: Path = Path("../data")
-    raw_data_dir: Path = Path("../data/raw")
-    processed_data_dir: Path = Path("../data/processed")
-    metadata_dir: Path = Path("../data/metadata")
+    data_dir: Path = Path("../data")  # Updated path
+    raw_data_dir: Path = Path("../data/raw")  # Updated path
+    processed_data_dir: Path = Path("../data/processed")  # Updated path
+    metadata_dir: Path = Path("../data/metadata")  # Updated path
 
     # Logging
     log_level: str = "INFO"
-    log_file: str = "../logs/geometry_sme.log"
+    log_file: str = "./logs/geometry_sme.log"  # Updated to lowercase and relative path
 
-    reranker_model: str = "BAAI/bge-reranker-base"
-    enable_reranker: bool = True
-    embedding_cache_ttl: int = 3600
-    default_top_k: int = 10
-    rerank_top_k: int = 5
-    vector_weight: float = 0.7
-    keyword_weight: float = 0.3
+    # Reranker Configuration
+    RERANKER_MODEL: str = "BAAI/bge-reranker-base"
+    ENABLE_RERANKER: bool = True
+
+    # Cache Configuration
+    EMBEDDING_CACHE_TTL: int = 3600
+
+    # Retrieval Configuration
+    DEFAULT_TOP_K: int = 10
+    RERANK_TOP_K: int = 5
+    VECTOR_WEIGHT: float = 0.7
+    KEYWORD_WEIGHT: float = 0.3
         
     # Geometry-specific settings
     geometry_topics: list = [

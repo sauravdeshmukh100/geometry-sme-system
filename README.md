@@ -135,7 +135,7 @@ This project implements an advanced **Subject Matter Expert (SME) AI Agent** for
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/geometry-sme-agent.git
+git clone https://github.com/sauravdeshmukh100/geometry-sme-agent.git
 cd geometry-sme-agent
 ```
 
