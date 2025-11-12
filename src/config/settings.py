@@ -52,7 +52,21 @@ class Settings(BaseSettings):
     RERANK_TOP_K: int = 5
     VECTOR_WEIGHT: float = 0.7
     KEYWORD_WEIGHT: float = 0.3
-        
+
+    # Phase 3: Gemini API Configuration
+    GEMINI_API_KEY: str = "AIzaSyCHkdJ94erVAdUBB1Dt1M9ODe-5ndKG2VY"
+    GEMINI_MODEL: str = "gemini-2.5-flash"
+    LLM_TEMPERATURE: float = 0.7
+    LLM_MAX_TOKENS: int = 2048
+    LLM_TOP_P: float = 0.95
+    
+    # Phase 3: Email Configuration
+    SMTP_HOST: str = "smtp.gmail.com"
+    SMTP_PORT: int = 587
+    SMTP_USERNAME: str = "sauravdeshmukh200@gmail.com"
+    SMTP_PASSWORD: str = "oldu qwnv snmm oxxr"
+    SMTP_FROM_EMAIL: str = "sauravdeshmukh200@gmail.com"
+
     # Geometry-specific settings
     geometry_topics: list = [
         "shapes", "angles", "theorems", "proofs", "triangles",

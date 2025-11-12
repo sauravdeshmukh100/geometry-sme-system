@@ -36,3 +36,21 @@ tqdm==4.66.1
 # Utils
 python-multipart==0.0.6
 typing-extensions==4.8.0
+
+# Phase 3: LLM Integration
+google-generativeai==0.3.2
+pillow==10.1.0  # Required by google-generativeai
+
+# Phase 3: Conversational Memory
+langchain==0.1.0
+langchain-google-genai==0.0.5
+
+# Phase 3: Document Generation (for next part)
+reportlab==4.0.7
+python-docx==1.0.1  # Already have this
+python-pptx==0.6.21  # Already have this
+weasyprint==60.1
+
+# Phase 3: Email Integration (for next part)
+python-multipart==0.0.6  # Already have this
+aiosmtplib==3.0.1
