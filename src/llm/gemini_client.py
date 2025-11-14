@@ -106,18 +106,18 @@ Include relevant formulas, diagrams descriptions, and examples where helpful."""
         for attempt in range(max_retries):
             try:
                 start_time = time.time()
-                
+
                 response = self.model.generate_content(
                     full_prompt,
                     generation_config=self.generation_config,
                     safety_settings=self.safety_settings
                 )
-                
+
                 elapsed_time = time.time() - start_time
-                
-                # Extract answer
-                answer = response.text
-                
+
+                # Extract answer robustly
+                answer = self._extract_response_text(response)
+
                 # Check if response was blocked
                 if not answer or "blocked" in answer.lower():
                     logger.warning(f"Response blocked or empty on attempt {attempt + 1}")
@@ -126,27 +126,19 @@ Include relevant formulas, diagrams descriptions, and examples where helpful."""
                         continue
                     else:
                         answer = "I apologize, but I couldn't generate a response. Please try rephrasing your question."
-                
+
                 return {
                     'answer': answer,
                     'model': self.model_name,
                     'query': query,
                     'grade_level': grade_level,
-                    'difficulty': difficulty,
-                    'generation_time': elapsed_time,
-                    'success': True
                 }
-                
             except Exception as e:
-                logger.error(f"Error generating answer (attempt {attempt + 1}): {e}")
+                logger.exception("Error generating response on attempt %d: %s", attempt + 1, e)
                 if attempt < max_retries - 1:
-                    time.sleep(2)
-                else:
-                    return {
-                        'answer': f"Error generating response: {str(e)}",
-                        'success': False,
-                        'error': str(e)
-                    }
+                    time.sleep(1)
+                    continue
+                raise
     
     def generate_quiz(
         self,
@@ -212,7 +204,9 @@ Explanation: [Brief explanation]
                 safety_settings=self.safety_settings
             )
             
-            quiz_content = response.text
+            quiz_content = self._extract_response_text(response)
+            if quiz_content is None:
+                raise RuntimeError("No text returned from Gemini response")
             
             return {
                 'quiz': quiz_content,
@@ -282,8 +276,9 @@ Make it:
                 safety_settings=self.safety_settings
             )
             
+            explanation_text = self._extract_response_text(response)
             return {
-                'explanation': response.text,
+                'explanation': explanation_text,
                 'concept': concept,
                 'grade_level': grade_level,
                 'type': explanation_type,
@@ -344,7 +339,7 @@ Make it:
                 safety_settings=self.safety_settings
             )
             
-            assistant_message = response.text
+            assistant_message = self._extract_response_text(response) or "Sorry, I couldn't produce a reply."
             
             # Update history
             chat_history.append({
@@ -396,6 +391,79 @@ Guidelines:
             base_prompt += f"\n- Difficulty level: {difficulty}"
         
         return base_prompt
+
+    def _extract_response_text(self, response) -> Optional[str]:
+        """
+        Robustly extract text from a Gemini response object.
+        Tries common accessors and falls back to inspecting candidates/output.
+        """
+        # Log known finish reason if present
+        try:
+            finish_reason = getattr(response, "finish_reason", None)
+            if not finish_reason and getattr(response, "candidates", None):
+                first_cand = response.candidates[0]
+                finish_reason = getattr(first_cand, "finish_reason", None) or getattr(first_cand, "metadata", {}).get("finish_reason")
+            if finish_reason is not None:
+                logger.debug(f"Gemini response finish_reason: {finish_reason}")
+        except Exception:
+            pass
+
+        # 1) quick .text (may raise if no Part) - safe check
+        try:
+            text = getattr(response, "text", None)
+            if text:
+                return text
+        except Exception:
+            # can't use quick accessor
+            pass
+
+        # 2) candidates -> content -> text
+        try:
+            if getattr(response, "candidates", None):
+                parts = []
+                for cand in response.candidates:
+                    # candidate.text sometimes exists
+                    if getattr(cand, "text", None):
+                        parts.append(cand.text)
+                        continue
+                    # candidate.content is list of parts
+                    content = getattr(cand, "content", None) or getattr(cand, "output", None)
+                    if content:
+                        for p in content:
+                            t = getattr(p, "text", None) or (p.get("text") if isinstance(p, dict) else None)
+                            if t:
+                                parts.append(t)
+                if parts:
+                    return "\n".join(parts)
+        except Exception:
+            pass
+
+        # 3) output -> content -> text
+        try:
+            if getattr(response, "output", None):
+                parts = []
+                for out in response.output:
+                    content = getattr(out, "content", None) or (out.get("content") if isinstance(out, dict) else None)
+                    if content:
+                        for p in content:
+                            t = getattr(p, "text", None) or (p.get("text") if isinstance(p, dict) else None)
+                            if t:
+                                parts.append(t)
+                if parts:
+                    return "\n".join(parts)
+        except Exception:
+            pass
+
+        # 4) as last resort try to stringify response dict for debugging
+        try:
+            if hasattr(response, "to_dict"):
+                d = response.to_dict()
+                import json
+                return json.dumps(d)
+        except Exception:
+            pass
+
+        return None
     
     def test_connection(self) -> bool:
         """Test if API key is valid and model is accessible."""
@@ -404,9 +472,14 @@ Guidelines:
                 "Say 'Hello, I am ready to help with geometry!' in one sentence.",
                 generation_config={"max_output_tokens": 50}
             )
-            logger.info("✓ Gemini API connection successful")
-            logger.info(f"Test response: {response.text}")
-            return True
+            text = self._extract_response_text(response)
+            if text:
+                logger.info("✓ Gemini API connection successful")
+                logger.info(f"Test response: {text}")
+                return True
+            else:
+                logger.error("✗ Gemini API connection failed: no text returned in response")
+                return False
         except Exception as e:
             logger.error(f"✗ Gemini API connection failed: {e}")
             return False
