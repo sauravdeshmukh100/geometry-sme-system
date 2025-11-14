@@ -38,7 +38,7 @@ class Settings(BaseSettings):
 
     # Logging
     log_level: str = "INFO"
-    log_file: str = "./logs/geometry_sme.log"  # Updated to lowercase and relative path
+    log_file: str = "../logs/geometry_sme.log"  # Updated to lowercase and relative path
 
     # Reranker Configuration
     RERANKER_MODEL: str = "BAAI/bge-reranker-base"

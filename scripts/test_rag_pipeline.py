@@ -1,471 +1,351 @@
-#!/usr/bin/env python
-"""
-Integration tests for Geometry RAG Pipeline.
-Tests end-to-end retrieval functionality with real database.
-"""
+# src/llm/rag_llm_pipeline.py
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+from typing import Dict, Any, Optional, List
 import logging
-from pprint import pprint
-from typing import List, Dict, Any
+import os
 
-from src.retrieval.rag_pipeline import (
-    GeometryRAGPipeline, 
-    RetrievalConfig, 
-    RetrievalStrategy
-)
+from ..retrieval.rag_pipeline import GeometryRAGPipeline, RetrievalConfig, RetrievalStrategy
+from .gemini_client import GeminiClient
+from ..config.settings import settings
+
+# Setup logging
+log_file = getattr(settings, 'log_file', os.path.join(os.path.dirname(__file__), '..', '..', 'logs', 'rag_llm_pipeline.log'))
+os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),
+        logging.StreamHandler()
+    ]
 )
+
 logger = logging.getLogger(__name__)
 
-def print_separator(title: str, char: str = "="):
-    """Print a formatted separator."""
-    print(f"\n{char * 80}")
-    print(f"{title}")
-    print(f"{char * 80}")
-
-def print_results(results: List[Dict[str, Any]], max_results: int = 3):
-    """Print search results in a readable format."""
-    for i, result in enumerate(results[:max_results], 1):
-        print(f"\n[Result {i}]")
-        print(f"  Chunk ID: {result['chunk_id'][:16]}...")
-        print(f"  Score: {result.get('score', 0):.4f}")
+class GeometryTutorPipeline:
+    """
+    Complete pipeline integrating RAG retrieval with LLM generation.
+    Handles Q&A, quiz generation, explanations, and conversations.
+    """
+    
+    def __init__(self, gemini_api_key: Optional[str] = None):
+        """
+        Initialize the complete tutor pipeline.
         
-        content = result.get('content', {})
-        print(f"  Level: {content.get('level', 'N/A')}")
-        print(f"  Grade: {content.get('grade_level', 'N/A')}")
-        print(f"  Difficulty: {content.get('difficulty', 'N/A')}")
+        Args:
+            gemini_api_key: Google Gemini API key
+        """
+        logger.info("Initializing Geometry Tutor Pipeline")
         
-        text = content.get('text', '')
-        preview = text[:150] + "..." if len(text) > 150 else text
-        print(f"  Text: {preview}")
-
-def test_01_basic_retrieval():
-    """Test 1: Basic Retrieval with Different Strategies"""
-    print_separator("TEST 1: Basic Retrieval")
-    
-    pipeline = GeometryRAGPipeline(enable_reranker=False)
-    
-    queries = [
-        "What is the Pythagorean theorem?",
-        "Explain properties of triangles",
-        "How to calculate area of a circle?"
-    ]
-    
-    for query in queries:
-        print(f"\n{'─' * 60}")
-        print(f"Query: {query}")
-        print(f"{'─' * 60}")
+        # Initialize RAG pipeline
+        self.rag_pipeline = GeometryRAGPipeline(enable_reranker=True)
+        logger.info("✓ RAG pipeline initialized")
+        gemini_api_key = settings.GEMINI_API_KEY if gemini_api_key is None else gemini_api_key
+        # Initialize LLM client
+        print("gemini_api_key:", gemini_api_key)
+        self.llm_client = GeminiClient(api_key=gemini_api_key)
+        logger.info("✓ Gemini LLM initialized")
         
-        config = RetrievalConfig(
-            strategy=RetrievalStrategy.VECTOR_ONLY,
-            top_k=5,
-            rerank=False
-        )
+        # Test connections
+        self._test_system()
+    
+    def answer_question(
+        self,
+        query: str,
+        grade_level: Optional[str] = None,
+        difficulty: Optional[str] = None,
+        top_k: int = 5,
+        include_sources: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Answer a geometry question using RAG + LLM.
         
-        try:
-            result = pipeline.retrieve(query, config)
-            
-            print(f"\n✓ Found {len(result.chunks)} chunks")
-            print(f"  Sources: {', '.join(result.metadata.get('sources', [])[:3])}")
-            print(f"  Topics: {', '.join(result.metadata.get('topics', [])[:5])}")
-            print(f"  Avg Score: {result.metadata.get('avg_score', 0):.4f}")
-            
-            if result.chunks:
-                print(f"\n  Top Result Preview:")
-                print_results(result.chunks, max_results=1)
+        Args:
+            query: Student's question
+            grade_level: Target grade level (e.g., "Grade 7")
+            difficulty: Content difficulty
+            top_k: Number of context chunks to retrieve
+            include_sources: Whether to include source references
         
-        except Exception as e:
-            print(f"✗ Error: {e}")
-            logger.error(f"Test failed for query: {query}", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def test_02_hybrid_search():
-    """Test 2: Compare Retrieval Strategies"""
-    print_separator("TEST 2: Hybrid Search Comparison")
-    
-    pipeline = GeometryRAGPipeline(enable_reranker=False)
-    
-    query = "congruent triangles theorem proof"
-    print(f"\nQuery: {query}")
-    print(f"{'─' * 60}")
-    
-    strategies = [
-        (RetrievalStrategy.VECTOR_ONLY, "Vector Search"),
-        (RetrievalStrategy.KEYWORD_ONLY, "Keyword Search"),
-        (RetrievalStrategy.HYBRID, "Hybrid Search")
-    ]
-    
-    for strategy, name in strategies:
-        print(f"\n[{name}]")
+        Returns:
+            Dict with answer, sources, and metadata
+        """
         
-        config = RetrievalConfig(
-            strategy=strategy,
-            top_k=3,
-            rerank=False
-        )
+        logger.info(f"Answering question: {query}")
         
-        try:
-            result = pipeline.retrieve(query, config)
-            
-            print(f"  ✓ Found: {len(result.chunks)} chunks")
-            print(f"  Avg Score: {result.metadata.get('avg_score', 0):.4f}")
-            
-            if result.chunks:
-                print(f"  Top Score: {result.chunks[0].get('score', 0):.4f}")
-                
-                # Show top result's text preview
-                top_text = result.chunks[0].get('content', {}).get('text', '')
-                preview = top_text[:100] + "..." if len(top_text) > 100 else top_text
-                print(f"  Preview: {preview}")
-        
-        except Exception as e:
-            print(f"  ✗ Error: {e}")
-            logger.error(f"Strategy {name} failed", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def test_03_reranking():
-    """Test 3: Reranking Effectiveness"""
-    print_separator("TEST 3: Reranking")
-    
-    try:
-        pipeline = GeometryRAGPipeline(enable_reranker=True)
-        print("✓ Reranker initialized successfully")
-    except Exception as e:
-        print(f"✗ Reranker initialization failed: {e}")
-        print("  Skipping reranking tests...")
-        return
-    
-    query = "angle bisector theorem with proof"
-    print(f"\nQuery: {query}")
-    print(f"{'─' * 60}")
-    
-    # Without reranking
-    config_no_rerank = RetrievalConfig(
-        strategy=RetrievalStrategy.HYBRID,
-        top_k=10,
-        rerank=False
-    )
-    
-    try:
-        result_no_rerank = pipeline.retrieve(query, config_no_rerank)
-        
-        print(f"\n[Without Reranking]")
-        print(f"  Found: {len(result_no_rerank.chunks)} chunks")
-        print(f"  Top 3 Chunk IDs:")
-        for i, chunk in enumerate(result_no_rerank.chunks[:3], 1):
-            print(f"    {i}. {chunk['chunk_id'][:16]}... (score: {chunk['score']:.4f})")
-    
-    except Exception as e:
-        print(f"✗ Retrieval without reranking failed: {e}")
-        result_no_rerank = None
-    
-    # With reranking
-    config_rerank = RetrievalConfig(
-        strategy=RetrievalStrategy.HYBRID,
-        top_k=10,
-        rerank=True,
-        rerank_top_k=5
-    )
-    
-    try:
-        result_rerank = pipeline.retrieve(query, config_rerank)
-        
-        print(f"\n[With Reranking]")
-        print(f"  Found: {len(result_rerank.chunks)} chunks")
-        print(f"  Top 3 Chunk IDs:")
-        for i, chunk in enumerate(result_rerank.chunks[:3], 1):
-            print(f"    {i}. {chunk['chunk_id'][:16]}... (score: {chunk['score']:.4f})")
-        
-        # Compare order
-        if result_no_rerank:
-            order_changed = (
-                result_no_rerank.chunks[0]['chunk_id'] != 
-                result_rerank.chunks[0]['chunk_id']
-            )
-            print(f"\n  Order changed: {'Yes ✓' if order_changed else 'No'}")
-    
-    except Exception as e:
-        print(f"✗ Reranking failed: {e}")
-        logger.error("Reranking test failed", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def test_04_hierarchical_retrieval():
-    """Test 4: Hierarchical Retrieval"""
-    print_separator("TEST 4: Hierarchical Retrieval")
-    
-    pipeline = GeometryRAGPipeline(enable_reranker=True)
-    
-    query = "properties of quadrilaterals"
-    print(f"\nQuery: {query}")
-    print(f"{'─' * 60}")
-    
-    config = RetrievalConfig(
-        strategy=RetrievalStrategy.HIERARCHICAL,
-        top_k=8,
-        rerank=True,
-        rerank_top_k=5
-    )
-    
-    try:
-        result = pipeline.retrieve(query, config)
-        
-        print(f"\n✓ Found {len(result.chunks)} chunks")
-        
-        # Show level distribution
-        level_counts = {}
-        for chunk in result.chunks:
-            level = chunk['content'].get('level', 'unknown')
-            level_counts[level] = level_counts.get(level, 0) + 1
-        
-        print(f"\n  Level Distribution:")
-        for level in sorted(level_counts.keys()):
-            print(f"    Level {level}: {level_counts[level]} chunks")
-        
-        print(f"\n  Metadata:")
-        print(f"    Sources: {', '.join(result.metadata.get('sources', [])[:3])}")
-        print(f"    Grade Levels: {', '.join(result.metadata.get('grade_levels', []))}")
-        print(f"    Difficulties: {', '.join(result.metadata.get('difficulties', []))}")
-        
-        # Show context preview
-        print(f"\n  Context Preview:")
-        context_preview = result.context[:400] + "..." if len(result.context) > 400 else result.context
-        print(f"    {context_preview}")
-    
-    except Exception as e:
-        print(f"✗ Hierarchical retrieval failed: {e}")
-        logger.error("Hierarchical retrieval test failed", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def test_05_filtering():
-    """Test 5: Metadata Filtering"""
-    print_separator("TEST 5: Metadata Filtering")
-    
-    pipeline = GeometryRAGPipeline(enable_reranker=True)
-    
-    query = "area calculation"
-    print(f"\nQuery: {query}")
-    print(f"{'─' * 60}")
-    
-    filters_list = [
-        (None, "No Filters"),
-        ({'grade_level': 'Middle School (6-8)'}, "Middle School Only"),
-        ({'difficulty': 'Beginner'}, "Beginner Level"),
-        ({'grade_level': 'High School (9-12)', 'difficulty': 'Advanced'}, "High School Advanced")
-    ]
-    
-    for filters, description in filters_list:
-        print(f"\n[{description}]")
-        if filters:
-            print(f"  Filters: {filters}")
-        
-        config = RetrievalConfig(
+        # Step 1: Retrieve relevant context
+        retrieval_config = RetrievalConfig(
             strategy=RetrievalStrategy.HYBRID,
-            top_k=5,
+            top_k=top_k * 2,
             rerank=True,
-            rerank_top_k=3,
-            filters=filters
+            rerank_top_k=top_k,
+            filters={'grade_level': grade_level} if grade_level else None
         )
         
         try:
-            result = pipeline.retrieve(query, config)
+            retrieval_result = self.rag_pipeline.retrieve(query, retrieval_config)
+            logger.info(f"Retrieved {len(retrieval_result.chunks)} relevant chunks")
             
-            print(f"  ✓ Found: {len(result.chunks)} chunks")
+            if not retrieval_result.chunks:
+                return {
+                    'answer': "I couldn't find relevant information in my knowledge base. Could you rephrase your question?",
+                    'sources': [],
+                    'success': False,
+                    'error': 'No relevant context found'
+                }
             
-            if result.chunks:
-                grades = result.metadata.get('grade_levels', [])
-                diffs = result.metadata.get('difficulties', [])
+            # Step 2: Generate answer using LLM
+            llm_response = self.llm_client.generate_answer(
+                query=query,
+                context=retrieval_result.context,
+                grade_level=grade_level or retrieval_result.metadata.get('grade_levels', [None])[0],
+                difficulty=difficulty or retrieval_result.metadata.get('difficulties', [None])[0]
+            )
+            
+            # Step 3: Compile response
+            response = {
+                'query': query,
+                'answer': llm_response['answer'],
+                'context_used': retrieval_result.context[:500] + "..." if len(retrieval_result.context) > 500 else retrieval_result.context,
+                'retrieval_metadata': {
+                    'num_chunks': len(retrieval_result.chunks),
+                    'sources': retrieval_result.metadata.get('sources', []),
+                    'grade_levels': retrieval_result.metadata.get('grade_levels', []),
+                    'avg_score': retrieval_result.metadata.get('avg_score', 0)
+                },
+                'generation_time': llm_response.get('generation_time', 0),
+                'success': llm_response.get('success', False)
+            }
+            
+            # Add source references if requested
+            if include_sources:
+                response['sources'] = [
+                    {
+                        'source': chunk['content'].get('source'),
+                        'grade': chunk['content'].get('grade_level'),
+                        'score': chunk.get('score', 0)
+                    }
+                    for chunk in retrieval_result.chunks[:3]
+                ]
+            
+            logger.info("✓ Answer generated successfully")
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error in answer_question: {e}", exc_info=True)
+            return {
+                'answer': f"An error occurred: {str(e)}",
+                'success': False,
+                'error': str(e)
+            }
+    
+    def generate_quiz(
+        self,
+        topic: str,
+        grade_level: str,
+        num_questions: int = 5,
+        difficulty: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Generate a quiz on a specific geometry topic.
+        
+        Args:
+            topic: Topic for quiz (e.g., "Triangles", "Circles")
+            grade_level: Target grade level
+            num_questions: Number of questions
+            difficulty: Optional difficulty filter
+        
+        Returns:
+            Dict with quiz content and metadata
+        """
+        
+        logger.info(f"Generating quiz on: {topic} for {grade_level}")
+        
+        # Step 1: Retrieve context about the topic
+        retrieval_config = RetrievalConfig(
+            strategy=RetrievalStrategy.HYBRID,
+            top_k=10,
+            rerank=True,
+            rerank_top_k=5,
+            filters={
+                'grade_level': grade_level,
+                'difficulty': difficulty
+            } if difficulty else {'grade_level': grade_level}
+        )
+        
+        try:
+            retrieval_result = self.rag_pipeline.retrieve(
+                f"Explain {topic} concepts, formulas, and theorems",
+                retrieval_config
+            )
+            
+            if not retrieval_result.chunks:
+                return {
+                    'quiz': None,
+                    'success': False,
+                    'error': f'No content found for topic: {topic}'
+                }
+            
+            # Step 2: Generate quiz using LLM
+            quiz_response = self.llm_client.generate_quiz(
+                topic=topic,
+                context=retrieval_result.context,
+                grade_level=grade_level,
+                num_questions=num_questions
+            )
+            
+            # Step 3: Compile response
+            response = {
+                'quiz': quiz_response['quiz'],
+                'topic': topic,
+                'grade_level': grade_level,
+                'num_questions': num_questions,
+                'sources': retrieval_result.metadata.get('sources', []),
+                'generated_at': quiz_response.get('generated_at'),
+                'success': quiz_response.get('success', False)
+            }
+            
+            logger.info("✓ Quiz generated successfully")
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error in generate_quiz: {e}", exc_info=True)
+            return {
+                'quiz': None,
+                'success': False,
+                'error': str(e)
+            }
+    
+    def explain_concept(
+        self,
+        concept: str,
+        grade_level: str,
+        explanation_type: str = "step-by-step"
+    ) -> Dict[str, Any]:
+        """
+        Generate a detailed explanation of a concept.
+        
+        Args:
+            concept: Concept to explain
+            grade_level: Target grade level
+            explanation_type: Type of explanation
+        
+        Returns:
+            Dict with explanation and metadata
+        """
+        
+        logger.info(f"Explaining: {concept} ({explanation_type})")
+        
+        # Retrieve context
+        retrieval_config = RetrievalConfig(
+            strategy=RetrievalStrategy.HIERARCHICAL,
+            top_k=8,
+            rerank=True,
+            include_parents=True,
+            filters={'grade_level': grade_level}
+        )
+        
+        try:
+            retrieval_result = self.rag_pipeline.retrieve(concept, retrieval_config)
+            
+            if not retrieval_result.chunks:
+                return {
+                    'explanation': f"I don't have information about '{concept}' in my knowledge base.",
+                    'success': False
+                }
+            
+            # Generate explanation
+            explanation_response = self.llm_client.generate_explanation(
+                concept=concept,
+                context=retrieval_result.context,
+                grade_level=grade_level,
+                explanation_type=explanation_type
+            )
+            
+            return {
+                'concept': concept,
+                'explanation': explanation_response['explanation'],
+                'grade_level': grade_level,
+                'type': explanation_type,
+                'sources': retrieval_result.metadata.get('sources', []),
+                'success': explanation_response.get('success', False)
+            }
+            
+        except Exception as e:
+            logger.error(f"Error in explain_concept: {e}", exc_info=True)
+            return {
+                'explanation': None,
+                'success': False,
+                'error': str(e)
+            }
+    
+    def chat(
+        self,
+        message: str,
+        chat_history: Optional[List[Dict[str, str]]] = None,
+        retrieve_context: bool = True,
+        grade_level: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Handle conversational interaction with memory and context.
+        
+        Args:
+            message: User's message
+            chat_history: Previous conversation
+            retrieve_context: Whether to retrieve relevant context
+            grade_level: Optional grade filter
+        
+        Returns:
+            Dict with response and updated history
+        """
+        
+        logger.info(f"Chat message: {message}")
+        
+        context = None
+        
+        # Retrieve context if requested
+        if retrieve_context:
+            try:
+                retrieval_config = RetrievalConfig(
+                    strategy=RetrievalStrategy.HYBRID,
+                    top_k=3,
+                    rerank=True,
+                    filters={'grade_level': grade_level} if grade_level else None
+                )
                 
-                print(f"  Grade Levels: {', '.join(grades) if grades else 'N/A'}")
-                print(f"  Difficulties: {', '.join(diffs) if diffs else 'N/A'}")
-                print(f"  Avg Score: {result.metadata.get('avg_score', 0):.4f}")
+                retrieval_result = self.rag_pipeline.retrieve(message, retrieval_config)
+                
+                if retrieval_result.chunks:
+                    context = retrieval_result.context[:1000]  # Limit context
+                    
+            except Exception as e:
+                logger.warning(f"Context retrieval failed: {e}")
         
-        except Exception as e:
-            print(f"  ✗ Error: {e}")
-            logger.error(f"Filtering test failed for {description}", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def test_06_context_expansion():
-    """Test 6: Context Expansion (Parent/Child)"""
-    print_separator("TEST 6: Context Expansion")
-    
-    pipeline = GeometryRAGPipeline(enable_reranker=True)
-    
-    query = "circle theorems"
-    print(f"\nQuery: {query}")
-    print(f"{'─' * 60}")
-    
-    # Without expansion
-    config_no_expand = RetrievalConfig(
-        strategy=RetrievalStrategy.HYBRID,
-        top_k=3,
-        rerank=True,
-        rerank_top_k=3,
-        include_parents=False,
-        include_children=False
-    )
-    
-    try:
-        result_no_expand = pipeline.retrieve(query, config_no_expand)
-        
-        print(f"\n[Without Expansion]")
-        print(f"  Chunks: {len(result_no_expand.chunks)}")
-        print(f"  Context Length: {len(result_no_expand.context)} characters")
-    
-    except Exception as e:
-        print(f"✗ Retrieval without expansion failed: {e}")
-        result_no_expand = None
-    
-    # With parent expansion
-    config_expand = RetrievalConfig(
-        strategy=RetrievalStrategy.HYBRID,
-        top_k=3,
-        rerank=True,
-        rerank_top_k=3,
-        include_parents=True,
-        include_children=False
-    )
-    
-    try:
-        result_expand = pipeline.retrieve(query, config_expand)
-        
-        print(f"\n[With Parent Expansion]")
-        print(f"  Chunks: {len(result_expand.chunks)}")
-        print(f"  Context Length: {len(result_expand.context)} characters")
-        
-        if result_no_expand:
-            expansion_ratio = len(result_expand.chunks) / max(len(result_no_expand.chunks), 1)
-            print(f"  Expansion Ratio: {expansion_ratio:.2f}x")
-            
-            context_increase = len(result_expand.context) - len(result_no_expand.context)
-            print(f"  Context Increase: +{context_increase} characters")
-    
-    except Exception as e:
-        print(f"✗ Context expansion failed: {e}")
-        logger.error("Context expansion test failed", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def test_07_batch_retrieval():
-    """Test 7: Batch Retrieval"""
-    print_separator("TEST 7: Batch Retrieval")
-    
-    pipeline = GeometryRAGPipeline(enable_reranker=True)
-    
-    queries = [
-        "What is an isosceles triangle?",
-        "Explain parallel lines and transversals",
-        "Calculate circumference of circle"
-    ]
-    
-    print(f"\nBatch retrieval for {len(queries)} queries")
-    print(f"{'─' * 60}")
-    
-    configs = [
-        RetrievalConfig(
-            strategy=RetrievalStrategy.HYBRID, 
-            top_k=3, 
-            rerank=True
+        # Generate response
+        chat_response = self.llm_client.chat(
+            message=message,
+            chat_history=chat_history or [],
+            context=context
         )
-        for _ in queries
-    ]
-    
-    try:
-        results = pipeline.batch_retrieve(queries, configs)
         
-        print(f"\n✓ Batch retrieval completed")
-        print(f"  Processed: {len(results)} queries")
+        return chat_response
+    
+    def _test_system(self):
+        """Test that all components are working."""
+        logger.info("Testing system components...")
         
-        for query, result in zip(queries, results):
-            print(f"\n  Query: {query}")
-            print(f"    Chunks: {len(result.chunks)}")
-            print(f"    Sources: {', '.join(result.metadata.get('sources', [])[:2])}")
-            if result.chunks:
-                print(f"    Top Score: {result.chunks[0].get('score', 0):.4f}")
-    
-    except Exception as e:
-        print(f"✗ Batch retrieval failed: {e}")
-        logger.error("Batch retrieval test failed", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def test_08_system_statistics():
-    """Test 8: System Statistics"""
-    print_separator("TEST 8: System Statistics")
-    
-    pipeline = GeometryRAGPipeline(enable_reranker=True)
-    
-    try:
-        stats = pipeline.get_statistics()
-        
-        print("\n✓ System Statistics:")
-        print(f"  Total Chunks: {stats.get('total_chunks', 'N/A'):,}")
-        print(f"  Index Size: {stats.get('index_size_mb', 0):.2f} MB")
-        print(f"  Embedding Model: {stats.get('embedding_model', 'N/A')}")
-        print(f"  Reranker Enabled: {stats.get('reranker_enabled', False)}")
-        print(f"  Cache Enabled: {stats.get('cache_enabled', False)}")
-    
-    except Exception as e:
-        print(f"✗ Failed to get statistics: {e}")
-        logger.error("Statistics test failed", exc_info=True)
-    
-    print(f"\n{'=' * 80}\n")
-
-def main():
-    """Run all integration tests."""
-    print_separator("GEOMETRY RAG PIPELINE - INTEGRATION TEST SUITE", "=")
-    
-    print("\nStarting comprehensive integration tests...")
-    print("These tests require a populated Elasticsearch database.\n")
-    
-    tests = [
-        ("Basic Retrieval", test_01_basic_retrieval),
-        ("Hybrid Search Comparison", test_02_hybrid_search),
-        ("Reranking", test_03_reranking),
-        ("Hierarchical Retrieval", test_04_hierarchical_retrieval),
-        ("Metadata Filtering", test_05_filtering),
-        ("Context Expansion", test_06_context_expansion),
-        ("Batch Retrieval", test_07_batch_retrieval),
-        ("System Statistics", test_08_system_statistics)
-    ]
-    
-    passed = 0
-    failed = 0
-    
-    for test_name, test_func in tests:
+        # Test RAG
         try:
-            test_func()
-            passed += 1
+            test_result = self.rag_pipeline.get_statistics()
+            logger.info(f"✓ RAG system ready: {test_result.get('total_chunks', 0)} chunks indexed")
         except Exception as e:
-            failed += 1
-            logger.error(f"Test '{test_name}' failed with exception: {e}", exc_info=True)
-            print(f"\n✗ TEST FAILED: {test_name}")
-            print(f"  Error: {e}\n")
-    
-    # Final summary
-    print_separator("TEST SUMMARY", "=")
-    print(f"\nTotal Tests: {len(tests)}")
-    print(f"Passed: {passed} ✓")
-    print(f"Failed: {failed} ✗")
-    print(f"Success Rate: {(passed/len(tests)*100):.1f}%\n")
-    
-    if failed == 0:
-        print("🎉 ALL TESTS PASSED! Phase 2 is working correctly.\n")
-        return 0
-    else:
-        print("⚠️  Some tests failed. Check logs for details.\n")
-        return 1
-
-if __name__ == "__main__":
-    sys.exit(main())
+            logger.error(f"✗ RAG system test failed: {e}")
+        
+        # Test LLM
+        try:
+            self.llm_client.test_connection()
+        except Exception as e:
+            logger.error(f"✗ LLM test failed: {e}")
+        
+        logger.info("System test complete")

@@ -55,7 +55,7 @@ def main():
     print("\n3. Creating Elasticsearch index...")
     try:
         es_client.create_index(recreate=True)
-        print(f"   ✓ Index '{settings.es_index_name}' created")
+        print(f"   ✓ Index '{settings.ES_INDEX_NAME}' created")
     except Exception as e:
         logger.error(f"Failed to create index: {e}")
         return 1

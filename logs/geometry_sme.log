@@ -1,151 +1,955 @@
-2025-10-25 20:18:48,007 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
-2025-10-25 20:18:49,120 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:200 duration:0.013s]
-2025-10-25 20:18:49,185 - INFO - DELETE http://localhost:9200/geometry_k12_rag [status:200 duration:0.064s]
-2025-10-25 20:18:49,185 - INFO - Deleted existing index: geometry_k12_rag
-2025-10-25 20:18:49,188 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:404 duration:0.002s]
-2025-10-25 20:18:49,438 - INFO - PUT http://localhost:9200/geometry_k12_rag [status:200 duration:0.250s]
-2025-10-25 20:18:49,440 - INFO - Found 19 documents to process
-2025-10-25 20:18:49,440 - INFO - Processing: class9_7.pdf
-2025-10-25 20:18:49,807 - INFO - Saved processed document: class9_7.pdf [Grade 9]
-2025-10-25 20:18:49,807 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
-2025-10-25 20:18:49,807 - INFO - Processing: class6_2.pdf
-2025-10-25 20:18:51,394 - INFO - Saved processed document: class6_2.pdf [Grade 6]
-2025-10-25 20:18:51,395 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
-2025-10-25 20:18:51,395 - INFO - Processing: class6_9.pdf
-2025-10-25 20:18:53,268 - INFO - Saved processed document: class6_9.pdf [Grade 6]
-2025-10-25 20:18:53,268 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
-2025-10-25 20:18:53,268 - INFO - Processing: class10_6.pdf
-2025-10-25 20:18:53,937 - INFO - Saved processed document: class10_6.pdf [Grade 10]
-2025-10-25 20:18:53,937 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
-2025-10-25 20:18:53,937 - INFO - Processing: class7_7.pdf
-2025-10-25 20:18:54,292 - INFO - Saved processed document: class7_7.pdf [Grade 7]
-2025-10-25 20:18:54,292 - INFO -   ✓ Grade: Grade 7, Difficulty: Beginner
-2025-10-25 20:18:54,292 - INFO - Processing: class7_5.pdf
-2025-10-25 20:18:54,533 - INFO - Saved processed document: class7_5.pdf [Grade 7]
-2025-10-25 20:18:54,533 - INFO -   ✓ Grade: Grade 7, Difficulty: Intermediate
-2025-10-25 20:18:54,533 - INFO - Processing: class10_10.pdf
-2025-10-25 20:18:54,702 - INFO - Saved processed document: class10_10.pdf [Grade 10]
-2025-10-25 20:18:54,702 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
-2025-10-25 20:18:54,702 - INFO - Processing: class9_6.pdf
-2025-10-25 20:18:55,004 - INFO - Saved processed document: class9_6.pdf [Grade 9]
-2025-10-25 20:18:55,004 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
-2025-10-25 20:18:55,004 - INFO - Processing: San Jacinto Campus.pptx
-2025-10-25 20:18:55,060 - INFO - Saved processed document: San Jacinto Campus.pptx [Grade 6]
-2025-10-25 20:18:55,060 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
-2025-10-25 20:18:55,061 - INFO - Processing: class9_10.pdf
-2025-10-25 20:18:55,345 - INFO - Saved processed document: class9_10.pdf [Grade 9]
-2025-10-25 20:18:55,345 - INFO -   ✓ Grade: Grade 9, Difficulty: Beginner
-2025-10-25 20:18:55,345 - INFO - Processing: class10_12.pdf
-2025-10-25 20:18:56,434 - INFO - Saved processed document: class10_12.pdf [Grade 10]
-2025-10-25 20:18:56,434 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
-2025-10-25 20:18:56,434 - INFO - Processing: class6_8.pdf
-2025-10-25 20:18:57,855 - INFO - Saved processed document: class6_8.pdf [Grade 6]
-2025-10-25 20:18:57,855 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
-2025-10-25 20:18:57,855 - INFO - Processing: class9_9.pdf
-2025-10-25 20:18:58,025 - INFO - Saved processed document: class9_9.pdf [Grade 9]
-2025-10-25 20:18:58,026 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
-2025-10-25 20:18:58,026 - INFO - Processing: class9_8.pdf
-2025-10-25 20:18:58,242 - INFO - Saved processed document: class9_8.pdf [Grade 9]
-2025-10-25 20:18:58,242 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
-2025-10-25 20:18:58,242 - INFO - Processing: class8_4.pdf
-2025-10-25 20:18:58,860 - INFO - Saved processed document: class8_4.pdf [Grade 8]
-2025-10-25 20:18:58,860 - INFO -   ✓ Grade: Grade 8, Difficulty: Intermediate
-2025-10-25 20:18:58,860 - INFO - Processing: class9_11.pdf
-2025-10-25 20:19:00,352 - INFO - Saved processed document: class9_11.pdf [Grade 9]
-2025-10-25 20:19:00,352 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
-2025-10-25 20:19:00,352 - INFO - Processing: Geometry Textbook.pdf
-2025-10-25 20:19:01,295 - INFO - Saved processed document: Geometry Textbook.pdf [Grade 6-10 (General)]
-2025-10-25 20:19:01,295 - INFO -   ✓ Grade: Grade 6-10 (General), Difficulty: Beginner
-2025-10-25 20:19:01,295 - INFO - Processing: class10_11.pdf
-2025-10-25 20:19:01,439 - INFO - Saved processed document: class10_11.pdf [Grade 10]
-2025-10-25 20:19:01,439 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
-2025-10-25 20:19:01,439 - INFO - Processing: class6_6.pdf
-2025-10-25 20:19:02,390 - INFO - Saved processed document: class6_6.pdf [Grade 6]
-2025-10-25 20:19:02,390 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
-2025-10-25 20:19:02,390 - INFO - 
-============================================================
-2025-10-25 20:19:02,390 - INFO - Processing Summary:
-2025-10-25 20:19:02,390 - INFO -   Total processed: 19/19
-2025-10-25 20:19:02,390 - INFO - 
-  Grade Distribution:
-2025-10-25 20:19:02,390 - INFO -     Grade 10: 4 documents
-2025-10-25 20:19:02,390 - INFO -     Grade 6: 5 documents
-2025-10-25 20:19:02,390 - INFO -     Grade 6-10 (General): 1 documents
-2025-10-25 20:19:02,391 - INFO -     Grade 7: 2 documents
-2025-10-25 20:19:02,391 - INFO -     Grade 8: 1 documents
-2025-10-25 20:19:02,391 - INFO -     Grade 9: 6 documents
-2025-10-25 20:19:02,391 - INFO - ============================================================
+2025-11-15 01:40:42,078 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 01:40:42,079 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 01:40:42,079 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:40:42,079 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:40:44,434 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 01:41:28,460 - INFO - Reranker model loaded successfully
+2025-11-15 01:41:28,461 - INFO - Reranker initialized successfully
+2025-11-15 01:41:28,462 - INFO - Embedding model limit: 384 tokens
+2025-11-15 01:41:28,462 - INFO - ✓ RAG pipeline initialized
+2025-11-15 01:41:28,462 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 01:41:28,463 - INFO - ✓ Gemini LLM initialized
+2025-11-15 01:41:28,463 - INFO - Testing system components...
+2025-11-15 01:41:28,475 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.011s]
+2025-11-15 01:41:28,475 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2025-11-15 01:41:28,475 - WARNING - Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
 
-2025-10-25 20:19:02,399 - INFO - Created 4 Level-0 chunks for class9_7.pdf
-2025-10-25 20:19:02,416 - INFO - Total chunks created for class9_7.pdf: 97 (L0: 4, L1: 17, L2: 76)
-2025-10-25 20:19:05,379 - INFO - Created 8 Level-0 chunks for class6_2.pdf
-2025-10-25 20:19:05,418 - INFO - Total chunks created for class6_2.pdf: 199 (L0: 8, L1: 36, L2: 155)
-2025-10-25 20:19:08,324 - INFO - Created 4 Level-0 chunks for class6_9.pdf
-2025-10-25 20:19:08,343 - INFO - Total chunks created for class6_9.pdf: 100 (L0: 4, L1: 18, L2: 78)
-2025-10-25 20:19:09,775 - INFO - Created 5 Level-0 chunks for class10_6.pdf
-2025-10-25 20:19:09,796 - INFO - Total chunks created for class10_6.pdf: 118 (L0: 5, L1: 21, L2: 92)
-2025-10-25 20:19:11,486 - INFO - Created 5 Level-0 chunks for class7_7.pdf
-2025-10-25 20:19:11,508 - INFO - Total chunks created for class7_7.pdf: 130 (L0: 5, L1: 22, L2: 103)
-2025-10-25 20:19:13,248 - INFO - Created 4 Level-0 chunks for class7_5.pdf
-2025-10-25 20:19:13,265 - INFO - Total chunks created for class7_5.pdf: 93 (L0: 4, L1: 16, L2: 73)
-2025-10-25 20:19:14,713 - INFO - Created 2 Level-0 chunks for class10_10.pdf
-2025-10-25 20:19:14,722 - INFO - Total chunks created for class10_10.pdf: 54 (L0: 2, L1: 9, L2: 43)
-2025-10-25 20:19:15,976 - INFO - Created 3 Level-0 chunks for class9_6.pdf
-2025-10-25 20:19:15,989 - INFO - Total chunks created for class9_6.pdf: 70 (L0: 3, L1: 13, L2: 54)
-2025-10-25 20:19:17,279 - INFO - Created 1 Level-0 chunks for San Jacinto Campus.pptx
-2025-10-25 20:19:17,283 - INFO - Total chunks created for San Jacinto Campus.pptx: 27 (L0: 1, L1: 5, L2: 21)
-2025-10-25 20:19:18,153 - INFO - Created 2 Level-0 chunks for class9_10.pdf
-2025-10-25 20:19:18,158 - INFO - Total chunks created for class9_10.pdf: 29 (L0: 2, L1: 5, L2: 22)
-2025-10-25 20:19:19,129 - INFO - Created 3 Level-0 chunks for class10_12.pdf
-2025-10-25 20:19:19,141 - INFO - Total chunks created for class10_12.pdf: 61 (L0: 3, L1: 11, L2: 47)
-2025-10-25 20:19:19,036 - INFO - Created 5 Level-0 chunks for class6_8.pdf
-2025-10-25 20:19:19,064 - INFO - Total chunks created for class6_8.pdf: 120 (L0: 5, L1: 21, L2: 94)
-2025-10-25 20:19:20,690 - INFO - Created 4 Level-0 chunks for class9_9.pdf
-2025-10-25 20:19:20,704 - INFO - Total chunks created for class9_9.pdf: 89 (L0: 4, L1: 16, L2: 69)
-2025-10-25 20:19:22,166 - INFO - Created 3 Level-0 chunks for class9_8.pdf
-2025-10-25 20:19:22,176 - INFO - Total chunks created for class9_8.pdf: 65 (L0: 3, L1: 12, L2: 50)
-2025-10-25 20:19:23,509 - INFO - Created 6 Level-0 chunks for class8_4.pdf
-2025-10-25 20:19:23,538 - INFO - Total chunks created for class8_4.pdf: 159 (L0: 6, L1: 28, L2: 125)
-2025-10-25 20:19:25,590 - INFO - Created 4 Level-0 chunks for class9_11.pdf
-2025-10-25 20:19:25,609 - INFO - Total chunks created for class9_11.pdf: 89 (L0: 4, L1: 16, L2: 69)
-2025-10-25 20:19:27,030 - WARNING - Empty text received for Geometry Textbook.pdf
-2025-10-25 20:19:27,030 - WARNING - No chunks created for Geometry Textbook.pdf
-2025-10-25 20:19:27,031 - INFO - Created 2 Level-0 chunks for class10_11.pdf
-2025-10-25 20:19:27,037 - INFO - Total chunks created for class10_11.pdf: 34 (L0: 2, L1: 6, L2: 26)
-2025-10-25 20:19:28,023 - INFO - Created 5 Level-0 chunks for class6_6.pdf
-2025-10-25 20:19:28,047 - INFO - Total chunks created for class6_6.pdf: 120 (L0: 5, L1: 22, L2: 93)
-2025-10-25 20:19:30,280 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.232s]
-2025-10-25 20:19:30,280 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:30,425 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.109s]
-2025-10-25 20:19:30,426 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:30,572 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.113s]
-2025-10-25 20:19:30,572 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:30,706 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.102s]
-2025-10-25 20:19:30,706 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:30,840 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.105s]
-2025-10-25 20:19:30,841 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:30,981 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.108s]
-2025-10-25 20:19:30,981 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:31,122 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.107s]
-2025-10-25 20:19:31,122 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:31,267 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.110s]
-2025-10-25 20:19:31,272 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:31,423 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.117s]
-2025-10-25 20:19:31,424 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:31,571 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.116s]
-2025-10-25 20:19:31,572 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:31,717 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.117s]
-2025-10-25 20:19:31,718 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:31,856 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.106s]
-2025-10-25 20:19:31,856 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:31,995 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.107s]
-2025-10-25 20:19:31,995 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:32,131 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.107s]
-2025-10-25 20:19:32,132 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:32,267 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.106s]
-2025-10-25 20:19:32,267 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:32,408 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.110s]
-2025-10-25 20:19:32,409 - INFO - Indexed batch: 100 successful, [] failed
-2025-10-25 20:19:32,489 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.065s]
-2025-10-25 20:19:32,490 - INFO - Indexed batch: 54 successful, [] failed
-2025-10-25 20:19:32,667 - INFO - POST http://localhost:9200/geometry_k12_rag/_refresh [status:200 duration:0.177s]
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f889a20f370>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f889a20f370>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 01:41:28,486 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.000s]
+2025-11-15 01:41:28,486 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2025-11-15 01:41:28,486 - WARNING - Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f889a20f520>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f889a20f520>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 01:41:28,487 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.000s]
+2025-11-15 01:41:28,487 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2025-11-15 01:41:28,487 - WARNING - Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f889a20f880>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f889a20f880>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 01:41:28,488 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.000s]
+2025-11-15 01:41:28,488 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2025-11-15 01:41:28,488 - ERROR - Failed to get statistics: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f889a20f370>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 01:41:28,488 - INFO - ✓ RAG system ready: 0 chunks indexed
+2025-11-15 01:42:43,358 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 01:42:43,359 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 01:42:43,359 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:42:43,360 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:42:45,557 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 01:43:28,557 - INFO - Reranker model loaded successfully
+2025-11-15 01:43:28,558 - INFO - Reranker initialized successfully
+2025-11-15 01:43:28,558 - INFO - Embedding model limit: 384 tokens
+2025-11-15 01:43:28,558 - INFO - ✓ RAG pipeline initialized
+2025-11-15 01:43:28,561 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 01:43:28,561 - INFO - ✓ Gemini LLM initialized
+2025-11-15 01:43:28,561 - INFO - Testing system components...
+2025-11-15 01:43:28,715 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.154s]
+2025-11-15 01:43:28,775 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.059s]
+2025-11-15 01:43:28,776 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 01:43:41,507 - INFO - ✓ Gemini API connection successful
+2025-11-15 01:43:41,508 - ERROR - ✗ Gemini API connection failed: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 2.
+2025-11-15 01:43:41,509 - INFO - System test complete
+2025-11-15 01:43:41,509 - INFO - Answering question: What is the Pythagorean theorem?
+2025-11-15 01:43:41,510 - INFO - Retrieving with strategy: hybrid
+2025-11-15 01:43:45,057 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.257s]
+2025-11-15 01:43:45,195 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.137s]
+2025-11-15 01:43:45,195 - INFO - Reranking results
+2025-11-15 01:43:46,014 - INFO - Retrieved 3 relevant chunks
+2025-11-15 01:43:57,955 - INFO - ✓ Answer generated successfully
+2025-11-15 01:43:57,956 - INFO - Answering question: Explain properties of triangles
+2025-11-15 01:43:57,956 - INFO - Retrieving with strategy: hybrid
+2025-11-15 01:43:58,103 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.037s]
+2025-11-15 01:43:58,150 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.046s]
+2025-11-15 01:43:58,150 - INFO - Reranking results
+2025-11-15 01:43:58,718 - INFO - Retrieved 3 relevant chunks
+2025-11-15 01:44:10,851 - INFO - ✓ Answer generated successfully
+2025-11-15 01:44:10,852 - INFO - Answering question: How to calculate area of a circle?
+2025-11-15 01:44:10,852 - INFO - Retrieving with strategy: hybrid
+2025-11-15 01:44:10,950 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.033s]
+2025-11-15 01:44:10,981 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.030s]
+2025-11-15 01:44:10,982 - INFO - Reranking results
+2025-11-15 01:44:11,462 - INFO - Retrieved 3 relevant chunks
+2025-11-15 01:44:22,504 - INFO - ✓ Answer generated successfully
+2025-11-15 01:44:22,725 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 01:44:22,725 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 01:44:22,726 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:44:22,726 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:44:23,547 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 01:45:06,000 - INFO - Reranker model loaded successfully
+2025-11-15 01:45:06,001 - INFO - Reranker initialized successfully
+2025-11-15 01:45:06,001 - INFO - Embedding model limit: 384 tokens
+2025-11-15 01:45:06,001 - INFO - ✓ RAG pipeline initialized
+2025-11-15 01:45:06,002 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 01:45:06,002 - INFO - ✓ Gemini LLM initialized
+2025-11-15 01:45:06,002 - INFO - Testing system components...
+2025-11-15 01:45:06,014 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.012s]
+2025-11-15 01:45:06,041 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.026s]
+2025-11-15 01:45:06,041 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 01:45:18,469 - INFO - ✓ Gemini API connection successful
+2025-11-15 01:45:18,470 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 01:45:18,470 - INFO - System test complete
+2025-11-15 01:45:18,470 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 01:45:18,470 - INFO - Retrieving with strategy: hybrid
+2025-11-15 01:45:18,774 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.020s]
+2025-11-15 01:45:18,824 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.049s]
+2025-11-15 01:45:18,824 - INFO - Reranking results
+2025-11-15 01:45:30,098 - INFO - ✓ Quiz generated successfully
+2025-11-15 01:45:30,098 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 01:45:30,098 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 01:45:30,099 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:45:30,099 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:45:30,874 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 01:46:13,376 - INFO - Reranker model loaded successfully
+2025-11-15 01:46:13,383 - INFO - Reranker initialized successfully
+2025-11-15 01:46:13,383 - INFO - Embedding model limit: 384 tokens
+2025-11-15 01:46:13,383 - INFO - ✓ RAG pipeline initialized
+2025-11-15 01:46:13,383 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 01:46:13,383 - INFO - ✓ Gemini LLM initialized
+2025-11-15 01:46:13,383 - INFO - Testing system components...
+2025-11-15 01:46:13,402 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.019s]
+2025-11-15 01:46:13,410 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.007s]
+2025-11-15 01:46:13,410 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 01:46:27,657 - INFO - ✓ Gemini API connection successful
+2025-11-15 01:46:27,657 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 01:46:27,657 - INFO - System test complete
+2025-11-15 01:46:27,658 - INFO - Explaining: Pythagorean Theorem (step-by-step)
+2025-11-15 01:46:27,658 - INFO - Retrieving with strategy: hierarchical
+2025-11-15 01:46:27,954 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.042s]
+2025-11-15 01:46:27,976 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.021s]
+2025-11-15 01:46:28,017 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.041s]
+2025-11-15 01:46:28,026 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.007s]
+2025-11-15 01:46:28,028 - INFO - Reranking results
+2025-11-15 01:46:28,643 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.012s]
+2025-11-15 01:46:28,651 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.007s]
+2025-11-15 01:46:40,684 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 01:46:40,685 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 01:46:40,685 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:46:40,686 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 01:46:41,205 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 01:47:22,730 - INFO - Reranker model loaded successfully
+2025-11-15 01:47:22,731 - INFO - Reranker initialized successfully
+2025-11-15 01:47:22,731 - INFO - Embedding model limit: 384 tokens
+2025-11-15 01:47:22,731 - INFO - ✓ RAG pipeline initialized
+2025-11-15 01:47:22,731 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 01:47:22,731 - INFO - ✓ Gemini LLM initialized
+2025-11-15 01:47:22,731 - INFO - Testing system components...
+2025-11-15 01:47:22,744 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.013s]
+2025-11-15 01:47:22,750 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.006s]
+2025-11-15 01:47:22,750 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 01:47:35,214 - INFO - ✓ Gemini API connection successful
+2025-11-15 01:47:35,215 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 01:47:35,215 - INFO - System test complete
+2025-11-15 01:47:35,215 - INFO - Chat message: Hi, can you help me with geometry?
+2025-11-15 01:47:35,215 - INFO - Retrieving with strategy: hybrid
+2025-11-15 01:47:35,515 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.038s]
+2025-11-15 01:47:35,552 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.036s]
+2025-11-15 01:47:35,552 - INFO - Reranking results
+2025-11-15 01:47:37,923 - INFO - Chat message: What are the types of triangles?
+2025-11-15 01:47:37,923 - INFO - Retrieving with strategy: hybrid
+2025-11-15 01:47:37,958 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.019s]
+2025-11-15 01:47:37,995 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.036s]
+2025-11-15 01:47:37,996 - INFO - Reranking results
+2025-11-15 01:47:41,350 - INFO - Chat message: Can you explain scalene triangles?
+2025-11-15 01:47:41,351 - INFO - Retrieving with strategy: hybrid
+2025-11-15 01:47:41,402 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.015s]
+2025-11-15 01:47:41,437 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.035s]
+2025-11-15 01:47:41,438 - INFO - Reranking results
+2025-11-15 02:02:13,398 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 02:02:13,399 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 02:02:13,400 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:02:13,400 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:02:15,336 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 02:02:58,263 - INFO - Reranker model loaded successfully
+2025-11-15 02:02:58,264 - INFO - Reranker initialized successfully
+2025-11-15 02:02:58,265 - INFO - Embedding model limit: 384 tokens
+2025-11-15 02:02:58,265 - INFO - ✓ RAG pipeline initialized
+2025-11-15 02:02:58,267 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 02:02:58,267 - INFO - ✓ Gemini LLM initialized
+2025-11-15 02:02:58,267 - INFO - Testing system components...
+2025-11-15 02:02:58,361 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.093s]
+2025-11-15 02:02:58,401 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.039s]
+2025-11-15 02:02:58,402 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 02:03:11,556 - INFO - ✓ Gemini API connection successful
+2025-11-15 02:03:11,556 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 02:03:11,556 - INFO - System test complete
+2025-11-15 02:03:11,556 - INFO - Answering question: What is the Pythagorean theorem?
+2025-11-15 02:03:11,556 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:03:11,624 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.062s]
+2025-11-15 02:03:11,699 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.074s]
+2025-11-15 02:03:11,700 - INFO - Reranking results
+2025-11-15 02:03:13,561 - INFO - Retrieved 3 relevant chunks
+2025-11-15 02:03:23,869 - INFO - ✓ Answer generated successfully
+2025-11-15 02:03:23,870 - INFO - Answering question: Explain properties of triangles
+2025-11-15 02:03:23,870 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:03:23,917 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.045s]
+2025-11-15 02:03:23,987 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.069s]
+2025-11-15 02:03:23,987 - INFO - Reranking results
+2025-11-15 02:03:24,579 - INFO - Retrieved 3 relevant chunks
+2025-11-15 02:03:35,672 - INFO - ✓ Answer generated successfully
+2025-11-15 02:03:35,673 - INFO - Answering question: How to calculate area of a circle?
+2025-11-15 02:03:35,673 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:03:35,708 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.034s]
+2025-11-15 02:03:35,771 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.063s]
+2025-11-15 02:03:35,772 - INFO - Reranking results
+2025-11-15 02:03:36,163 - INFO - Retrieved 3 relevant chunks
+2025-11-15 02:03:46,861 - INFO - ✓ Answer generated successfully
+2025-11-15 02:03:47,064 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 02:03:47,065 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 02:03:47,066 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:03:47,066 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:03:47,973 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 02:04:30,757 - INFO - Reranker model loaded successfully
+2025-11-15 02:04:30,757 - INFO - Reranker initialized successfully
+2025-11-15 02:04:30,758 - INFO - Embedding model limit: 384 tokens
+2025-11-15 02:04:30,758 - INFO - ✓ RAG pipeline initialized
+2025-11-15 02:04:30,758 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 02:04:30,759 - INFO - ✓ Gemini LLM initialized
+2025-11-15 02:04:30,759 - INFO - Testing system components...
+2025-11-15 02:04:30,771 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.012s]
+2025-11-15 02:04:30,778 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.007s]
+2025-11-15 02:04:30,778 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 02:04:43,313 - INFO - ✓ Gemini API connection successful
+2025-11-15 02:04:43,313 - INFO - Test response: {"candidates": [{"content": {"role": "model", "parts": []}, "finish_reason": 2, "index": 0, "safety_ratings": [], "token_count": 0, "grounding_attributions": [], "avg_logprobs": 0.0}], "usage_metadata": {"prompt_token_count": 17, "total_token_count": 66, "cached_content_token_count": 0, "candidates_token_count": 0}, "model_version": "gemini-2.5-flash"}
+2025-11-15 02:04:43,319 - INFO - System test complete
+2025-11-15 02:04:43,319 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 02:04:43,319 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:04:43,364 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.043s]
+2025-11-15 02:04:43,465 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.101s]
+2025-11-15 02:04:43,466 - INFO - Reranking results
+2025-11-15 02:04:54,927 - INFO - ✓ Quiz generated successfully
+2025-11-15 02:04:54,927 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 02:04:54,927 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 02:04:54,928 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:04:54,928 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:04:55,803 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 02:05:37,999 - INFO - Reranker model loaded successfully
+2025-11-15 02:05:37,999 - INFO - Reranker initialized successfully
+2025-11-15 02:05:37,999 - INFO - Embedding model limit: 384 tokens
+2025-11-15 02:05:37,999 - INFO - ✓ RAG pipeline initialized
+2025-11-15 02:05:38,000 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 02:05:38,000 - INFO - ✓ Gemini LLM initialized
+2025-11-15 02:05:38,000 - INFO - Testing system components...
+2025-11-15 02:05:38,019 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.019s]
+2025-11-15 02:05:38,030 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.010s]
+2025-11-15 02:05:38,030 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 02:05:50,390 - INFO - ✓ Gemini API connection successful
+2025-11-15 02:05:50,390 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 02:05:50,390 - INFO - System test complete
+2025-11-15 02:05:50,396 - INFO - Explaining: Pythagorean Theorem (step-by-step)
+2025-11-15 02:05:50,396 - INFO - Retrieving with strategy: hierarchical
+2025-11-15 02:05:50,424 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.025s]
+2025-11-15 02:05:50,475 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.051s]
+2025-11-15 02:05:50,489 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.013s]
+2025-11-15 02:05:50,503 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.013s]
+2025-11-15 02:05:50,504 - INFO - Reranking results
+2025-11-15 02:05:51,320 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.009s]
+2025-11-15 02:05:51,330 - INFO - POST http://localhost:9200/geometry_k12_rag/_mget [status:200 duration:0.009s]
+2025-11-15 02:06:02,624 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 02:06:02,625 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 02:06:02,625 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:06:02,626 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:06:03,192 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 02:06:44,750 - INFO - Reranker model loaded successfully
+2025-11-15 02:06:44,750 - INFO - Reranker initialized successfully
+2025-11-15 02:06:44,756 - INFO - Embedding model limit: 384 tokens
+2025-11-15 02:06:44,756 - INFO - ✓ RAG pipeline initialized
+2025-11-15 02:06:44,756 - INFO - Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 02:06:44,756 - INFO - ✓ Gemini LLM initialized
+2025-11-15 02:06:44,756 - INFO - Testing system components...
+2025-11-15 02:06:44,769 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.013s]
+2025-11-15 02:06:44,779 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.009s]
+2025-11-15 02:06:44,779 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 02:06:58,477 - INFO - ✓ Gemini API connection successful
+2025-11-15 02:06:58,478 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 02:06:58,478 - INFO - System test complete
+2025-11-15 02:06:58,478 - INFO - Chat message: Hi, can you help me with geometry?
+2025-11-15 02:06:58,478 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:06:58,517 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.037s]
+2025-11-15 02:06:58,576 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.059s]
+2025-11-15 02:06:58,576 - INFO - Reranking results
+2025-11-15 02:07:00,794 - INFO - Chat message: What are the types of triangles?
+2025-11-15 02:07:00,794 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:07:00,817 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.021s]
+2025-11-15 02:07:00,867 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.049s]
+2025-11-15 02:07:00,867 - INFO - Reranking results
+2025-11-15 02:07:08,176 - INFO - Chat message: Can you explain scalene triangles?
+2025-11-15 02:07:08,176 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:07:08,249 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.072s]
+2025-11-15 02:07:08,306 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.056s]
+2025-11-15 02:07:08,306 - INFO - Reranking results
+2025-11-15 02:43:40,763 - INFO - ======================================================================
+2025-11-15 02:43:40,763 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 02:43:40,763 - INFO - ======================================================================
+2025-11-15 02:43:40,763 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 02:43:40,764 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:43:40,764 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 02:43:42,526 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 02:43:47,389 - INFO - Reranker model loaded successfully
+2025-11-15 02:43:47,403 - INFO - Reranker initialized successfully
+2025-11-15 02:43:47,407 - INFO - Embedding model limit: 384 tokens
+2025-11-15 02:43:47,410 - INFO - ✓ RAG pipeline initialized
+2025-11-15 02:43:47,437 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 02:43:47,438 - INFO - ✓ Gemini LLM initialized
+2025-11-15 02:43:47,439 - INFO - 
+Testing system components...
+2025-11-15 02:43:48,304 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.854s]
+2025-11-15 02:43:48,558 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.248s]
+2025-11-15 02:43:48,559 - INFO - ✓ RAG system ready: 2346 chunks indexed
+2025-11-15 02:43:50,663 - INFO - ✓ Gemini API connection successful
+2025-11-15 02:43:50,663 - INFO - Test response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model",
+        "parts": []
+      },
+      "finish_reason": 2,
+      "index": 0,
+      "safety_ratings": [],
+      "token_count": 0,
+      "grounding_attributions": [],
+      "avg_logprobs": 0.0
+    }
+  ],
+  "usage_metadata": {
+    "prompt_token_count": 17,
+    "total_token_count": 66,
+    "cached_content_token_count": 0,
+    "candidates_token_count": 0
+  },
+  "model_version": "gemini-2.5-flash"
+}
+2025-11-15 02:43:50,665 - INFO - ✓ LLM system ready
+2025-11-15 02:43:50,665 - INFO - System test complete
+
+2025-11-15 02:43:50,665 - INFO - ======================================================================
+2025-11-15 02:43:50,665 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 02:43:50,665 - INFO - ======================================================================
+2025-11-15 02:43:50,676 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.011s]
+2025-11-15 02:43:50,697 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.021s]
+2025-11-15 02:44:09,606 - INFO - Answering question: What is the Pythagorean theorem?
+2025-11-15 02:44:09,607 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:55:27,292 - ERROR - Error in answer_question: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/src/llm/rag_llm_pipeline.py", line 139, in answer_question
+    retrieval_result = self.rag_pipeline.retrieve(query, retrieval_config)
+  File "/home/gaurav/Projects/geometry-sme-system/src/retrieval/rag_pipeline.py", line 120, in retrieve
+    results = self.vector_store.hybrid_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 215, in hybrid_search
+    vector_results = self.vector_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 81, in vector_search
+    query_embedding = self.generate_embedding(query)
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 60, in generate_embedding
+    embedding = self.embedder.encode(text, convert_to_numpy=True)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/sentence_transformers/SentenceTransformer.py", line 153, in encode
+    self.to(device)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1160, in to
+    return self._apply(convert)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 833, in _apply
+    param_applied = fn(param)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1158, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2025-11-15 02:55:27,303 - INFO - Answering question: Explain the properties of isosceles triangles
+2025-11-15 02:55:27,304 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:55:27,316 - ERROR - Error in answer_question: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/src/llm/rag_llm_pipeline.py", line 139, in answer_question
+    retrieval_result = self.rag_pipeline.retrieve(query, retrieval_config)
+  File "/home/gaurav/Projects/geometry-sme-system/src/retrieval/rag_pipeline.py", line 120, in retrieve
+    results = self.vector_store.hybrid_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 215, in hybrid_search
+    vector_results = self.vector_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 81, in vector_search
+    query_embedding = self.generate_embedding(query)
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 60, in generate_embedding
+    embedding = self.embedder.encode(text, convert_to_numpy=True)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/sentence_transformers/SentenceTransformer.py", line 153, in encode
+    self.to(device)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1160, in to
+    return self._apply(convert)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 833, in _apply
+    param_applied = fn(param)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1158, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2025-11-15 02:55:27,316 - INFO - Answering question: How do I calculate the area of a circle?
+2025-11-15 02:55:27,317 - INFO - Retrieving with strategy: hybrid
+2025-11-15 02:55:27,329 - ERROR - Error in answer_question: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/src/llm/rag_llm_pipeline.py", line 139, in answer_question
+    retrieval_result = self.rag_pipeline.retrieve(query, retrieval_config)
+  File "/home/gaurav/Projects/geometry-sme-system/src/retrieval/rag_pipeline.py", line 120, in retrieve
+    results = self.vector_store.hybrid_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 215, in hybrid_search
+    vector_results = self.vector_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 81, in vector_search
+    query_embedding = self.generate_embedding(query)
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 60, in generate_embedding
+    embedding = self.embedder.encode(text, convert_to_numpy=True)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/sentence_transformers/SentenceTransformer.py", line 153, in encode
+    self.to(device)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1160, in to
+    return self._apply(convert)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 810, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 833, in _apply
+    param_applied = fn(param)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1158, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2025-11-15 03:49:29,725 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:49:30,852 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:200 duration:0.075s]
+2025-11-15 03:49:31,400 - INFO - DELETE http://localhost:9200/geometry_k12_rag [status:200 duration:0.548s]
+2025-11-15 03:49:31,400 - INFO - Deleted existing index: geometry_k12_rag
+2025-11-15 03:49:31,412 - INFO - HEAD http://localhost:9200/geometry_k12_rag [status:404 duration:0.012s]
+2025-11-15 03:49:31,952 - INFO - PUT http://localhost:9200/geometry_k12_rag [status:200 duration:0.540s]
+2025-11-15 03:49:31,953 - INFO - Created index: geometry_k12_rag
+2025-11-15 03:49:31,953 - INFO - Found 18 documents to process
+2025-11-15 03:49:31,953 - INFO - Processing: class9_7.pdf
+2025-11-15 03:49:32,336 - INFO - Saved processed document: class9_7.pdf [Grade 9]
+2025-11-15 03:49:32,336 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
+2025-11-15 03:49:32,336 - INFO - Processing: class6_2.pdf
+2025-11-15 03:49:33,897 - INFO - Saved processed document: class6_2.pdf [Grade 6]
+2025-11-15 03:49:33,897 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-15 03:49:33,897 - INFO - Processing: class6_9.pdf
+2025-11-15 03:49:35,643 - INFO - Saved processed document: class6_9.pdf [Grade 6]
+2025-11-15 03:49:35,643 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-15 03:49:35,643 - INFO - Processing: class10_6.pdf
+2025-11-15 03:49:36,251 - INFO - Saved processed document: class10_6.pdf [Grade 10]
+2025-11-15 03:49:36,251 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
+2025-11-15 03:49:36,251 - INFO - Processing: class7_7.pdf
+2025-11-15 03:49:36,501 - INFO - Saved processed document: class7_7.pdf [Grade 7]
+2025-11-15 03:49:36,501 - INFO -   ✓ Grade: Grade 7, Difficulty: Beginner
+2025-11-15 03:49:36,501 - INFO - Processing: class7_5.pdf
+2025-11-15 03:49:36,800 - INFO - Saved processed document: class7_5.pdf [Grade 7]
+2025-11-15 03:49:36,801 - INFO -   ✓ Grade: Grade 7, Difficulty: Intermediate
+2025-11-15 03:49:36,801 - INFO - Processing: class10_10.pdf
+2025-11-15 03:49:36,961 - INFO - Saved processed document: class10_10.pdf [Grade 10]
+2025-11-15 03:49:36,961 - INFO -   ✓ Grade: Grade 10, Difficulty: Intermediate
+2025-11-15 03:49:36,961 - INFO - Processing: class9_6.pdf
+2025-11-15 03:49:37,237 - INFO - Saved processed document: class9_6.pdf [Grade 9]
+2025-11-15 03:49:37,237 - INFO -   ✓ Grade: Grade 9, Difficulty: Advanced
+2025-11-15 03:49:37,237 - INFO - Processing: San Jacinto Campus.pptx
+2025-11-15 03:49:37,288 - INFO - Saved processed document: San Jacinto Campus.pptx [Grade 6]
+2025-11-15 03:49:37,288 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-15 03:49:37,288 - INFO - Processing: class9_10.pdf
+2025-11-15 03:49:37,544 - INFO - Saved processed document: class9_10.pdf [Grade 9]
+2025-11-15 03:49:37,544 - INFO -   ✓ Grade: Grade 9, Difficulty: Beginner
+2025-11-15 03:49:37,544 - INFO - Processing: class10_12.pdf
+2025-11-15 03:49:38,589 - INFO - Saved processed document: class10_12.pdf [Grade 10]
+2025-11-15 03:49:38,589 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
+2025-11-15 03:49:38,589 - INFO - Processing: class6_8.pdf
+2025-11-15 03:49:39,937 - INFO - Saved processed document: class6_8.pdf [Grade 6]
+2025-11-15 03:49:39,937 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-15 03:49:39,937 - INFO - Processing: class9_9.pdf
+2025-11-15 03:49:40,171 - INFO - Saved processed document: class9_9.pdf [Grade 9]
+2025-11-15 03:49:40,171 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-11-15 03:49:40,172 - INFO - Processing: class9_8.pdf
+2025-11-15 03:49:40,303 - INFO - Saved processed document: class9_8.pdf [Grade 9]
+2025-11-15 03:49:40,303 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-11-15 03:49:40,303 - INFO - Processing: class8_4.pdf
+2025-11-15 03:49:40,956 - INFO - Saved processed document: class8_4.pdf [Grade 8]
+2025-11-15 03:49:40,956 - INFO -   ✓ Grade: Grade 8, Difficulty: Intermediate
+2025-11-15 03:49:40,956 - INFO - Processing: class9_11.pdf
+2025-11-15 03:49:42,358 - INFO - Saved processed document: class9_11.pdf [Grade 9]
+2025-11-15 03:49:42,358 - INFO -   ✓ Grade: Grade 9, Difficulty: Intermediate
+2025-11-15 03:49:42,358 - INFO - Processing: class10_11.pdf
+2025-11-15 03:49:42,500 - INFO - Saved processed document: class10_11.pdf [Grade 10]
+2025-11-15 03:49:42,500 - INFO -   ✓ Grade: Grade 10, Difficulty: Beginner
+2025-11-15 03:49:42,501 - INFO - Processing: class6_6.pdf
+2025-11-15 03:49:43,330 - INFO - Saved processed document: class6_6.pdf [Grade 6]
+2025-11-15 03:49:43,330 - INFO -   ✓ Grade: Grade 6, Difficulty: Beginner
+2025-11-15 03:49:43,331 - INFO - 
+============================================================
+2025-11-15 03:49:43,331 - INFO - Processing Summary:
+2025-11-15 03:49:43,331 - INFO -   Total processed: 18/18
+2025-11-15 03:49:43,331 - INFO - 
+  Grade Distribution:
+2025-11-15 03:49:43,331 - INFO -     Grade 10: 4 documents
+2025-11-15 03:49:43,331 - INFO -     Grade 6: 5 documents
+2025-11-15 03:49:43,331 - INFO -     Grade 7: 2 documents
+2025-11-15 03:49:43,331 - INFO -     Grade 8: 1 documents
+2025-11-15 03:49:43,331 - INFO -     Grade 9: 6 documents
+2025-11-15 03:49:43,331 - INFO - ============================================================
+
+2025-11-15 03:49:43,333 - INFO - Creating Level 0 context chunks for class9_7.pdf
+2025-11-15 03:49:43,336 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,348 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,365 - INFO - Created 126 total chunks for class9_7.pdf
+2025-11-15 03:49:43,365 - INFO -    class9_7.pdf: 126 total chunks, 125 embeddable
+2025-11-15 03:49:43,365 - INFO - Creating Level 0 context chunks for class6_2.pdf
+2025-11-15 03:49:43,368 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,390 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,425 - INFO - Created 237 total chunks for class6_2.pdf
+2025-11-15 03:49:43,425 - INFO -    class6_2.pdf: 237 total chunks, 236 embeddable
+2025-11-15 03:49:43,425 - INFO - Creating Level 0 context chunks for class6_9.pdf
+2025-11-15 03:49:43,427 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,439 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,460 - INFO - Created 136 total chunks for class6_9.pdf
+2025-11-15 03:49:43,460 - INFO -    class6_9.pdf: 136 total chunks, 135 embeddable
+2025-11-15 03:49:43,460 - INFO - Creating Level 0 context chunks for class10_6.pdf
+2025-11-15 03:49:43,462 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,478 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,496 - INFO - Created 144 total chunks for class10_6.pdf
+2025-11-15 03:49:43,496 - INFO -    class10_6.pdf: 144 total chunks, 143 embeddable
+2025-11-15 03:49:43,496 - INFO - Creating Level 0 context chunks for class7_7.pdf
+2025-11-15 03:49:43,498 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,509 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,529 - INFO - Created 140 total chunks for class7_7.pdf
+2025-11-15 03:49:43,529 - INFO -    class7_7.pdf: 140 total chunks, 139 embeddable
+2025-11-15 03:49:43,529 - INFO - Creating Level 0 context chunks for class7_5.pdf
+2025-11-15 03:49:43,531 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,544 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,559 - INFO - Created 115 total chunks for class7_5.pdf
+2025-11-15 03:49:43,559 - INFO -    class7_5.pdf: 115 total chunks, 114 embeddable
+2025-11-15 03:49:43,559 - INFO - Creating Level 0 context chunks for class10_10.pdf
+2025-11-15 03:49:43,560 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,566 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,574 - INFO - Created 63 total chunks for class10_10.pdf
+2025-11-15 03:49:43,574 - INFO -    class10_10.pdf: 63 total chunks, 62 embeddable
+2025-11-15 03:49:43,574 - INFO - Creating Level 0 context chunks for class9_6.pdf
+2025-11-15 03:49:43,575 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,584 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,595 - INFO - Created 88 total chunks for class9_6.pdf
+2025-11-15 03:49:43,596 - INFO -    class9_6.pdf: 88 total chunks, 87 embeddable
+2025-11-15 03:49:43,596 - INFO - Creating Level 0 context chunks for San Jacinto Campus.pptx
+2025-11-15 03:49:43,596 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,598 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,603 - INFO - Created 30 total chunks for San Jacinto Campus.pptx
+2025-11-15 03:49:43,603 - INFO -    San Jacinto Campus.pptx: 30 total chunks, 29 embeddable
+2025-11-15 03:49:43,603 - INFO - Creating Level 0 context chunks for class9_10.pdf
+2025-11-15 03:49:43,604 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,607 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,612 - INFO - Created 33 total chunks for class9_10.pdf
+2025-11-15 03:49:43,612 - INFO -    class9_10.pdf: 33 total chunks, 32 embeddable
+2025-11-15 03:49:43,612 - INFO - Creating Level 0 context chunks for class10_12.pdf
+2025-11-15 03:49:43,613 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,619 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,629 - INFO - Created 73 total chunks for class10_12.pdf
+2025-11-15 03:49:43,629 - INFO -    class10_12.pdf: 73 total chunks, 72 embeddable
+2025-11-15 03:49:43,629 - INFO - Creating Level 0 context chunks for class6_8.pdf
+2025-11-15 03:49:43,631 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,644 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,664 - INFO - Created 138 total chunks for class6_8.pdf
+2025-11-15 03:49:43,664 - INFO -    class6_8.pdf: 138 total chunks, 137 embeddable
+2025-11-15 03:49:43,664 - INFO - Creating Level 0 context chunks for class9_9.pdf
+2025-11-15 03:49:43,665 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,674 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,688 - INFO - Created 102 total chunks for class9_9.pdf
+2025-11-15 03:49:43,688 - INFO -    class9_9.pdf: 102 total chunks, 101 embeddable
+2025-11-15 03:49:43,688 - INFO - Creating Level 0 context chunks for class9_8.pdf
+2025-11-15 03:49:43,689 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,697 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,706 - INFO - Created 73 total chunks for class9_8.pdf
+2025-11-15 03:49:43,706 - INFO -    class9_8.pdf: 73 total chunks, 72 embeddable
+2025-11-15 03:49:43,707 - INFO - Creating Level 0 context chunks for class8_4.pdf
+2025-11-15 03:49:43,709 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,728 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,755 - INFO - Created 199 total chunks for class8_4.pdf
+2025-11-15 03:49:43,755 - INFO -    class8_4.pdf: 199 total chunks, 198 embeddable
+2025-11-15 03:49:43,755 - INFO - Creating Level 0 context chunks for class9_11.pdf
+2025-11-15 03:49:43,756 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,765 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,780 - INFO - Created 97 total chunks for class9_11.pdf
+2025-11-15 03:49:43,780 - INFO -    class9_11.pdf: 97 total chunks, 96 embeddable
+2025-11-15 03:49:43,780 - INFO - Creating Level 0 context chunks for class10_11.pdf
+2025-11-15 03:49:43,781 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,784 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,788 - INFO - Created 36 total chunks for class10_11.pdf
+2025-11-15 03:49:43,788 - INFO -    class10_11.pdf: 36 total chunks, 35 embeddable
+2025-11-15 03:49:43,788 - INFO - Creating Level 0 context chunks for class6_6.pdf
+2025-11-15 03:49:43,791 - INFO - Creating Level 1 chunks (≤384 tokens)
+2025-11-15 03:49:43,804 - INFO - Creating Level 2 chunks (≤128 tokens)
+2025-11-15 03:49:43,825 - INFO - Created 155 total chunks for class6_6.pdf
+2025-11-15 03:49:43,825 - INFO -    class6_6.pdf: 155 total chunks, 154 embeddable
+2025-11-15 03:50:04,561 - INFO - Indexing 1985 documents (1967 with embeddings, 18 context-only)
+2025-11-15 03:50:05,408 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.820s]
+2025-11-15 03:50:05,409 - INFO - Batch 1: 100 successful, 0 failed
+2025-11-15 03:50:05,627 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.187s]
+2025-11-15 03:50:05,628 - INFO - Batch 2: 100 successful, 0 failed
+2025-11-15 03:50:05,817 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.163s]
+2025-11-15 03:50:05,817 - INFO - Batch 3: 100 successful, 0 failed
+2025-11-15 03:50:06,006 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.161s]
+2025-11-15 03:50:06,011 - INFO - Batch 4: 100 successful, 0 failed
+2025-11-15 03:50:06,193 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.153s]
+2025-11-15 03:50:06,194 - INFO - Batch 5: 100 successful, 0 failed
+2025-11-15 03:50:06,347 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.128s]
+2025-11-15 03:50:06,348 - INFO - Batch 6: 100 successful, 0 failed
+2025-11-15 03:50:06,509 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.135s]
+2025-11-15 03:50:06,509 - INFO - Batch 7: 100 successful, 0 failed
+2025-11-15 03:50:07,028 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.492s]
+2025-11-15 03:50:07,028 - INFO - Batch 8: 100 successful, 0 failed
+2025-11-15 03:50:07,256 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.201s]
+2025-11-15 03:50:07,256 - INFO - Batch 9: 100 successful, 0 failed
+2025-11-15 03:50:07,382 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.100s]
+2025-11-15 03:50:07,383 - INFO - Batch 10: 100 successful, 0 failed
+2025-11-15 03:50:07,521 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.113s]
+2025-11-15 03:50:07,522 - INFO - Batch 11: 100 successful, 0 failed
+2025-11-15 03:50:07,702 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.155s]
+2025-11-15 03:50:07,703 - INFO - Batch 12: 100 successful, 0 failed
+2025-11-15 03:50:07,881 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.151s]
+2025-11-15 03:50:07,881 - INFO - Batch 13: 100 successful, 0 failed
+2025-11-15 03:50:08,051 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.143s]
+2025-11-15 03:50:08,051 - INFO - Batch 14: 100 successful, 0 failed
+2025-11-15 03:50:08,232 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.154s]
+2025-11-15 03:50:08,232 - INFO - Batch 15: 100 successful, 0 failed
+2025-11-15 03:50:08,403 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.144s]
+2025-11-15 03:50:08,403 - INFO - Batch 16: 100 successful, 0 failed
+2025-11-15 03:50:08,577 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.148s]
+2025-11-15 03:50:08,577 - INFO - Batch 17: 100 successful, 0 failed
+2025-11-15 03:50:08,727 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.124s]
+2025-11-15 03:50:08,728 - INFO - Batch 18: 100 successful, 0 failed
+2025-11-15 03:50:08,894 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.141s]
+2025-11-15 03:50:08,895 - INFO - Batch 19: 100 successful, 0 failed
+2025-11-15 03:50:09,045 - INFO - PUT http://localhost:9200/_bulk [status:200 duration:0.129s]
+2025-11-15 03:50:09,046 - INFO - Batch 20: 85 successful, 0 failed
+2025-11-15 03:50:09,346 - INFO - POST http://localhost:9200/geometry_k12_rag/_refresh [status:200 duration:0.300s]
+2025-11-15 03:50:09,346 - INFO - Indexing complete: 1985 successful, 0 failed
+2025-11-15 03:51:44,544 - INFO - ======================================================================
+2025-11-15 03:51:44,544 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 03:51:44,544 - INFO - ======================================================================
+2025-11-15 03:51:44,544 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 03:51:44,545 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:51:44,545 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:51:47,389 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 03:51:49,772 - INFO - Reranker model loaded successfully
+2025-11-15 03:51:49,772 - INFO - Reranker initialized successfully
+2025-11-15 03:51:49,772 - INFO - Embedding model limit: 384 tokens
+2025-11-15 03:51:49,772 - INFO - ✓ RAG pipeline initialized
+2025-11-15 03:51:49,773 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 03:51:49,773 - INFO - ✓ Gemini LLM initialized
+2025-11-15 03:51:49,773 - INFO - 
+Testing system components...
+2025-11-15 03:51:49,798 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.025s]
+2025-11-15 03:51:49,811 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.013s]
+2025-11-15 03:51:49,812 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 03:51:51,092 - INFO - ✓ Gemini API connection successful
+2025-11-15 03:51:51,092 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 03:51:51,092 - INFO - ✓ LLM system ready
+2025-11-15 03:51:51,092 - INFO - System test complete
+
+2025-11-15 03:51:51,092 - INFO - ======================================================================
+2025-11-15 03:51:51,092 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 03:51:51,092 - INFO - ======================================================================
+2025-11-15 03:51:51,100 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.007s]
+2025-11-15 03:51:51,114 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.014s]
+2025-11-15 03:51:55,651 - INFO - Answering question: What is the Pythagorean theorem?
+2025-11-15 03:51:55,651 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:51:57,178 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.035s]
+2025-11-15 03:51:57,248 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.069s]
+2025-11-15 03:51:57,249 - INFO - Reranking results
+2025-11-15 03:51:57,911 - INFO - Retrieved 5 relevant chunks
+2025-11-15 03:52:07,974 - INFO - ✓ Answer generated successfully in 12.32s
+2025-11-15 03:52:07,974 - INFO - Answering question: Explain the properties of isosceles triangles
+2025-11-15 03:52:07,974 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:52:08,070 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.030s]
+2025-11-15 03:52:08,145 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.074s]
+2025-11-15 03:52:08,146 - INFO - Reranking results
+2025-11-15 03:52:08,918 - INFO - Retrieved 5 relevant chunks
+2025-11-15 03:52:20,618 - INFO - ✓ Answer generated successfully in 12.64s
+2025-11-15 03:52:20,618 - INFO - Answering question: How do I calculate the area of a circle?
+2025-11-15 03:52:20,618 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:52:20,723 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.038s]
+2025-11-15 03:52:20,794 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.070s]
+2025-11-15 03:52:20,795 - INFO - Reranking results
+2025-11-15 03:52:21,487 - INFO - Retrieved 5 relevant chunks
+2025-11-15 03:52:32,513 - INFO - ✓ Answer generated successfully in 11.90s
+2025-11-15 03:52:49,283 - INFO - ======================================================================
+2025-11-15 03:52:49,283 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 03:52:49,283 - INFO - ======================================================================
+2025-11-15 03:52:49,283 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 03:52:49,283 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:52:49,284 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:52:52,066 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 03:52:54,588 - INFO - Reranker model loaded successfully
+2025-11-15 03:52:54,588 - INFO - Reranker initialized successfully
+2025-11-15 03:52:54,589 - INFO - Embedding model limit: 384 tokens
+2025-11-15 03:52:54,589 - INFO - ✓ RAG pipeline initialized
+2025-11-15 03:52:54,589 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 03:52:54,589 - INFO - ✓ Gemini LLM initialized
+2025-11-15 03:52:54,589 - INFO - 
+Testing system components...
+2025-11-15 03:52:54,614 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.025s]
+2025-11-15 03:52:54,623 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.009s]
+2025-11-15 03:52:54,624 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 03:52:56,296 - INFO - ✓ Gemini API connection successful
+2025-11-15 03:52:56,296 - INFO - Test response: Hello,
+2025-11-15 03:52:56,296 - INFO - ✓ LLM system ready
+2025-11-15 03:52:56,296 - INFO - System test complete
+
+2025-11-15 03:52:56,296 - INFO - ======================================================================
+2025-11-15 03:52:56,297 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 03:52:56,297 - INFO - ======================================================================
+2025-11-15 03:52:56,306 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.009s]
+2025-11-15 03:52:56,312 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.005s]
+2025-11-15 03:53:27,907 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 03:53:27,908 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:53:30,248 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.038s]
+2025-11-15 03:53:30,353 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.104s]
+2025-11-15 03:53:30,353 - INFO - Reranking results
+2025-11-15 03:53:31,432 - INFO - Retrieved 10 chunks for quiz generation
+2025-11-15 03:53:40,104 - INFO - ✓ Quiz generated successfully in 12.20s
+2025-11-15 03:53:40,105 - INFO - Generating quiz on: Circles and their properties for Grade 9
+2025-11-15 03:53:40,105 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:53:40,155 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.039s]
+2025-11-15 03:53:40,285 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.130s]
+2025-11-15 03:53:40,286 - INFO - Reranking results
+2025-11-15 03:53:41,224 - INFO - Retrieved 10 chunks for quiz generation
+2025-11-15 03:53:52,106 - INFO - ✓ Quiz generated successfully in 12.00s
+2025-11-15 03:54:50,703 - INFO - ======================================================================
+2025-11-15 03:54:50,703 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 03:54:50,703 - INFO - ======================================================================
+2025-11-15 03:54:50,703 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 03:54:50,704 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:54:50,704 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:54:53,272 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 03:54:55,744 - INFO - Reranker model loaded successfully
+2025-11-15 03:54:55,744 - INFO - Reranker initialized successfully
+2025-11-15 03:54:55,744 - INFO - Embedding model limit: 384 tokens
+2025-11-15 03:54:55,744 - INFO - ✓ RAG pipeline initialized
+2025-11-15 03:54:55,744 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 03:54:55,744 - INFO - ✓ Gemini LLM initialized
+2025-11-15 03:54:55,744 - INFO - 
+Testing system components...
+2025-11-15 03:54:55,759 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.014s]
+2025-11-15 03:54:55,769 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.009s]
+2025-11-15 03:54:55,769 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 03:54:57,753 - INFO - ✓ Gemini API connection successful
+2025-11-15 03:54:57,753 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 03:54:57,753 - INFO - ✓ LLM system ready
+2025-11-15 03:54:57,753 - INFO - System test complete
+
+2025-11-15 03:54:57,753 - INFO - ======================================================================
+2025-11-15 03:54:57,753 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 03:54:57,753 - INFO - ======================================================================
+2025-11-15 03:54:57,758 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.005s]
+2025-11-15 03:54:57,765 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.006s]
+2025-11-15 03:56:06,200 - INFO - Answering question: what is sum of angles of triangles
+2025-11-15 03:56:06,200 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:56:08,583 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.034s]
+2025-11-15 03:56:08,649 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.066s]
+2025-11-15 03:56:08,650 - INFO - Reranking results
+2025-11-15 03:56:09,342 - INFO - Retrieved 5 relevant chunks
+2025-11-15 03:56:19,077 - INFO - ✓ Answer generated successfully in 12.88s
+2025-11-15 03:57:53,765 - INFO - ======================================================================
+2025-11-15 03:57:53,765 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 03:57:53,765 - INFO - ======================================================================
+2025-11-15 03:57:53,765 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 03:57:53,766 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:57:53,766 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 03:57:55,425 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 03:57:58,272 - INFO - Reranker model loaded successfully
+2025-11-15 03:57:58,272 - INFO - Reranker initialized successfully
+2025-11-15 03:57:58,272 - INFO - Embedding model limit: 384 tokens
+2025-11-15 03:57:58,272 - INFO - ✓ RAG pipeline initialized
+2025-11-15 03:57:58,273 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 03:57:58,273 - INFO - ✓ Gemini LLM initialized
+2025-11-15 03:57:58,273 - INFO - 
+Testing system components...
+2025-11-15 03:57:58,289 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.016s]
+2025-11-15 03:57:58,296 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.006s]
+2025-11-15 03:57:58,297 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 03:57:59,860 - INFO - ✓ Gemini API connection successful
+2025-11-15 03:57:59,860 - INFO - Test response: Hello, I
+2025-11-15 03:57:59,860 - INFO - ✓ LLM system ready
+2025-11-15 03:57:59,860 - INFO - System test complete
+
+2025-11-15 03:57:59,860 - INFO - ======================================================================
+2025-11-15 03:57:59,860 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 03:57:59,860 - INFO - ======================================================================
+2025-11-15 03:57:59,871 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.011s]
+2025-11-15 03:57:59,875 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.003s]
+2025-11-15 03:58:49,540 - INFO - Batch processing 3 questions
+2025-11-15 03:58:49,540 - INFO - Answering question: What is a right angle?
+2025-11-15 03:58:49,540 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:58:51,934 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.033s]
+2025-11-15 03:58:51,985 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.050s]
+2025-11-15 03:58:51,985 - INFO - Reranking results
+2025-11-15 03:58:52,940 - INFO - Retrieved 5 relevant chunks
+2025-11-15 03:59:03,334 - INFO - ✓ Answer generated successfully in 13.79s
+2025-11-15 03:59:03,334 - INFO - Answering question: Explain parallel lines
+2025-11-15 03:59:03,334 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:59:03,444 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.038s]
+2025-11-15 03:59:03,502 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.058s]
+2025-11-15 03:59:03,502 - INFO - Reranking results
+2025-11-15 03:59:04,263 - INFO - Retrieved 5 relevant chunks
+2025-11-15 03:59:09,415 - INFO - ✓ Answer generated successfully in 6.08s
+2025-11-15 03:59:09,415 - INFO - Answering question: How to find area of a trapezoid?
+2025-11-15 03:59:09,415 - INFO - Retrieving with strategy: hybrid
+2025-11-15 03:59:09,517 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.035s]
+2025-11-15 03:59:09,582 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.064s]
+2025-11-15 03:59:09,582 - INFO - Reranking results
+2025-11-15 03:59:10,287 - INFO - Retrieved 5 relevant chunks
+2025-11-15 03:59:19,392 - INFO - ✓ Answer generated successfully in 9.98s
+2025-11-15 03:59:19,392 - INFO - ✓ Batch processing complete: 3 answers generated

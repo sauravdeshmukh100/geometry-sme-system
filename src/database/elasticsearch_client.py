@@ -17,10 +17,10 @@ class GeometryElasticsearchClient:
     
     def __init__(self):
         self.client = Elasticsearch(
-            [{'host': settings.es_host, 'port': settings.es_port, 'scheme': 'http'}],
-            timeout=settings.es_timeout
+            [{'host': settings.ES_HOST, 'port': settings.ES_PORT, 'scheme': 'http'}],
+            timeout=settings.ES_TIMEOUT
         )
-        self.index_name = settings.es_index_name
+        self.index_name = settings.ES_INDEX_NAME
         
     def create_index(self, recreate: bool = False):
         """Create Elasticsearch index with appropriate mappings."""
