@@ -4,6 +4,7 @@ Merged Gemini Client - Best of Both Versions
 Combines robust error handling with structured outputs
 """
 
+from curses import raw
 import os
 import logging
 import json
@@ -604,7 +605,10 @@ Do not include any markdown formatting, backticks, or extra text. Just pure JSON
                 safety_settings=self.safety_settings
             )
             
+            print(f"Raw Gemini response: {response}")
+            
             response_text = self._extract_response_text(response)
+            print(f"Extracted response text for JSON parsing: {response_text}")
             
             if not response_text:
                 raise ValueError("Empty response from model")

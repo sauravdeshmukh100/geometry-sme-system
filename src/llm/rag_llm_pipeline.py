@@ -230,7 +230,7 @@ class GeometryTutorPipeline:
         
         # Step 1: Retrieve comprehensive context about the topic
         retrieval_config = RetrievalConfig(
-            strategy=RetrievalStrategy.HYBRID,
+            strategy=RetrievalStrategy.KEYWORD_ONLY,
             top_k=15,  # More context for quiz generation
             rerank=self.enable_reranker,
             rerank_top_k=10,
@@ -239,9 +239,13 @@ class GeometryTutorPipeline:
         
         try:
             # Use a detailed query to get comprehensive coverage
-            search_query = f"Explain {topic} concepts, formulas, theorems, and properties"
+            # search_query = f"Explain {topic} concepts, formulas, theorems, and properties"
+            search_query = topic
             retrieval_result = self.rag_pipeline.retrieve(search_query, retrieval_config)
-            
+
+            print(f"Search query for debugging: {search_query}")
+            print(f"Retrieved {len(retrieval_result.chunks)} chunks for quiz generation")
+
             if not retrieval_result.chunks:
                 logger.warning(f"No content found for topic: {topic}")
                 return {
@@ -252,7 +256,7 @@ class GeometryTutorPipeline:
                 }
             
             logger.info(f"Retrieved {len(retrieval_result.chunks)} chunks for quiz generation")
-            
+            print(f"Retrieved context for debugging: {retrieval_result.context}")
             # Step 2: Generate quiz using LLM
             quiz_response = self.llm_client.generate_quiz(
                 topic=topic,

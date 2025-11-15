@@ -1,0 +1,28 @@
+Raw Gemini response: response:
+GenerateContentResponse (
+    done=True,
+    iterator=None,
+    result=protos.GenerateContentResponse({
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"quiz_title\": \"Triangle Properties and Congruence Quiz\",\n  \"topic\": \"Triangles\",\n  \"grade_level\": \"Grade 8\",\n  \"questions\": [\n    {\n      \"question_number\": 1,\n      \"question_text\": \"What does it mean for two triangles to be congruent?\",\n      \"question_type\": \"Multiple Choice\",\n      \"options\": [\n        \"A) They have the same area but different shapes.\",\n        \"B) They have the same perimeter but different sizes.\",\n        \"C) They have the exact same shape and the exact same size.\",\n        \"D) They have at least one pair of equal angles.\"\n      ],\n      \"correct_answer\": \"C\",\n      \"explanation\": \"Congruent triangles are identical in every way; all their corresponding sides and angles are equal, meaning they have the same shape and size.\"\n    },\n   
+                 {\n      \"question_number\": 2,\n      \"question_text\": \"According to the provided text, which triangle congruence condition was used to prove that the diagonals of a rectangle bisect each other by showing \u2206AOB \u2245 \u2206COD?\",\n      \"question_type\":"
+              }
+            ],
+            "role": "model"
+          },
+          "finish_reason": "MAX_TOKENS",
+          "index": 0
+        }
+      ],
+      "usage_metadata": {
+        "prompt_token_count": 2745,
+        "candidates_token_count": 265,
+        "total_token_count": 4791
+      },
+      "model_version": "gemini-2.5-flash"
+    }),
+)
