@@ -953,3 +953,1173 @@ Testing system components...
 2025-11-15 03:59:10,287 - INFO - Retrieved 5 relevant chunks
 2025-11-15 03:59:19,392 - INFO - ✓ Answer generated successfully in 9.98s
 2025-11-15 03:59:19,392 - INFO - ✓ Batch processing complete: 3 answers generated
+2025-11-15 04:17:25,717 - INFO - PDF Generator initialized
+2025-11-15 04:17:25,719 - INFO - DOCX Generator initialized
+2025-11-15 04:17:25,719 - INFO - PPT Generator initialized
+2025-11-15 04:17:25,719 - INFO - Document Generator initialized
+2025-11-15 04:17:25,719 - INFO -   PDF: ✓
+2025-11-15 04:17:25,720 - INFO -   DOCX: ✓
+2025-11-15 04:17:25,720 - INFO -   PPT: ✓
+2025-11-15 04:17:25,728 - INFO - ✓ PDF quiz generated: test_outputs/test_quiz.pdf
+2025-11-15 04:17:25,730 - INFO - ✓ PDF report generated: test_outputs/test_explanation.pdf
+2025-11-15 04:17:25,759 - INFO - ✓ DOCX quiz generated: test_outputs/test_quiz.docx
+2025-11-15 04:17:25,776 - INFO - ✓ DOCX report generated: test_outputs/test_explanation.docx
+2025-11-15 04:17:25,792 - INFO - ✓ PPT quiz generated: test_outputs/test_quiz.pptx
+2025-11-15 04:17:25,800 - INFO - ✓ PPT presentation generated: test_outputs/test_concept.pptx
+2025-11-15 04:20:32,781 - WARNING - Email credentials not configured. Set EMAIL_USERNAME and EMAIL_PASSWORD.
+2025-11-15 04:20:32,786 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:22:54,769 - WARNING - Email credentials not configured. Set EMAIL_USERNAME and EMAIL_PASSWORD.
+2025-11-15 04:22:54,772 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:25:50,624 - WARNING - Email credentials not configured. Set EMAIL_USERNAME and EMAIL_PASSWORD.
+2025-11-15 04:25:50,628 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:28:04,909 - INFO - ======================================================================
+2025-11-15 04:28:04,915 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 04:28:04,915 - INFO - ======================================================================
+2025-11-15 04:28:04,915 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 04:28:04,916 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:28:04,917 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:28:08,219 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 04:28:11,760 - INFO - Reranker model loaded successfully
+2025-11-15 04:28:11,760 - INFO - Reranker initialized successfully
+2025-11-15 04:28:11,763 - INFO - Embedding model limit: 384 tokens
+2025-11-15 04:28:11,763 - INFO - ✓ RAG pipeline initialized
+2025-11-15 04:28:11,768 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 04:28:11,769 - INFO - ✓ Gemini LLM initialized
+2025-11-15 04:28:11,769 - INFO - 
+Testing system components...
+2025-11-15 04:28:12,360 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.589s]
+2025-11-15 04:28:12,416 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.055s]
+2025-11-15 04:28:12,416 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 04:28:14,050 - INFO - ✓ Gemini API connection successful
+2025-11-15 04:28:14,050 - INFO - Test response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model",
+        "parts": []
+      },
+      "finish_reason": 2,
+      "index": 0,
+      "safety_ratings": [],
+      "token_count": 0,
+      "grounding_attributions": [],
+      "avg_logprobs": 0.0
+    }
+  ],
+  "usage_metadata": {
+    "prompt_token_count": 17,
+    "total_token_count": 66,
+    "cached_content_token_count": 0,
+    "candidates_token_count": 0
+  },
+  "model_version": "gemini-2.5-flash"
+}
+2025-11-15 04:28:14,050 - INFO - ✓ LLM system ready
+2025-11-15 04:28:14,050 - INFO - System test complete
+
+2025-11-15 04:28:14,050 - INFO - ======================================================================
+2025-11-15 04:28:14,050 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 04:28:14,050 - INFO - ======================================================================
+2025-11-15 04:28:14,063 - INFO - PDF Generator initialized
+2025-11-15 04:28:14,063 - INFO - DOCX Generator initialized
+2025-11-15 04:28:14,063 - INFO - PPT Generator initialized
+2025-11-15 04:28:14,063 - INFO - Document Generator initialized
+2025-11-15 04:28:14,063 - INFO -   PDF: ✓
+2025-11-15 04:28:14,063 - INFO -   DOCX: ✓
+2025-11-15 04:28:14,063 - INFO -   PPT: ✓
+2025-11-15 04:28:14,063 - WARNING - Email credentials not configured. Set EMAIL_USERNAME and EMAIL_PASSWORD.
+2025-11-15 04:28:14,063 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:28:14,063 - INFO - Tool Orchestrator initialized
+2025-11-15 04:28:14,063 - INFO -   RAG Retrieval: ✓
+2025-11-15 04:28:14,063 - INFO -   LLM Generation: ✓
+2025-11-15 04:28:14,064 - INFO -   Document Gen: ✓
+2025-11-15 04:28:14,064 - INFO -   Email: ✗
+2025-11-15 04:28:14,064 - INFO - ======================================================================
+2025-11-15 04:28:14,064 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 04:28:14,064 - INFO - ======================================================================
+2025-11-15 04:28:14,064 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 04:28:14,065 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:28:14,066 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:28:15,164 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 04:28:20,252 - INFO - Reranker model loaded successfully
+2025-11-15 04:28:20,252 - INFO - Reranker initialized successfully
+2025-11-15 04:28:20,268 - INFO - Embedding model limit: 384 tokens
+2025-11-15 04:28:20,269 - INFO - ✓ RAG pipeline initialized
+2025-11-15 04:28:20,274 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 04:28:20,274 - INFO - ✓ Gemini LLM initialized
+2025-11-15 04:28:20,274 - INFO - 
+Testing system components...
+2025-11-15 04:28:20,435 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.130s]
+2025-11-15 04:28:20,496 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.030s]
+2025-11-15 04:28:20,499 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 04:28:22,072 - INFO - ✓ Gemini API connection successful
+2025-11-15 04:28:22,072 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 04:28:22,073 - INFO - ✓ LLM system ready
+2025-11-15 04:28:22,073 - INFO - System test complete
+
+2025-11-15 04:28:22,073 - INFO - ======================================================================
+2025-11-15 04:28:22,073 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 04:28:22,073 - INFO - ======================================================================
+2025-11-15 04:28:22,074 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 04:28:22,075 - INFO - Retrieving with strategy: hybrid
+2025-11-15 04:28:22,329 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.201s]
+2025-11-15 04:28:22,514 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.184s]
+2025-11-15 04:28:22,516 - INFO - Reranking results
+2025-11-15 04:28:27,064 - INFO - Retrieved 10 chunks for quiz generation
+2025-11-15 04:28:36,406 - INFO - ✓ Quiz generated successfully in 14.33s
+2025-11-15 04:28:36,407 - INFO - PDF Generator initialized
+2025-11-15 04:28:36,407 - INFO - DOCX Generator initialized
+2025-11-15 04:28:36,407 - INFO - PPT Generator initialized
+2025-11-15 04:28:36,408 - INFO - Document Generator initialized
+2025-11-15 04:28:36,408 - INFO -   PDF: ✓
+2025-11-15 04:28:36,408 - INFO -   DOCX: ✓
+2025-11-15 04:28:36,408 - INFO -   PPT: ✓
+2025-11-15 04:28:36,471 - INFO - ✓ PDF quiz generated: generated_docs/workflow_test_quiz.pdf
+2025-11-15 04:32:24,557 - WARNING - Email credentials not configured. Set EMAIL_USERNAME and EMAIL_PASSWORD.
+2025-11-15 04:32:24,563 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:36:35,652 - WARNING - Email credentials not configured. Set EMAIL_USERNAME and EMAIL_PASSWORD.
+2025-11-15 04:36:35,655 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:37:24,711 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:37:27,350 - INFO - ✓ Email connection test successful
+2025-11-15 04:37:55,268 - INFO - ✓ Email sent to saurav.deshmukh20@vit.edu
+2025-11-15 04:38:30,262 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:38:32,421 - INFO - ✓ Email connection test successful
+2025-11-15 04:38:53,827 - INFO - ✓ Email sent to shubham.raut@students.iiit.ac.in
+2025-11-15 04:39:47,060 - INFO - ======================================================================
+2025-11-15 04:39:47,063 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 04:39:47,063 - INFO - ======================================================================
+2025-11-15 04:39:47,063 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 04:39:47,064 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:39:47,066 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:39:50,505 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 04:39:54,150 - INFO - Reranker model loaded successfully
+2025-11-15 04:39:54,150 - INFO - Reranker initialized successfully
+2025-11-15 04:39:54,150 - INFO - Embedding model limit: 384 tokens
+2025-11-15 04:39:54,150 - INFO - ✓ RAG pipeline initialized
+2025-11-15 04:39:54,150 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 04:39:54,150 - INFO - ✓ Gemini LLM initialized
+2025-11-15 04:39:54,150 - INFO - 
+Testing system components...
+2025-11-15 04:39:54,285 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.134s]
+2025-11-15 04:39:54,324 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.038s]
+2025-11-15 04:39:54,324 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 04:39:55,742 - INFO - ✓ Gemini API connection successful
+2025-11-15 04:39:55,742 - INFO - Test response: Hello
+2025-11-15 04:39:55,753 - INFO - ✓ LLM system ready
+2025-11-15 04:39:55,753 - INFO - System test complete
+
+2025-11-15 04:39:55,753 - INFO - ======================================================================
+2025-11-15 04:39:55,753 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 04:39:55,753 - INFO - ======================================================================
+2025-11-15 04:39:55,753 - INFO - PDF Generator initialized
+2025-11-15 04:39:55,753 - INFO - DOCX Generator initialized
+2025-11-15 04:39:55,753 - INFO - PPT Generator initialized
+2025-11-15 04:39:55,753 - INFO - Document Generator initialized
+2025-11-15 04:39:55,754 - INFO -   PDF: ✓
+2025-11-15 04:39:55,754 - INFO -   DOCX: ✓
+2025-11-15 04:39:55,754 - INFO -   PPT: ✓
+2025-11-15 04:39:55,754 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:39:55,754 - INFO - Tool Orchestrator initialized
+2025-11-15 04:39:55,754 - INFO -   RAG Retrieval: ✓
+2025-11-15 04:39:55,754 - INFO -   LLM Generation: ✓
+2025-11-15 04:39:55,754 - INFO -   Document Gen: ✓
+2025-11-15 04:39:55,754 - INFO -   Email: ✓
+2025-11-15 04:39:55,754 - INFO - PDF Generator initialized
+2025-11-15 04:39:55,754 - INFO - DOCX Generator initialized
+2025-11-15 04:39:55,754 - INFO - PPT Generator initialized
+2025-11-15 04:39:55,754 - INFO - Document Generator initialized
+2025-11-15 04:39:55,754 - INFO -   PDF: ✓
+2025-11-15 04:39:55,754 - INFO -   DOCX: ✓
+2025-11-15 04:39:55,754 - INFO -   PPT: ✓
+2025-11-15 04:39:55,760 - INFO - ✓ PDF quiz generated: generated_docs/fallback_test_pdf.pdf
+2025-11-15 04:39:55,761 - INFO - PDF Generator initialized
+2025-11-15 04:39:55,761 - INFO - DOCX Generator initialized
+2025-11-15 04:39:55,761 - INFO - PPT Generator initialized
+2025-11-15 04:39:55,761 - INFO - Document Generator initialized
+2025-11-15 04:39:55,761 - INFO -   PDF: ✓
+2025-11-15 04:39:55,761 - INFO -   DOCX: ✓
+2025-11-15 04:39:55,761 - INFO -   PPT: ✓
+2025-11-15 04:39:55,783 - INFO - ✓ DOCX quiz generated: generated_docs/fallback_test_docx.docx
+2025-11-15 04:39:55,783 - INFO - PDF Generator initialized
+2025-11-15 04:39:55,784 - INFO - DOCX Generator initialized
+2025-11-15 04:39:55,784 - INFO - PPT Generator initialized
+2025-11-15 04:39:55,784 - INFO - Document Generator initialized
+2025-11-15 04:39:55,784 - INFO -   PDF: ✓
+2025-11-15 04:39:55,784 - INFO -   DOCX: ✓
+2025-11-15 04:39:55,784 - INFO -   PPT: ✓
+2025-11-15 04:39:55,796 - INFO - ✓ PPT quiz generated: generated_docs/fallback_test_pptx.pptx
+2025-11-15 04:41:21,879 - INFO - ======================================================================
+2025-11-15 04:41:21,892 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 04:41:21,892 - INFO - ======================================================================
+2025-11-15 04:41:21,892 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 04:41:21,893 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:41:21,893 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 04:41:25,318 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 04:41:28,844 - INFO - Reranker model loaded successfully
+2025-11-15 04:41:28,845 - INFO - Reranker initialized successfully
+2025-11-15 04:41:28,845 - INFO - Embedding model limit: 384 tokens
+2025-11-15 04:41:28,845 - INFO - ✓ RAG pipeline initialized
+2025-11-15 04:41:28,845 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 04:41:28,845 - INFO - ✓ Gemini LLM initialized
+2025-11-15 04:41:28,845 - INFO - 
+Testing system components...
+2025-11-15 04:41:28,897 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.052s]
+2025-11-15 04:41:28,963 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.065s]
+2025-11-15 04:41:28,963 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 04:41:30,535 - INFO - ✓ Gemini API connection successful
+2025-11-15 04:41:30,535 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 04:41:30,535 - INFO - ✓ LLM system ready
+2025-11-15 04:41:30,535 - INFO - System test complete
+
+2025-11-15 04:41:30,535 - INFO - ======================================================================
+2025-11-15 04:41:30,535 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 04:41:30,535 - INFO - ======================================================================
+2025-11-15 04:41:30,535 - INFO - PDF Generator initialized
+2025-11-15 04:41:30,536 - INFO - DOCX Generator initialized
+2025-11-15 04:41:30,536 - INFO - PPT Generator initialized
+2025-11-15 04:41:30,536 - INFO - Document Generator initialized
+2025-11-15 04:41:30,536 - INFO -   PDF: ✓
+2025-11-15 04:41:30,536 - INFO -   DOCX: ✓
+2025-11-15 04:41:30,536 - INFO -   PPT: ✓
+2025-11-15 04:41:30,536 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 04:41:30,536 - INFO - Tool Orchestrator initialized
+2025-11-15 04:41:30,536 - INFO -   RAG Retrieval: ✓
+2025-11-15 04:41:30,536 - INFO -   LLM Generation: ✓
+2025-11-15 04:41:30,536 - INFO -   Document Gen: ✓
+2025-11-15 04:41:30,536 - INFO -   Email: ✓
+2025-11-15 04:41:30,536 - INFO - Starting workflow: generate_and_email_quiz_Triangles
+2025-11-15 04:41:30,536 - INFO - Executing tool: generate_quiz (attempt 1)
+2025-11-15 04:41:30,536 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 04:41:30,536 - INFO - Retrieving with strategy: hybrid
+2025-11-15 04:41:30,688 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.139s]
+2025-11-15 04:41:30,870 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.181s]
+2025-11-15 04:41:30,870 - INFO - Reranking results
+2025-11-15 04:41:33,379 - INFO - Retrieved 10 chunks for quiz generation
+2025-11-15 04:41:43,611 - INFO - ✓ Quiz generated successfully in 13.07s
+2025-11-15 04:41:43,611 - INFO - ✓ Tool generate_quiz succeeded in 13.07s
+2025-11-15 04:41:43,612 - INFO - Executing tool: generate_document_pdf (attempt 1)
+2025-11-15 04:41:43,620 - INFO - ✓ PDF quiz generated: generated_docs/quiz_quiz_20251115_044143.pdf
+2025-11-15 04:41:43,620 - INFO - ✓ Tool generate_document_pdf succeeded in 0.01s
+2025-11-15 04:41:43,620 - INFO - ✓ Document generated in pdf format
+2025-11-15 04:41:43,620 - INFO - Executing tool: send_email (attempt 1)
+2025-11-15 04:41:43,620 - INFO - Attached file: quiz_quiz_20251115_044143.pdf
+2025-11-15 04:41:47,154 - INFO - ✓ Email sent to saurav.deshmukh@students.iiit.ac.in
+2025-11-15 04:41:47,155 - INFO - ✓ Tool send_email succeeded in 3.53s
+2025-11-15 04:41:47,155 - INFO - Workflow generate_and_email_quiz_Triangles completed: success (16.62s)
+2025-11-15 13:07:41,908 - INFO - ======================================================================
+2025-11-15 13:07:41,943 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 13:07:41,943 - INFO - ======================================================================
+2025-11-15 13:07:41,943 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 13:07:41,945 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 13:07:41,945 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 13:07:46,334 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 13:08:29,060 - INFO - Reranker model loaded successfully
+2025-11-15 13:08:29,060 - INFO - Reranker initialized successfully
+2025-11-15 13:08:29,060 - INFO - Embedding model limit: 384 tokens
+2025-11-15 13:08:29,060 - INFO - ✓ RAG pipeline initialized
+2025-11-15 13:08:29,060 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 13:08:29,060 - INFO - ✓ Gemini LLM initialized
+2025-11-15 13:08:29,060 - INFO - 
+Testing system components...
+2025-11-15 13:08:29,064 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.003s]
+2025-11-15 13:08:29,064 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2025-11-15 13:08:29,064 - WARNING - Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b22c43df0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b22c43df0>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:29,102 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.000s]
+2025-11-15 13:08:29,102 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2025-11-15 13:08:29,102 - WARNING - Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b22c43fa0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b22c43fa0>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:29,102 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.000s]
+2025-11-15 13:08:29,102 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2025-11-15 13:08:29,102 - WARNING - Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b1d10c340>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d10c340>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:29,103 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:N/A duration:0.000s]
+2025-11-15 13:08:29,103 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2025-11-15 13:08:29,103 - ERROR - Failed to get statistics: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b22c43df0>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 13:08:29,103 - INFO - ✓ RAG system ready: 0 chunks indexed
+2025-11-15 13:08:41,400 - INFO - ✓ Gemini API connection successful
+2025-11-15 13:08:41,400 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 13:08:41,400 - INFO - ✓ LLM system ready
+2025-11-15 13:08:41,400 - INFO - System test complete
+
+2025-11-15 13:08:41,400 - INFO - ======================================================================
+2025-11-15 13:08:41,400 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 13:08:41,400 - INFO - ======================================================================
+2025-11-15 13:08:41,401 - INFO - PDF Generator initialized
+2025-11-15 13:08:41,401 - INFO - DOCX Generator initialized
+2025-11-15 13:08:41,401 - INFO - PPT Generator initialized
+2025-11-15 13:08:41,401 - INFO - Document Generator initialized
+2025-11-15 13:08:41,401 - INFO -   PDF: ✓
+2025-11-15 13:08:41,401 - INFO -   DOCX: ✓
+2025-11-15 13:08:41,401 - INFO -   PPT: ✓
+2025-11-15 13:08:41,401 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 13:08:41,401 - INFO - Tool Orchestrator initialized
+2025-11-15 13:08:41,401 - INFO -   RAG Retrieval: ✓
+2025-11-15 13:08:41,401 - INFO -   LLM Generation: ✓
+2025-11-15 13:08:41,401 - INFO -   Document Gen: ✓
+2025-11-15 13:08:41,401 - INFO -   Email: ✓
+2025-11-15 13:08:41,401 - INFO - Starting workflow: generate_and_email_quiz_Triangles
+2025-11-15 13:08:41,401 - INFO - Executing tool: generate_quiz (attempt 1)
+2025-11-15 13:08:41,401 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 13:08:41,402 - INFO - Retrieving with strategy: hybrid
+2025-11-15 13:08:44,264 - INFO - Resurrected node <Urllib3HttpNode(http://localhost:9200)> (force=False)
+2025-11-15 13:08:44,265 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:44,265 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2025-11-15 13:08:44,265 - WARNING - Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b1d19dc60>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d19dc60>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:44,265 - INFO - Resurrected node <Urllib3HttpNode(http://localhost:9200)> (force=False)
+2025-11-15 13:08:44,266 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:44,266 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2025-11-15 13:08:44,266 - WARNING - Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b1d19e140>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d19e140>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:44,266 - INFO - Resurrected node <Urllib3HttpNode(http://localhost:9200)> (force=False)
+2025-11-15 13:08:44,266 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:44,266 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2025-11-15 13:08:44,266 - WARNING - Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b25b5ad70>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5ad70>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:44,266 - INFO - Resurrected node <Urllib3HttpNode(http://localhost:9200)> (force=False)
+2025-11-15 13:08:44,267 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:44,267 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2025-11-15 13:08:44,267 - ERROR - Error in generate_quiz: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d19dc60>: Failed to establish a new connection: [Errno 111] Connection refused))
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b25b5b550>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/src/llm/rag_llm_pipeline.py", line 243, in generate_quiz
+    retrieval_result = self.rag_pipeline.retrieve(search_query, retrieval_config)
+  File "/home/gaurav/Projects/geometry-sme-system/src/retrieval/rag_pipeline.py", line 120, in retrieve
+    results = self.vector_store.hybrid_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 215, in hybrid_search
+    vector_results = self.vector_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 122, in vector_search
+    response = self.es_client.search(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/utils.py", line 402, in wrapped
+    return api(*args, **kwargs)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/__init__.py", line 3733, in search
+    return self.perform_request(  # type: ignore[return-value]
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/_base.py", line 285, in perform_request
+    meta, resp_body = self.transport.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d19dc60>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 13:08:44,271 - ERROR - Tool generate_quiz failed (attempt 1): Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d19dc60>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 13:08:44,271 - INFO - Retrying tool generate_quiz...
+2025-11-15 13:08:45,273 - INFO - Executing tool: generate_quiz (attempt 2)
+2025-11-15 13:08:45,273 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 13:08:45,273 - INFO - Retrieving with strategy: hybrid
+2025-11-15 13:08:45,276 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.001s]
+2025-11-15 13:08:45,276 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 9 times in a row, putting on 30 second timeout
+2025-11-15 13:08:45,276 - WARNING - Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b25b5b7f0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b7f0>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:45,277 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:45,277 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 10 times in a row, putting on 30 second timeout
+2025-11-15 13:08:45,277 - WARNING - Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b25b5ba00>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5ba00>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:45,278 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:45,278 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 11 times in a row, putting on 30 second timeout
+2025-11-15 13:08:45,278 - WARNING - Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b25b5bbe0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5bbe0>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:45,279 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:45,279 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 12 times in a row, putting on 30 second timeout
+2025-11-15 13:08:45,279 - ERROR - Error in generate_quiz: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b7f0>: Failed to establish a new connection: [Errno 111] Connection refused))
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b25b5bdf0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/src/llm/rag_llm_pipeline.py", line 243, in generate_quiz
+    retrieval_result = self.rag_pipeline.retrieve(search_query, retrieval_config)
+  File "/home/gaurav/Projects/geometry-sme-system/src/retrieval/rag_pipeline.py", line 120, in retrieve
+    results = self.vector_store.hybrid_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 215, in hybrid_search
+    vector_results = self.vector_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 122, in vector_search
+    response = self.es_client.search(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/utils.py", line 402, in wrapped
+    return api(*args, **kwargs)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/__init__.py", line 3733, in search
+    return self.perform_request(  # type: ignore[return-value]
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/_base.py", line 285, in perform_request
+    meta, resp_body = self.transport.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b7f0>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 13:08:45,279 - ERROR - Tool generate_quiz failed (attempt 2): Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b7f0>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 13:08:45,279 - INFO - Retrying tool generate_quiz...
+2025-11-15 13:08:46,281 - INFO - Executing tool: generate_quiz (attempt 3)
+2025-11-15 13:08:46,281 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 13:08:46,281 - INFO - Retrieving with strategy: hybrid
+2025-11-15 13:08:46,284 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.001s]
+2025-11-15 13:08:46,284 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 13 times in a row, putting on 30 second timeout
+2025-11-15 13:08:46,284 - WARNING - Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b25b5b520>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b520>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:46,285 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:46,285 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 14 times in a row, putting on 30 second timeout
+2025-11-15 13:08:46,285 - WARNING - Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b1d19d2a0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d19d2a0>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:46,287 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.001s]
+2025-11-15 13:08:46,287 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 15 times in a row, putting on 30 second timeout
+2025-11-15 13:08:46,287 - WARNING - Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b1d19dc90>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b1d19dc90>: Failed to establish a new connection: [Errno 111] Connection refused)
+2025-11-15 13:08:46,287 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:N/A duration:0.000s]
+2025-11-15 13:08:46,287 - WARNING - Node <Urllib3HttpNode(http://localhost:9200)> has failed for 16 times in a row, putting on 30 second timeout
+2025-11-15 13:08:46,287 - ERROR - Error in generate_quiz: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b520>: Failed to establish a new connection: [Errno 111] Connection refused))
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 167, in perform_request
+    response = self.pool.urlopen(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 449, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f6b1d19d4e0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gaurav/Projects/geometry-sme-system/src/llm/rag_llm_pipeline.py", line 243, in generate_quiz
+    retrieval_result = self.rag_pipeline.retrieve(search_query, retrieval_config)
+  File "/home/gaurav/Projects/geometry-sme-system/src/retrieval/rag_pipeline.py", line 120, in retrieve
+    results = self.vector_store.hybrid_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 215, in hybrid_search
+    vector_results = self.vector_search(
+  File "/home/gaurav/Projects/geometry-sme-system/src/database/vector_store.py", line 122, in vector_search
+    response = self.es_client.search(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/utils.py", line 402, in wrapped
+    return api(*args, **kwargs)
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/__init__.py", line 3733, in search
+    return self.perform_request(  # type: ignore[return-value]
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elasticsearch/_sync/client/_base.py", line 285, in perform_request
+    meta, resp_body = self.transport.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_transport.py", line 342, in perform_request
+    resp = node.perform_request(
+  File "/home/gaurav/Projects/geometry-sme-system/venv/lib/python3.10/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from e
+elastic_transport.ConnectionError: Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b520>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 13:08:46,288 - ERROR - Tool generate_quiz failed (attempt 3): Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x7f6b25b5b520>: Failed to establish a new connection: [Errno 111] Connection refused))
+2025-11-15 13:08:46,288 - ERROR - Quiz generation failed, aborting workflow
+2025-11-15 13:13:11,664 - INFO - ======================================================================
+2025-11-15 13:13:11,664 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 13:13:11,664 - INFO - ======================================================================
+2025-11-15 13:13:11,664 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 13:13:11,665 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 13:13:11,666 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 13:13:14,394 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 13:13:56,669 - INFO - Reranker model loaded successfully
+2025-11-15 13:13:56,669 - INFO - Reranker initialized successfully
+2025-11-15 13:13:56,669 - INFO - Embedding model limit: 384 tokens
+2025-11-15 13:13:56,669 - INFO - ✓ RAG pipeline initialized
+2025-11-15 13:13:56,669 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 13:13:56,670 - INFO - ✓ Gemini LLM initialized
+2025-11-15 13:13:56,670 - INFO - 
+Testing system components...
+2025-11-15 13:13:56,798 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.128s]
+2025-11-15 13:13:56,851 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.053s]
+2025-11-15 13:13:56,851 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 13:14:09,750 - INFO - ✓ Gemini API connection successful
+2025-11-15 13:14:09,750 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 13:14:09,750 - INFO - ✓ LLM system ready
+2025-11-15 13:14:09,750 - INFO - System test complete
+
+2025-11-15 13:14:09,750 - INFO - ======================================================================
+2025-11-15 13:14:09,750 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 13:14:09,750 - INFO - ======================================================================
+2025-11-15 13:14:09,751 - INFO - PDF Generator initialized
+2025-11-15 13:14:09,751 - INFO - DOCX Generator initialized
+2025-11-15 13:14:09,751 - INFO - PPT Generator initialized
+2025-11-15 13:14:09,751 - INFO - Document Generator initialized
+2025-11-15 13:14:09,751 - INFO -   PDF: ✓
+2025-11-15 13:14:09,751 - INFO -   DOCX: ✓
+2025-11-15 13:14:09,751 - INFO -   PPT: ✓
+2025-11-15 13:14:09,751 - INFO - Email Sender initialized: smtp.gmail.com:587
+2025-11-15 13:14:09,751 - INFO - Tool Orchestrator initialized
+2025-11-15 13:14:09,752 - INFO -   RAG Retrieval: ✓
+2025-11-15 13:14:09,752 - INFO -   LLM Generation: ✓
+2025-11-15 13:14:09,752 - INFO -   Document Gen: ✓
+2025-11-15 13:14:09,752 - INFO -   Email: ✓
+2025-11-15 13:14:09,752 - INFO - ======================================================================
+2025-11-15 13:14:09,752 - INFO - Initializing Geometry Tutor Pipeline
+2025-11-15 13:14:09,752 - INFO - ======================================================================
+2025-11-15 13:14:09,752 - INFO - Initializing Geometry RAG Pipeline
+2025-11-15 13:14:09,753 - INFO - Loading embedding model: sentence-transformers/all-mpnet-base-v2
+2025-11-15 13:14:09,753 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-11-15 13:14:10,707 - INFO - Loading reranker model: BAAI/bge-reranker-base on cuda
+2025-11-15 13:14:53,430 - INFO - Reranker model loaded successfully
+2025-11-15 13:14:53,432 - INFO - Reranker initialized successfully
+2025-11-15 13:14:53,447 - INFO - Embedding model limit: 384 tokens
+2025-11-15 13:14:53,447 - INFO - ✓ RAG pipeline initialized
+2025-11-15 13:14:53,451 - INFO - ✓ Gemini client initialized with model: gemini-2.5-flash
+2025-11-15 13:14:53,452 - INFO - ✓ Gemini LLM initialized
+2025-11-15 13:14:53,452 - INFO - 
+Testing system components...
+2025-11-15 13:14:53,507 - INFO - GET http://localhost:9200/geometry_k12_rag/_stats [status:200 duration:0.043s]
+2025-11-15 13:14:53,555 - INFO - POST http://localhost:9200/geometry_k12_rag/_count [status:200 duration:0.043s]
+2025-11-15 13:14:53,555 - INFO - ✓ RAG system ready: 1985 chunks indexed
+2025-11-15 13:15:06,130 - INFO - ✓ Gemini API connection successful
+2025-11-15 13:15:06,131 - INFO - Test response: Hello, I am ready to help with geometry!
+2025-11-15 13:15:06,131 - INFO - ✓ LLM system ready
+2025-11-15 13:15:06,131 - INFO - System test complete
+
+2025-11-15 13:15:06,131 - INFO - ======================================================================
+2025-11-15 13:15:06,131 - INFO - ✓ Geometry Tutor Pipeline ready!
+2025-11-15 13:15:06,131 - INFO - ======================================================================
+2025-11-15 13:15:06,131 - INFO - Generating quiz on: Triangles for Grade 8
+2025-11-15 13:15:06,134 - INFO - Retrieving with strategy: hybrid
+2025-11-15 13:15:06,482 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.290s]
+2025-11-15 13:15:06,616 - INFO - POST http://localhost:9200/geometry_k12_rag/_search [status:200 duration:0.132s]
+2025-11-15 13:15:06,618 - INFO - Reranking results
+2025-11-15 13:15:11,677 - INFO - Retrieved 10 chunks for quiz generation
+2025-11-15 13:15:21,896 - INFO - ✓ Quiz generated successfully in 15.73s
+2025-11-15 13:15:21,898 - INFO - PDF Generator initialized
+2025-11-15 13:15:21,898 - INFO - DOCX Generator initialized
+2025-11-15 13:15:21,899 - INFO - PPT Generator initialized
+2025-11-15 13:15:21,899 - INFO - Document Generator initialized
+2025-11-15 13:15:21,899 - INFO -   PDF: ✓
+2025-11-15 13:15:21,899 - INFO -   DOCX: ✓
+2025-11-15 13:15:21,899 - INFO -   PPT: ✓
+2025-11-15 13:15:21,931 - INFO - ✓ PDF quiz generated: generated_docs/workflow_test_quiz.pdf

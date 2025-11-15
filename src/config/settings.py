@@ -63,8 +63,8 @@ class Settings(BaseSettings):
     # Phase 3: Email Configuration
     SMTP_HOST: str = "smtp.gmail.com"
     SMTP_PORT: int = 587
-    SMTP_USERNAME: str = "sauravdeshmukh200@gmail.com"
-    SMTP_PASSWORD: str = "oldu qwnv snmm oxxr"
+    EMAIL_USERNAME: str = "sauravdeshmukh200@gmail.com"
+    EMAIL_PASSWORD: str = "oldu qwnv snmm oxxr"
     SMTP_FROM_EMAIL: str = "sauravdeshmukh200@gmail.com"
 
     # Geometry-specific settings
