@@ -59,7 +59,7 @@ class GeminiClient:
             "temperature": 0.7,
             "top_p": 0.95,
             "top_k": 40,
-            "max_output_tokens": 2048,
+            "max_output_tokens": 20000,
         }
         
         # Safety settings (allow educational content)
