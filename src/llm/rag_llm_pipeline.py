@@ -382,6 +382,9 @@ class GeometryTutorPipeline:
         
         try:
             retrieval_result = self.rag_pipeline.retrieve(concept, retrieval_config)
+
+            for i, chunk in enumerate(retrieval_result.chunks):
+                print(f"Chunk {i+1}: Score={chunk.get('score')}, Level={chunk.get('content', {}).get('level')}, Source={chunk.get('content', {}).get('source')}, Length={len(chunk.get('content', {}).get('text', ''))}")
             
             if not retrieval_result.chunks:
                 logger.warning(f"No information found for concept: {concept}")
@@ -395,7 +398,9 @@ class GeometryTutorPipeline:
                     }
                 }
             
-            logger.info(f"Retrieved {len(retrieval_result.chunks)} chunks for explanation")
+            logger.info(f"Retrieved {len(retrieval_result.chunks)} chunks for explanation bro")
+            print("Context before passing to LLM:")
+            print(retrieval_result.context)
             
             # Step 2: Generate explanation
             explanation_response = self.llm_client.generate_explanation(

@@ -515,6 +515,8 @@ async def generate_document(
             'content': request.content,
             'metadata': request.metadata or {}
         }
+
+        print ("Generating document with data:", data)
         
         # Add user info to metadata
         data['metadata']['generated_by'] = current_user.username

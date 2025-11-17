@@ -13,6 +13,16 @@ from ..database.vector_store import GeometryVectorStore
 from .reranker import GeometryReranker, GeometryMetadataScorer
 from ..config.settings import settings
 
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(settings.log_file),
+        logging.StreamHandler()
+    ]
+)
+
 logger = logging.getLogger(__name__)
 
 class RetrievalStrategy(Enum):
@@ -578,8 +588,9 @@ class GeometryRAGPipeline:
             
             # Check if adding this chunk exceeds limit
             if current_tokens + chunk_tokens > max_tokens:
+                print(f"Context truncated at {current_tokens} tokens (limit: {max_tokens})")
                 logger.warning(f"Context truncated at {current_tokens} tokens (limit: {max_tokens})")
-                break
+                continue
             
             # Add source header if new source or first chunk
             if i == 0 or content.get('source') != sorted_chunks[i-1]['content'].get('source'):
@@ -593,7 +604,7 @@ class GeometryRAGPipeline:
             
             current_tokens += chunk_tokens
             chunks_included += 1
-        
+        print(f"Assembled context: {chunks_included}/{len(chunks)} chunks, ~{current_tokens} tokens")
         logger.info(f"Assembled context: {chunks_included}/{len(chunks)} chunks, ~{current_tokens} tokens")
         
         return "".join(context_parts).strip()

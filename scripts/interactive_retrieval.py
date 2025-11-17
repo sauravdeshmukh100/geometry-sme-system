@@ -6,8 +6,10 @@ Compatible with improved hierarchical retrieval and adaptive strategies
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# from src.config import settings
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.config.settings import settings
 import logging
 from typing import Optional
 
@@ -18,10 +20,16 @@ from src.retrieval.rag_pipeline import (
 )
 
 # Configure logging
+# Setup logging
 logging.basicConfig(
-    level=logging.WARNING,
-    format='%(levelname)s: %(message)s'
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(settings.log_file),
+        logging.StreamHandler()
+    ]
 )
+logger = logging.getLogger(__name__)
 
 class InteractiveRetrieval:
     """Enhanced interactive retrieval testing interface."""
