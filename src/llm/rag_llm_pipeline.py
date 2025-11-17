@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
-Merged RAG-LLM Pipeline - Complete Geometry Tutor
-Combines retrieval with LLM generation for comprehensive Q&A system
+Enhanced RAG-LLM Pipeline - Complete Geometry Tutor
+Compatible with improved hierarchical retrieval, adaptive strategies, and deduplication
 """
 
 import os
@@ -38,10 +38,12 @@ class GeometryTutorPipeline:
     Complete pipeline integrating RAG retrieval with LLM generation.
     Handles Q&A, quiz generation, explanations, and conversations.
     
-    Features:
+    Enhanced Features:
+    - Adaptive retrieval strategies
+    - Level-aware fusion for hierarchical retrieval
+    - Automatic deduplication
+    - Token-aware context assembly
     - Multi-step reasoning
-    - Context-aware responses
-    - Adaptive difficulty
     - Conversation memory
     - Error recovery
     """
@@ -50,7 +52,8 @@ class GeometryTutorPipeline:
         self, 
         gemini_api_key: Optional[str] = None,
         enable_reranker: bool = True,
-        default_top_k: int = 5
+        default_top_k: int = 5,
+        max_context_tokens: int = 4000
     ):
         """
         Initialize the complete tutor pipeline.
@@ -59,9 +62,10 @@ class GeometryTutorPipeline:
             gemini_api_key: Google Gemini API key
             enable_reranker: Whether to use reranking for better results
             default_top_k: Default number of chunks to retrieve
+            max_context_tokens: Maximum tokens for context assembly
         """
         logger.info("="*70)
-        logger.info("Initializing Geometry Tutor Pipeline")
+        logger.info("Initializing Enhanced Geometry Tutor Pipeline")
         logger.info("="*70)
         
         # Initialize RAG pipeline
@@ -86,14 +90,19 @@ class GeometryTutorPipeline:
         # Configuration
         self.default_top_k = default_top_k
         self.enable_reranker = enable_reranker
+        self.max_context_tokens = max_context_tokens
+        self.embedding_limit = getattr(settings, 'EMBEDDING_MAX_TOKENS', 384)
         
         # Test system components
         self._test_system()
         
         logger.info("="*70)
-        logger.info("✓ Geometry Tutor Pipeline ready!")
+        logger.info("✓ Enhanced Geometry Tutor Pipeline ready!")
+        logger.info(f"  Embedding limit: {self.embedding_limit} tokens")
+        logger.info(f"  Max context: {self.max_context_tokens} tokens")
         logger.info("="*70)
-        print("\n✓ Geometry Tutor Pipeline ready!\n")
+        print(f"\n✓ Enhanced Geometry Tutor Pipeline ready!")
+        print(f"  Enhanced features: Adaptive strategies, Level fusion, Deduplication\n")
     
     # ========== Core Methods ==========
     
@@ -104,10 +113,11 @@ class GeometryTutorPipeline:
         difficulty: Optional[str] = None,
         top_k: Optional[int] = None,
         include_sources: bool = True,
-        retrieval_strategy: RetrievalStrategy = RetrievalStrategy.HYBRID
+        retrieval_strategy: RetrievalStrategy = RetrievalStrategy.ADAPTIVE,
+        enable_deduplication: bool = True
     ) -> Dict[str, Any]:
         """
-        Answer a geometry question using RAG + LLM.
+        Answer a geometry question using RAG + LLM with enhanced retrieval.
         
         Args:
             query: Student's question
@@ -115,7 +125,8 @@ class GeometryTutorPipeline:
             difficulty: Content difficulty (Beginner/Intermediate/Advanced)
             top_k: Number of context chunks to retrieve
             include_sources: Whether to include source references
-            retrieval_strategy: Retrieval strategy to use
+            retrieval_strategy: Retrieval strategy (ADAPTIVE recommended)
+            enable_deduplication: Remove duplicate/similar chunks
         
         Returns:
             Dict with answer, sources, and metadata
@@ -126,13 +137,19 @@ class GeometryTutorPipeline:
         if top_k is None:
             top_k = self.default_top_k
         
-        # Step 1: Retrieve relevant context
+        # Step 1: Retrieve relevant context with enhanced config
         retrieval_config = RetrievalConfig(
             strategy=retrieval_strategy,
             top_k=top_k * 2,  # Retrieve more, then rerank
             rerank=self.enable_reranker,
             rerank_top_k=top_k,
-            filters=self._build_filters(grade_level, difficulty)
+            use_metadata_boost=True,
+            level_preference=None,  # Let adaptive choose
+            filters=self._build_filters(grade_level, difficulty),
+            embeddable_only=True,
+            max_context_tokens=self.max_context_tokens,
+            enable_deduplication=enable_deduplication,
+            similarity_threshold=0.95
         )
         
         try:
@@ -148,7 +165,8 @@ class GeometryTutorPipeline:
                     'retrieval_metadata': {
                         'num_chunks': 0,
                         'sources': [],
-                        'avg_score': 0
+                        'avg_score': 0,
+                        'strategy_used': retrieval_strategy.value
                     },
                     'success': False,
                     'error': 'No relevant context found'
@@ -164,7 +182,7 @@ class GeometryTutorPipeline:
             
             elapsed_time = time.time() - start_time
             
-            # Step 3: Compile comprehensive response
+            # Step 3: Compile comprehensive response with enhanced metadata
             response = {
                 'query': query,
                 'answer': llm_response.get('answer', 'Error generating answer'),
@@ -175,7 +193,12 @@ class GeometryTutorPipeline:
                     'grade_levels': retrieval_result.metadata.get('grade_levels', []),
                     'topics': retrieval_result.metadata.get('topics', []),
                     'avg_score': retrieval_result.metadata.get('avg_score', 0),
-                    'strategy': retrieval_strategy.value
+                    'strategy_used': retrieval_result.metadata.get('strategy_used', retrieval_strategy.value),
+                    'level_preference': retrieval_result.metadata.get('level_preference'),
+                    'embeddable_count': retrieval_result.metadata.get('embeddable_count', 0),
+                    'context_only_count': retrieval_result.metadata.get('context_only_count', 0),
+                    'level_distribution': retrieval_result.metadata.get('level_distribution', {}),
+                    'deduplication_enabled': enable_deduplication
                 },
                 'generation_metadata': {
                     'model': llm_response.get('model'),
@@ -209,10 +232,11 @@ class GeometryTutorPipeline:
         num_questions: int = 5,
         difficulty: Optional[str] = None,
         question_types: Optional[List[str]] = None,
-        use_structured_output: bool = True
+        use_structured_output: bool = True,
+        retrieval_strategy: RetrievalStrategy = RetrievalStrategy.HYBRID
     ) -> Dict[str, Any]:
         """
-        Generate a quiz on a specific geometry topic.
+        Generate a quiz on a specific geometry topic with enhanced retrieval.
         
         Args:
             topic: Topic for quiz (e.g., "Triangles", "Circles")
@@ -221,6 +245,7 @@ class GeometryTutorPipeline:
             difficulty: Optional difficulty filter
             question_types: Types of questions to include
             use_structured_output: Return structured JSON format
+            retrieval_strategy: Strategy for content retrieval
         
         Returns:
             Dict with quiz content and metadata
@@ -230,21 +255,26 @@ class GeometryTutorPipeline:
         
         # Step 1: Retrieve comprehensive context about the topic
         retrieval_config = RetrievalConfig(
-            strategy=RetrievalStrategy.KEYWORD_ONLY,
+            strategy=retrieval_strategy,
             top_k=15,  # More context for quiz generation
             rerank=self.enable_reranker,
             rerank_top_k=10,
-            filters=self._build_filters(grade_level, difficulty)
+            use_metadata_boost=True,
+            include_parents=False,
+            filters=self._build_filters(grade_level, difficulty),
+            embeddable_only=True,
+            max_context_tokens=self.max_context_tokens,
+            enable_deduplication=True,
+            similarity_threshold=0.90  # Allow slightly more variety for quiz
         )
         
         try:
-            # Use a detailed query to get comprehensive coverage
-            # search_query = f"Explain {topic} concepts, formulas, theorems, and properties"
+            # Use the topic directly as search query
             search_query = topic
             retrieval_result = self.rag_pipeline.retrieve(search_query, retrieval_config)
 
-            print(f"Search query for debugging: {search_query}")
-            print(f"Retrieved {len(retrieval_result.chunks)} chunks for quiz generation")
+            logger.debug(f"Search query: {search_query}")
+            logger.info(f"Retrieved {len(retrieval_result.chunks)} chunks for quiz generation")
 
             if not retrieval_result.chunks:
                 logger.warning(f"No content found for topic: {topic}")
@@ -252,11 +282,16 @@ class GeometryTutorPipeline:
                     'quiz': None,
                     'topic': topic,
                     'success': False,
-                    'error': f'No content found for topic: {topic}'
+                    'error': f'No content found for topic: {topic}',
+                    'metadata': {
+                        'retrieval_strategy': retrieval_strategy.value,
+                        'num_chunks': 0
+                    }
                 }
             
-            logger.info(f"Retrieved {len(retrieval_result.chunks)} chunks for quiz generation")
-            print(f"Retrieved context for debugging: {retrieval_result.context}")
+            # Log context preview for debugging
+            logger.debug(f"Context preview: {retrieval_result.context[:200]}...")
+            
             # Step 2: Generate quiz using LLM
             quiz_response = self.llm_client.generate_quiz(
                 topic=topic,
@@ -269,13 +304,16 @@ class GeometryTutorPipeline:
             
             elapsed_time = time.time() - start_time
             
-            # Step 3: Add metadata and compile response
+            # Step 3: Add enhanced metadata and compile response
             if quiz_response.get('success'):
                 quiz_response['metadata'] = {
                     **quiz_response.get('metadata', {}),
                     'sources': retrieval_result.metadata.get('sources', []),
                     'num_chunks_used': len(retrieval_result.chunks),
                     'retrieval_score': retrieval_result.metadata.get('avg_score', 0),
+                    'retrieval_strategy': retrieval_result.metadata.get('strategy_used', retrieval_strategy.value),
+                    'level_distribution': retrieval_result.metadata.get('level_distribution', {}),
+                    'embeddable_count': retrieval_result.metadata.get('embeddable_count', 0),
                     'generation_time': elapsed_time
                 }
                 logger.info(f"✓ Quiz generated successfully in {elapsed_time:.2f}s")
@@ -290,7 +328,10 @@ class GeometryTutorPipeline:
                 'quiz': None,
                 'topic': topic,
                 'success': False,
-                'error': str(e)
+                'error': str(e),
+                'metadata': {
+                    'retrieval_strategy': retrieval_strategy.value
+                }
             }
     
     def explain_concept(
@@ -299,10 +340,11 @@ class GeometryTutorPipeline:
         grade_level: str,
         explanation_type: str = "step-by-step",
         include_examples: bool = True,
-        difficulty: Optional[str] = None
+        difficulty: Optional[str] = None,
+        use_hierarchical: bool = True
     ) -> Dict[str, Any]:
         """
-        Generate a detailed explanation of a geometry concept.
+        Generate a detailed explanation of a geometry concept with enhanced retrieval.
         
         Args:
             concept: Concept to explain (e.g., "Pythagorean Theorem")
@@ -311,6 +353,7 @@ class GeometryTutorPipeline:
                 ("step-by-step", "visual", "proof", "example")
             include_examples: Whether to include worked examples
             difficulty: Optional difficulty level
+            use_hierarchical: Use hierarchical retrieval with level fusion
         
         Returns:
             Dict with explanation and metadata
@@ -319,13 +362,22 @@ class GeometryTutorPipeline:
         logger.info(f"Explaining: {concept} ({explanation_type})")
         
         # Step 1: Retrieve context with hierarchical strategy for concept explanations
+        retrieval_strategy = RetrievalStrategy.HIERARCHICAL if use_hierarchical else RetrievalStrategy.ADAPTIVE
+        
         retrieval_config = RetrievalConfig(
-            strategy=RetrievalStrategy.HIERARCHICAL,
+            strategy=retrieval_strategy,
             top_k=12,
             rerank=self.enable_reranker,
             rerank_top_k=8,
-            include_parents=True,  # Include parent chunks for context
-            filters=self._build_filters(grade_level, difficulty)
+            use_metadata_boost=True,
+            include_parents=True,  # Include parent chunks for broader context
+            include_children=False,
+            level_preference=None,  # Let hierarchical fusion work
+            filters=self._build_filters(grade_level, difficulty),
+            embeddable_only=True,
+            max_context_tokens=self.max_context_tokens,
+            enable_deduplication=True,
+            similarity_threshold=0.92
         )
         
         try:
@@ -337,7 +389,10 @@ class GeometryTutorPipeline:
                     'concept': concept,
                     'explanation': f"I don't have detailed information about '{concept}' in my knowledge base for {grade_level}.",
                     'success': False,
-                    'error': 'No relevant content found'
+                    'error': 'No relevant content found',
+                    'metadata': {
+                        'retrieval_strategy': retrieval_strategy.value
+                    }
                 }
             
             logger.info(f"Retrieved {len(retrieval_result.chunks)} chunks for explanation")
@@ -353,7 +408,7 @@ class GeometryTutorPipeline:
             
             elapsed_time = time.time() - start_time
             
-            # Step 3: Compile response with metadata
+            # Step 3: Compile response with enhanced metadata
             response = {
                 'concept': concept,
                 'explanation': explanation_response.get('explanation'),
@@ -364,6 +419,10 @@ class GeometryTutorPipeline:
                     'topics': retrieval_result.metadata.get('topics', []),
                     'num_chunks_used': len(retrieval_result.chunks),
                     'retrieval_score': retrieval_result.metadata.get('avg_score', 0),
+                    'retrieval_strategy': retrieval_result.metadata.get('strategy_used', retrieval_strategy.value),
+                    'level_distribution': retrieval_result.metadata.get('level_distribution', {}),
+                    'embeddable_count': retrieval_result.metadata.get('embeddable_count', 0),
+                    'context_only_count': retrieval_result.metadata.get('context_only_count', 0),
                     'model': explanation_response.get('model'),
                     'generation_time': elapsed_time
                 },
@@ -383,7 +442,10 @@ class GeometryTutorPipeline:
                 'concept': concept,
                 'explanation': None,
                 'success': False,
-                'error': str(e)
+                'error': str(e),
+                'metadata': {
+                    'retrieval_strategy': retrieval_strategy.value
+                }
             }
     
     def chat(
@@ -392,10 +454,11 @@ class GeometryTutorPipeline:
         chat_history: Optional[List[Dict[str, str]]] = None,
         retrieve_context: bool = True,
         grade_level: Optional[str] = None,
-        context_window: int = 5
+        context_window: int = 5,
+        retrieval_strategy: RetrievalStrategy = RetrievalStrategy.ADAPTIVE
     ) -> Dict[str, Any]:
         """
-        Handle conversational interaction with memory and context.
+        Handle conversational interaction with memory and enhanced context retrieval.
         
         Args:
             message: User's message
@@ -403,6 +466,7 @@ class GeometryTutorPipeline:
             retrieve_context: Whether to retrieve relevant context from RAG
             grade_level: Optional grade filter
             context_window: Number of recent turns to include (default 5)
+            retrieval_strategy: Strategy for context retrieval
         
         Returns:
             Dict with response and updated history
@@ -417,22 +481,29 @@ class GeometryTutorPipeline:
         if retrieve_context:
             try:
                 retrieval_config = RetrievalConfig(
-                    strategy=RetrievalStrategy.HYBRID,
+                    strategy=retrieval_strategy,
                     top_k=5,
                     rerank=self.enable_reranker,
                     rerank_top_k=3,
-                    filters={'grade_level': grade_level} if grade_level else None
+                    use_metadata_boost=True,
+                    filters={'grade_level': grade_level} if grade_level else None,
+                    embeddable_only=True,
+                    max_context_tokens=2000,  # Limit for chat to leave room for history
+                    enable_deduplication=True,
+                    similarity_threshold=0.95
                 )
                 
                 retrieval_result = self.rag_pipeline.retrieve(message, retrieval_config)
                 
                 if retrieval_result.chunks:
                     # Limit context to prevent overwhelming the prompt
-                    context = self._truncate_context(retrieval_result.context, 1000)
+                    context = retrieval_result.context
                     retrieval_metadata = {
                         'num_chunks': len(retrieval_result.chunks),
                         'sources': retrieval_result.metadata.get('sources', [])[:2],
-                        'avg_score': retrieval_result.metadata.get('avg_score', 0)
+                        'avg_score': retrieval_result.metadata.get('avg_score', 0),
+                        'strategy_used': retrieval_result.metadata.get('strategy_used', retrieval_strategy.value),
+                        'level_distribution': retrieval_result.metadata.get('level_distribution', {})
                     }
                     logger.info(f"Retrieved {len(retrieval_result.chunks)} chunks for chat context")
                     
@@ -478,10 +549,10 @@ class GeometryTutorPipeline:
         show_progress: bool = True
     ) -> List[Dict[str, Any]]:
         """
-        Answer multiple questions in batch.
+        Answer multiple questions in batch with enhanced retrieval.
         
         Args:
-            questions: List of question dicts with 'query' and optional 'grade_level'
+            questions: List of question dicts with 'query' and optional parameters
             show_progress: Whether to print progress
         
         Returns:
@@ -497,7 +568,8 @@ class GeometryTutorPipeline:
             result = self.answer_question(
                 query=q.get('query'),
                 grade_level=q.get('grade_level'),
-                difficulty=q.get('difficulty')
+                difficulty=q.get('difficulty'),
+                retrieval_strategy=q.get('retrieval_strategy', RetrievalStrategy.ADAPTIVE)
             )
             results.append(result)
         
@@ -512,7 +584,7 @@ class GeometryTutorPipeline:
     ) -> Dict[str, Any]:
         """
         Generate adaptive explanation based on student level and previous attempts.
-        Uses different explanation types based on student understanding.
+        Uses different explanation types and retrieval strategies based on understanding.
         
         Args:
             concept: Concept to explain
@@ -542,19 +614,106 @@ class GeometryTutorPipeline:
         
         explanation_type = available_types[0]
         
+        # Use hierarchical for complex concepts, adaptive for simpler ones
+        use_hierarchical = explanation_type in ['proof', 'step-by-step']
+        
         logger.info(f"Adaptive explanation: {concept} using {explanation_type} for {student_level}")
         
         return self.explain_concept(
             concept=concept,
             grade_level=self._level_to_grade(student_level),
             explanation_type=explanation_type,
-            include_examples=True
+            include_examples=True,
+            use_hierarchical=use_hierarchical
         )
+    
+    def compare_retrieval_strategies(
+        self,
+        query: str,
+        grade_level: Optional[str] = None,
+        top_k: int = 5
+    ) -> Dict[str, Any]:
+        """
+        Compare different retrieval strategies for a query.
+        Useful for debugging and optimization.
+        
+        Args:
+            query: Query to test
+            grade_level: Optional grade filter
+            top_k: Number of results per strategy
+        
+        Returns:
+            Comparison results for each strategy
+        """
+        logger.info(f"Comparing strategies for: {query}")
+        
+        strategies = [
+            RetrievalStrategy.ADAPTIVE,
+            RetrievalStrategy.HYBRID,
+            RetrievalStrategy.HIERARCHICAL,
+            RetrievalStrategy.VECTOR_ONLY
+        ]
+        
+        results = {}
+        
+        for strategy in strategies:
+            config = RetrievalConfig(
+                strategy=strategy,
+                top_k=top_k * 2,
+                rerank=self.enable_reranker,
+                rerank_top_k=top_k,
+                filters={'grade_level': grade_level} if grade_level else None,
+                max_context_tokens=self.max_context_tokens,
+                enable_deduplication=True
+            )
+            
+            try:
+                start = time.time()
+                result = self.rag_pipeline.retrieve(query, config)
+                elapsed = time.time() - start
+                
+                results[strategy.value] = {
+                    'num_chunks': len(result.chunks),
+                    'avg_score': result.metadata.get('avg_score', 0),
+                    'sources': result.metadata.get('sources', []),
+                    'level_distribution': result.metadata.get('level_distribution', {}),
+                    'retrieval_time': elapsed,
+                    'success': True
+                }
+                
+                logger.info(f"  {strategy.value}: {len(result.chunks)} chunks, avg_score={result.metadata.get('avg_score', 0):.4f}")
+                
+            except Exception as e:
+                logger.error(f"  {strategy.value}: Failed - {e}")
+                results[strategy.value] = {
+                    'success': False,
+                    'error': str(e)
+                }
+        
+        return {
+            'query': query,
+            'grade_level': grade_level,
+            'top_k': top_k,
+            'strategies': results,
+            'recommendation': self._recommend_strategy(results)
+        }
+    
+    def _recommend_strategy(self, results: Dict[str, Any]) -> str:
+        """Recommend best strategy based on comparison results."""
+        best_strategy = None
+        best_score = 0
+        
+        for strategy, data in results.items():
+            if data.get('success') and data.get('avg_score', 0) > best_score:
+                best_score = data['avg_score']
+                best_strategy = strategy
+        
+        return best_strategy or 'adaptive'
     
     # ========== Utility Methods ==========
     
     def get_statistics(self) -> Dict[str, Any]:
-        """Get system statistics and health check."""
+        """Get comprehensive system statistics and health check."""
         try:
             rag_stats = self.rag_pipeline.get_statistics()
             
@@ -567,7 +726,16 @@ class GeometryTutorPipeline:
                 },
                 'configuration': {
                     'default_top_k': self.default_top_k,
+                    'max_context_tokens': self.max_context_tokens,
+                    'embedding_limit': self.embedding_limit,
                     'reranker_enabled': self.enable_reranker
+                },
+                'enhanced_features': {
+                    'adaptive_strategy': True,
+                    'hierarchical_retrieval': True,
+                    'level_aware_fusion': True,
+                    'deduplication': True,
+                    'token_aware_assembly': True
                 }
             }
         except Exception as e:
@@ -610,7 +778,7 @@ class GeometryTutorPipeline:
         return context[:max_length] + "..."
     
     def _format_sources(self, chunks: List[Dict]) -> List[Dict[str, Any]]:
-        """Format source references from chunks."""
+        """Format source references from chunks with enhanced metadata."""
         sources = []
         for chunk in chunks:
             content = chunk.get('content', {})
@@ -618,7 +786,11 @@ class GeometryTutorPipeline:
                 'source': content.get('source', 'Unknown'),
                 'grade_level': content.get('grade_level', 'Unknown'),
                 'topic': content.get('topic', 'General'),
-                'score': chunk.get('score', 0)
+                'difficulty': content.get('difficulty', 'Unknown'),
+                'level': content.get('level', '?'),
+                'embeddable': content.get('embeddable', True),
+                'score': chunk.get('score', 0),
+                'rerank_score': chunk.get('rerank_score')
             })
         return sources
     
@@ -632,15 +804,32 @@ class GeometryTutorPipeline:
         return mapping.get(level, 'Grade 8')
     
     def _test_system(self):
-        """Test that all components are working."""
-        logger.info("\nTesting system components...")
+        """Test that all components are working with enhanced features."""
+        logger.info("\nTesting enhanced system components...")
         
         # Test RAG
         try:
             test_result = self.rag_pipeline.get_statistics()
             total_chunks = test_result.get('total_chunks', 0)
-            logger.info(f"✓ RAG system ready: {total_chunks} chunks indexed")
+            embeddable_chunks = test_result.get('embeddable_chunks', 0)
+            context_chunks = test_result.get('context_chunks', 0)
+            
+            logger.info(f"✓ RAG system ready:")
+            logger.info(f"  Total chunks: {total_chunks}")
+            logger.info(f"  Embeddable: {embeddable_chunks}")
+            logger.info(f"  Context-only: {context_chunks}")
+            
             print(f"✓ RAG system ready: {total_chunks} chunks indexed")
+            print(f"  Embeddable: {embeddable_chunks}, Context: {context_chunks}")
+            
+            # Check enhanced features
+            features = test_result.get('features', {})
+            if features:
+                logger.info("  Enhanced features:")
+                for feature, enabled in features.items():
+                    if enabled:
+                        logger.info(f"    ✓ {feature.replace('_', ' ').title()}")
+                        
         except Exception as e:
             logger.error(f"✗ RAG system test failed: {e}")
             print(f"✗ RAG system test failed: {e}")
@@ -649,10 +838,164 @@ class GeometryTutorPipeline:
         try:
             if self.llm_client.test_connection():
                 logger.info("✓ LLM system ready")
+                print(f"✓ LLM system ready: {self.llm_client.model_name}")
             else:
                 logger.warning("⚠ LLM test produced warnings")
+                print("⚠ LLM test produced warnings")
         except Exception as e:
             logger.error(f"✗ LLM test failed: {e}")
             print(f"✗ LLM test failed: {e}")
         
         logger.info("System test complete\n")
+
+
+# ========== Convenience Functions ==========
+
+def create_geometry_tutor(
+    gemini_api_key: Optional[str] = None,
+    enable_reranker: bool = True,
+    **kwargs
+) -> GeometryTutorPipeline:
+    """
+    Convenience function to create a GeometryTutorPipeline instance.
+    
+    Args:
+        gemini_api_key: Google Gemini API key
+        enable_reranker: Whether to enable reranking
+        **kwargs: Additional configuration options
+    
+    Returns:
+        Initialized GeometryTutorPipeline
+    """
+    return GeometryTutorPipeline(
+        gemini_api_key=gemini_api_key,
+        enable_reranker=enable_reranker,
+        **kwargs
+    )
+
+
+# ========== Example Usage ==========
+
+if __name__ == "__main__":
+    """
+    Example usage of the enhanced RAG-LLM pipeline.
+    """
+    print("="*70)
+    print("GEOMETRY TUTOR PIPELINE - ENHANCED DEMO")
+    print("="*70)
+    
+    try:
+        # Initialize pipeline
+        tutor = GeometryTutorPipeline(enable_reranker=True)
+        
+        # Example 1: Answer a question with adaptive strategy
+        print("\n" + "="*70)
+        print("EXAMPLE 1: Question Answering (Adaptive Strategy)")
+        print("="*70)
+        
+        result = tutor.answer_question(
+            query="What is the Pythagorean theorem and how do I use it?",
+            grade_level="Grade 8",
+            retrieval_strategy=RetrievalStrategy.ADAPTIVE
+        )
+        
+        print(f"\nQuery: {result['query']}")
+        print(f"Answer: {result['answer'][:300]}...")
+        print(f"\nMetadata:")
+        print(f"  Strategy Used: {result['retrieval_metadata']['strategy_used']}")
+        print(f"  Chunks Retrieved: {result['retrieval_metadata']['num_chunks']}")
+        print(f"  Level Distribution: {result['retrieval_metadata']['level_distribution']}")
+        print(f"  Total Time: {result['total_time']:.2f}s")
+        
+        # Example 2: Generate quiz with hierarchical retrieval
+        print("\n" + "="*70)
+        print("EXAMPLE 2: Quiz Generation")
+        print("="*70)
+        
+        quiz_result = tutor.generate_quiz(
+            topic="Triangles",
+            grade_level="Grade 7",
+            num_questions=3,
+            retrieval_strategy=RetrievalStrategy.HYBRID
+        )
+        
+        if quiz_result['success']:
+            print(f"\nQuiz on: {quiz_result.get('topic', 'N/A')}")
+            print(f"Questions Generated: {len(quiz_result.get('quiz', {}).get('questions', []))}")
+            print(f"Strategy Used: {quiz_result['metadata']['retrieval_strategy']}")
+            print(f"Sources: {', '.join(quiz_result['metadata']['sources'][:3])}")
+        
+        # Example 3: Explain concept with hierarchical retrieval
+        print("\n" + "="*70)
+        print("EXAMPLE 3: Concept Explanation (Hierarchical)")
+        print("="*70)
+        
+        explanation = tutor.explain_concept(
+            concept="Similar triangles",
+            grade_level="Grade 9",
+            explanation_type="step-by-step",
+            use_hierarchical=True
+        )
+        
+        if explanation['success']:
+            print(f"\nConcept: {explanation['concept']}")
+            print(f"Explanation Preview: {explanation['explanation'][:200]}...")
+            print(f"\nMetadata:")
+            print(f"  Strategy: {explanation['metadata']['retrieval_strategy']}")
+            print(f"  Level Distribution: {explanation['metadata']['level_distribution']}")
+            print(f"  Chunks Used: {explanation['metadata']['num_chunks_used']}")
+        
+        # Example 4: Compare retrieval strategies
+        print("\n" + "="*70)
+        print("EXAMPLE 4: Strategy Comparison")
+        print("="*70)
+        
+        comparison = tutor.compare_retrieval_strategies(
+            query="What are the properties of a circle?",
+            grade_level="Grade 8",
+            top_k=5
+        )
+        
+        print(f"\nQuery: {comparison['query']}")
+        print("\nStrategy Comparison:")
+        for strategy, data in comparison['strategies'].items():
+            if data.get('success'):
+                print(f"  {strategy}:")
+                print(f"    Chunks: {data['num_chunks']}")
+                print(f"    Avg Score: {data['avg_score']:.4f}")
+                print(f"    Time: {data['retrieval_time']:.3f}s")
+        
+        print(f"\nRecommended Strategy: {comparison['recommendation']}")
+        
+        # Example 5: Get system statistics
+        print("\n" + "="*70)
+        print("EXAMPLE 5: System Statistics")
+        print("="*70)
+        
+        stats = tutor.get_statistics()
+        print(f"\nSystem Status: {stats['status']}")
+        print(f"\nRAG Pipeline:")
+        print(f"  Total Chunks: {stats['rag_pipeline']['total_chunks']}")
+        print(f"  Embeddable: {stats['rag_pipeline']['embeddable_chunks']}")
+        print(f"  Context-Only: {stats['rag_pipeline']['context_chunks']}")
+        print(f"  Index Size: {stats['rag_pipeline']['index_size_mb']:.2f} MB")
+        
+        print(f"\nConfiguration:")
+        print(f"  Default Top K: {stats['configuration']['default_top_k']}")
+        print(f"  Max Context Tokens: {stats['configuration']['max_context_tokens']}")
+        print(f"  Embedding Limit: {stats['configuration']['embedding_limit']}")
+        print(f"  Reranker: {'Enabled' if stats['configuration']['reranker_enabled'] else 'Disabled'}")
+        
+        print(f"\nEnhanced Features:")
+        for feature, enabled in stats['enhanced_features'].items():
+            status = "✓" if enabled else "✗"
+            print(f"  {status} {feature.replace('_', ' ').title()}")
+        
+        print("\n" + "="*70)
+        print("DEMO COMPLETE")
+        print("="*70)
+        
+    except Exception as e:
+        logger.error(f"Demo failed: {e}", exc_info=True)
+        print(f"\n✗ Demo failed: {e}")
+        print("  Please check that Elasticsearch is running and the index is populated.")

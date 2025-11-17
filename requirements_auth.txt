@@ -1,0 +1,17 @@
+# Authentication & Security Dependencies
+pyjwt==2.8.0              # JWT token encoding/decoding
+bcrypt==4.1.2             # Password hashing
+python-jose[cryptography]==3.3.0  # Additional JWT support (optional)
+
+# FastAPI dependencies (if not already installed)
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+python-multipart>=0.0.6
+
+# Email validation
+email-validator>=2.1.0
+
+# Existing project dependencies
+# (Copy from your main requirements.txt)

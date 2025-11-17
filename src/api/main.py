@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """
-FastAPI Server for Geometry SME
-Exposes all agent and tool capabilities via REST API
+FastAPI Server for Geometry SME with JWT Authentication
+Exposes all agent and tool capabilities via REST API with role-based access control
 """
 
-from fastapi import FastAPI, HTTPException, BackgroundTasks, status
+from fastapi import FastAPI, HTTPException, BackgroundTasks, status, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, FileResponse
 from pydantic import BaseModel, EmailStr, Field, validator
@@ -21,6 +21,15 @@ from src.tools.tool_orchestrator import ToolOrchestrator
 from src.tools.document_generator import DocumentGenerator
 from src.tools.email_sender import EmailSender
 
+# Import authentication components
+from src.api.auth_routes import router as auth_router
+from src.api.dependencies import (
+    get_current_user, get_current_active_user, get_optional_user,
+    require_admin, require_teacher, require_student,
+    require_permission, require_generate_quiz, require_send_email
+)
+from src.models.auth_models import User, Permission
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -31,8 +40,8 @@ logger = logging.getLogger(__name__)
 # Initialize FastAPI app
 app = FastAPI(
     title="Geometry SME API",
-    description="AI-powered Geometry Subject Matter Expert for K-12 Education",
-    version="1.0.0",
+    description="AI-powered Geometry Subject Matter Expert for K-12 Education with JWT Authentication",
+    version="2.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
 )
@@ -45,6 +54,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include authentication router
+app.include_router(auth_router)
 
 # Initialize components (singleton pattern)
 conversation_agent = None
@@ -59,7 +71,7 @@ async def startup_event():
     """Initialize components on startup."""
     global conversation_agent, tutor_pipeline, orchestrator, doc_generator, email_sender
     
-    logger.info("Initializing Geometry SME system...")
+    logger.info("Initializing Geometry SME system with authentication...")
     
     try:
         # Initialize core components
@@ -84,14 +96,12 @@ async def startup_event():
 class ChatRequest(BaseModel):
     """Request model for chat endpoint."""
     message: str = Field(..., min_length=1, max_length=1000, description="User's message")
-    user_id: Optional[str] = Field(None, description="Optional user identifier")
     include_context: bool = Field(True, description="Whether to retrieve RAG context")
     
     class Config:
         json_schema_extra = {
             "example": {
                 "message": "What is the Pythagorean theorem?",
-                "user_id": "user123",
                 "include_context": True
             }
         }
@@ -213,22 +223,32 @@ async def root():
     """Root endpoint - API information."""
     return {
         "name": "Geometry SME API",
-        "version": "1.0.0",
-        "description": "AI-powered Geometry tutor for K-12 education",
+        "version": "2.0.0",
+        "description": "AI-powered Geometry tutor for K-12 education with JWT authentication",
+        "authentication": "JWT Bearer Token",
         "endpoints": {
             "docs": "/docs",
             "health": "/health",
-            "chat": "/chat",
-            "quiz": "/quiz/generate",
-            "explanation": "/explain",
-            "capabilities": "/capabilities"
+            "auth": {
+                "register": "/auth/register",
+                "login": "/auth/login",
+                "me": "/auth/me"
+            },
+            "features": {
+                "chat": "/chat",
+                "quiz": "/quiz/generate",
+                "explanation": "/explain",
+                "capabilities": "/capabilities"
+            }
         }
     }
 
 
 @app.get("/health", tags=["General"])
-async def health_check():
-    """Health check endpoint."""
+async def health_check(
+    current_user: Optional[User] = Depends(get_optional_user)
+):
+    """Health check endpoint. Optionally authenticated to show user info."""
     try:
         # Check if components are initialized
         if not all([conversation_agent, tutor_pipeline, orchestrator]):
@@ -241,7 +261,7 @@ async def health_check():
         stats = tutor_pipeline.get_statistics()
         tool_status = orchestrator.get_tool_status()
         
-        return {
+        response = {
             "status": "healthy",
             "timestamp": datetime.now().isoformat(),
             "system": {
@@ -251,6 +271,18 @@ async def health_check():
                 "document_formats": tool_status.get('document_formats', {})
             }
         }
+        
+        # Add user info if authenticated
+        if current_user:
+            response['user'] = {
+                "username": current_user.username,
+                "role": current_user.role.value,
+                "authenticated": True
+            }
+        else:
+            response['user'] = {"authenticated": False}
+        
+        return response
     
     except Exception as e:
         logger.error(f"Health check failed: {e}")
@@ -261,22 +293,49 @@ async def health_check():
 
 
 @app.get("/capabilities", tags=["General"])
-async def get_capabilities():
-    """Get system capabilities and features."""
-    return conversation_agent.get_capabilities()
+async def get_capabilities(
+    current_user: Optional[User] = Depends(get_optional_user)
+):
+    """Get system capabilities and features. Shows personalized capabilities if authenticated."""
+    capabilities = conversation_agent.get_capabilities()
+    
+    # Add role-specific capabilities if authenticated
+    if current_user:
+        capabilities['user_permissions'] = [p.value for p in current_user.get_permissions()]
+        capabilities['user_role'] = current_user.role.value
+    
+    return capabilities
 
+
+# ========== Protected Endpoints ==========
 
 @app.post("/chat", tags=["Conversation"])
-async def chat(request: ChatRequest):
+async def chat(
+    request: ChatRequest,
+    current_user: User = Depends(get_current_active_user)
+):
     """
     Chat with the geometry tutor.
-    Handles multi-turn conversations with memory.
+    Requires authentication. Tracks usage per user.
     """
     try:
+        # Update usage statistics
+        from src.database.user_repository import get_user_repository
+        user_repo = get_user_repository()
+        user_repo.increment_usage_stats(current_user.user_id, 'total_questions_asked')
+        
+        # Process message with user context
         response = conversation_agent.process_message(
             message=request.message,
-            user_id=request.user_id
+            user_id=current_user.user_id
         )
+        
+        # Add user context to response
+        response['user'] = {
+            "username": current_user.username,
+            "role": current_user.role.value,
+            "grade_level": current_user.grade_level
+        }
         
         return response
     
@@ -289,8 +348,10 @@ async def chat(request: ChatRequest):
 
 
 @app.post("/chat/reset", tags=["Conversation"])
-async def reset_conversation():
-    """Reset conversation memory."""
+async def reset_conversation(
+    current_user: User = Depends(get_current_active_user)
+):
+    """Reset conversation memory. Requires authentication."""
     try:
         conversation_agent.reset_conversation()
         return {"message": "Conversation reset successfully"}
@@ -303,10 +364,16 @@ async def reset_conversation():
 
 
 @app.post("/quiz/generate", tags=["Quiz"])
-async def generate_quiz(request: QuizRequest):
-    """Generate a geometry quiz."""
-    # print quiz topic and num_questions
-    print(f"Generating quiz on topic: {request.topic} with {request.num_questions} questions")
+async def generate_quiz(
+    request: QuizRequest,
+    current_user: User = Depends(require_permission(Permission.GENERATE_QUIZ))
+):
+    """
+    Generate a geometry quiz.
+    Requires GENERATE_QUIZ permission (Teacher+ role).
+    """
+    logger.info(f"User {current_user.username} generating quiz on: {request.topic}")
+    
     try:
         result = tutor_pipeline.generate_quiz(
             topic=request.topic,
@@ -320,6 +387,11 @@ async def generate_quiz(request: QuizRequest):
                 detail=result.get('error', 'Quiz generation failed')
             )
         
+        # Update usage statistics
+        from src.database.user_repository import get_user_repository
+        user_repo = get_user_repository()
+        user_repo.increment_usage_stats(current_user.user_id, 'total_quizzes_generated')
+        
         # Generate document if format specified
         if request.format:
             doc_path = doc_generator.generate(
@@ -328,6 +400,12 @@ async def generate_quiz(request: QuizRequest):
                 data=result
             )
             result['document_path'] = doc_path
+        
+        # Add user info
+        result['generated_by'] = {
+            "username": current_user.username,
+            "role": current_user.role.value
+        }
         
         return result
     
@@ -342,11 +420,17 @@ async def generate_quiz(request: QuizRequest):
 
 
 @app.post("/quiz/email", tags=["Quiz"])
-async def generate_and_email_quiz(request: QuizEmailRequest, background_tasks: BackgroundTasks):
+async def generate_and_email_quiz(
+    request: QuizEmailRequest,
+    background_tasks: BackgroundTasks,
+    current_user: User = Depends(require_send_email)
+):
     """
     Generate a quiz and email it to a student.
-    Uses background tasks for async processing.
+    Requires SEND_EMAIL permission (Teacher+ role).
     """
+    logger.info(f"User {current_user.username} generating and emailing quiz to: {request.to_email}")
+    
     try:
         # Execute workflow
         workflow_result = orchestrator.generate_and_email_quiz(
@@ -359,7 +443,18 @@ async def generate_and_email_quiz(request: QuizEmailRequest, background_tasks: B
             include_html=request.include_html
         )
         
-        return workflow_result.to_dict()
+        # Update usage stats
+        from src.database.user_repository import get_user_repository
+        user_repo = get_user_repository()
+        user_repo.increment_usage_stats(current_user.user_id, 'total_quizzes_generated')
+        
+        result = workflow_result.to_dict()
+        result['sent_by'] = {
+            "username": current_user.username,
+            "role": current_user.role.value
+        }
+        
+        return result
     
     except Exception as e:
         logger.error(f"Quiz email workflow error: {e}", exc_info=True)
@@ -370,8 +465,14 @@ async def generate_and_email_quiz(request: QuizEmailRequest, background_tasks: B
 
 
 @app.post("/explain", tags=["Explanation"])
-async def explain_concept(request: ExplanationRequest):
-    """Generate a detailed explanation of a geometry concept."""
+async def explain_concept(
+    request: ExplanationRequest,
+    current_user: User = Depends(get_current_active_user)
+):
+    """
+    Generate a detailed explanation of a geometry concept.
+    Requires authentication.
+    """
     try:
         result = tutor_pipeline.explain_concept(
             concept=request.concept,
@@ -399,8 +500,14 @@ async def explain_concept(request: ExplanationRequest):
 
 
 @app.post("/document/generate", tags=["Documents"])
-async def generate_document(request: DocumentRequest):
-    """Generate a document (PDF/DOCX/PPT)."""
+async def generate_document(
+    request: DocumentRequest,
+    current_user: User = Depends(require_permission(Permission.GENERATE_DOCUMENT))
+):
+    """
+    Generate a document (PDF/DOCX/PPT).
+    Requires GENERATE_DOCUMENT permission.
+    """
     try:
         # Prepare data
         data = {
@@ -408,6 +515,9 @@ async def generate_document(request: DocumentRequest):
             'content': request.content,
             'metadata': request.metadata or {}
         }
+        
+        # Add user info to metadata
+        data['metadata']['generated_by'] = current_user.username
         
         # Generate document
         doc_path = doc_generator.generate(
@@ -432,8 +542,14 @@ async def generate_document(request: DocumentRequest):
 
 
 @app.get("/document/download", tags=["Documents"])
-async def download_document(path: str):
-    """Download a generated document."""
+async def download_document(
+    path: str,
+    current_user: User = Depends(require_permission(Permission.DOWNLOAD_DOCUMENT))
+):
+    """
+    Download a generated document.
+    Requires DOWNLOAD_DOCUMENT permission.
+    """
     try:
         if not os.path.exists(path):
             raise HTTPException(
@@ -458,8 +574,14 @@ async def download_document(path: str):
 
 
 @app.post("/email/send", tags=["Email"])
-async def send_email(request: EmailRequest):
-    """Send an email with optional attachments."""
+async def send_email(
+    request: EmailRequest,
+    current_user: User = Depends(require_send_email)
+):
+    """
+    Send an email with optional attachments.
+    Requires SEND_EMAIL permission (Teacher+ role).
+    """
     try:
         result = email_sender.send_email(
             to_email=request.to_email,
@@ -475,6 +597,7 @@ async def send_email(request: EmailRequest):
                 detail=result.get('error', 'Email sending failed')
             )
         
+        result['sent_by'] = current_user.username
         return result
     
     except HTTPException:
@@ -488,43 +611,20 @@ async def send_email(request: EmailRequest):
 
 
 @app.get("/workflows", tags=["Workflows"])
-async def list_workflows():
-    """List available workflow templates."""
-    return orchestrator.get_workflow_templates()
-
-
-@app.post("/workflow/execute", tags=["Workflows"])
-async def execute_workflow(workflow_name: str, parameters: Dict[str, Any]):
-    """Execute a predefined workflow."""
-    try:
-        # This would route to appropriate workflow based on name
-        # For now, return the workflow info
-        templates = orchestrator.get_workflow_templates()
-        
-        workflow = next(
-            (w for w in templates if w['name'] == workflow_name),
-            None
-        )
-        
-        if not workflow:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Workflow '{workflow_name}' not found"
-            )
-        
-        return {
-            "message": f"Workflow '{workflow_name}' would be executed",
-            "parameters": parameters,
-            "workflow": workflow
-        }
+async def list_workflows(
+    current_user: User = Depends(get_current_active_user)
+):
+    """List available workflow templates. Requires authentication."""
+    workflows = orchestrator.get_workflow_templates()
     
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=str(e)
-        )
+    # Filter workflows based on user permissions
+    accessible_workflows = []
+    for workflow in workflows:
+        # Check if user has required permissions for this workflow
+        # For simplicity, we'll show all to authenticated users
+        accessible_workflows.append(workflow)
+    
+    return accessible_workflows
 
 
 # ========== Error Handlers ==========

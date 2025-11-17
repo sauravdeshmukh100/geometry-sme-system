@@ -67,6 +67,23 @@ class Settings(BaseSettings):
     EMAIL_PASSWORD: str = "oldu qwnv snmm oxxr"
     SMTP_FROM_EMAIL: str = "sauravdeshmukh200@gmail.com"
 
+    # JWT Authentication Configuration (NEW)
+    JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production-make-it-very-long-and-random")
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60  # 1 hour
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7  # 7 days
+    
+    # Password Requirements
+    PASSWORD_MIN_LENGTH: int = 8
+    PASSWORD_REQUIRE_UPPERCASE: bool = True
+    PASSWORD_REQUIRE_LOWERCASE: bool = True
+    PASSWORD_REQUIRE_DIGIT: bool = True
+    
+    # User Management
+    DEFAULT_USER_ROLE: str = "student"
+    ALLOW_USER_REGISTRATION: bool = True
+    REQUIRE_EMAIL_VERIFICATION: bool = False  # Set to True in production
+
     # Geometry-specific settings
     geometry_topics: list = [
         "shapes", "angles", "theorems", "proofs", "triangles",
